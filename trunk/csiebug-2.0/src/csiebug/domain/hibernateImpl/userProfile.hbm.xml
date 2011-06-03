@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="csiebug.domain.hibernateImpl">
+  <class name="UserProfileImpl" table="user_profile">
+  	<id name="id" column="UserId" type="java.lang.String" />
+	<property name="nickname" column="Nickname" type="java.lang.String" />
+	<property name="locale" column="Locale" type="java.lang.String" />
+	<property name="createUserId" column="CreateUserId" type="java.lang.String" />
+	<property name="createDate" column="CreateDate" type="java.util.Calendar" />
+	<property name="modifyUserId" column="ModifyUserId" type="java.lang.String" />
+	<property name="modifyDate" column="ModifyDate" type="java.util.Calendar" />
+  </class>
+</hibernate-mapping>

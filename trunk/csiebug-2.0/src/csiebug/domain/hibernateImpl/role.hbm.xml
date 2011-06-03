@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="csiebug.domain.hibernateImpl">
+  <class name="RoleImpl" table="roles">
+    <id name="id" column="RoleId" type="java.lang.String" />
+    <property name="roleName" column="RoleName" type="java.lang.String" />
+	<property name="createUserId" column="CreateUserId" type="java.lang.String" />
+	<property name="createDate" column="CreateDate" type="java.util.Calendar" />
+	<property name="modifyUserId" column="ModifyUserId" type="java.lang.String" />
+	<property name="modifyDate" column="ModifyDate" type="java.util.Calendar" />
+	
+	<set name="authorities" table="authorities" cascade="save-update">
+    	<key column="authority"/>
+	    <many-to-many class="UserImpl" column="username"/>
+	</set>
+	
+	<set name="authorityResources" table="authority_resources" cascade="save-update">
+    	<key column="authority" />
+	    <many-to-many class="ResourceImpl" column="resourceId" />
+	</set>
+  </class>
+</hibernate-mapping>

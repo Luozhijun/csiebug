@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="csiebug.domain.hibernateImpl">
+  <class name="ResourceImpl" table="resources">
+  	<id name="id" column="ResourceId" type="java.lang.String" />
+	<discriminator column="ResourceType" type="java.lang.String" />
+	<property name="resourceType" column="ResourceType" type="csiebug.domain.hibernateImpl.ResourceTypeEnumUserType" insert="false" update="false" />
+	<property name="createUserId" column="CreateUserId" type="java.lang.String" />
+	<property name="createDate" column="CreateDate" type="java.util.Calendar" />
+	<property name="modifyUserId" column="ModifyUserId" type="java.lang.String" />
+	<property name="modifyDate" column="ModifyDate" type="java.util.Calendar" />
+	
+	<set name="authorityResources" table="authority_resources" cascade="save-update">
+    	<key column="ResourceId" />
+	    <many-to-many class="RoleImpl" column="authority" />
+	</set>
+	
+	<subclass name="ObjectMethodImpl" discriminator-value="OBJECT_METHOD" />
+	<subclass name="URLImpl" discriminator-value="URL" />
+	<subclass name="PortletImpl" discriminator-value="PORTLET" />
+	
+	<subclass name="APImpl" discriminator-value="AP">
+		<join table="aps">
+			<key column="ResourceId" />
+			<property name="apId" column="APId" type="java.lang.String"/>
+			<property name="apName" column="APName" type="java.lang.String"/>
+			<property name="apLogo" column="APLogo" type="java.lang.String"/>
+			<property name="apIndexURL" column="APIndexURL" type="java.lang.String"/>
+			<property name="createUserId" column="CreateUserId" type="java.lang.String" />
+			<property name="createDate" column="CreateDate" type="java.util.Calendar" />
+			<property name="modifyUserId" column="ModifyUserId" type="java.lang.String" />
+			<property name="modifyDate" column="ModifyDate" type="java.util.Calendar" />
+			<!--
+			<set name="functions" table="functions" inverse="true" cascade="all-delete-orphan">
+        		<key column="APId"/>
+        		<one-to-many class="FunctionImpl"/>
+    		</set>-->
+		</join>
+	</subclass>
+	
+	<subclass name="FunctionImpl" discriminator-value="FUNCTION">
+		<join table="functions">
+			<key column="ResourceId"/>
+			<property name="apId" column="APId" type="java.lang.String"/>
+			<property name="functionId" column="FunctionId" type="java.lang.String"/>
+			<property name="parentId" column="ParentId" type="java.lang.String"/>
+			<property name="functionName" column="FunctionName" type="java.lang.String"/>
+			<property name="functionURL" column="FunctionURL" type="java.lang.String"/>
+			<property name="sortOrder" column="SortOrder" type="java.lang.Integer"/>
+			<property name="functionLogo" column="FunctionLogo" type="java.lang.String"/>
+			<property name="createUserId" column="CreateUserId" type="java.lang.String" />
+			<property name="createDate" column="CreateDate" type="java.util.Calendar" />
+			<property name="modifyUserId" column="ModifyUserId" type="java.lang.String" />
+			<property name="modifyDate" column="ModifyDate" type="java.util.Calendar" />
+			
+			<many-to-one name="ap" column="APId" class="APImpl" insert="false" update="false"/>
+		</join>
+    </subclass>
+  </class>
+</hibernate-mapping>
