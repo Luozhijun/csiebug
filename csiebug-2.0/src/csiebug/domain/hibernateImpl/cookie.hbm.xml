@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="csiebug.domain.hibernateImpl">
+  <class name="CookieImpl" table="persistent_logins">
+  	<composite-id>
+    	<key-property name="userId" column="username" type="java.lang.String"/>
+    	<key-property name="series" column="series" type="java.lang.String"/>
+	</composite-id>
+	<property name="token" column="token" type="java.lang.String" />
+	<property name="lastUsed" column="last_used" type="java.util.Calendar" />
+  </class>
+</hibernate-mapping>

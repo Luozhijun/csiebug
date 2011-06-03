@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="csiebug.domain.hibernateImpl">
+  <class name="DashboardPortletImpl" table="user_portlet">
+  	<composite-id>
+    	<key-property name="userId" column="UserId" type="java.lang.String"/>
+    	<key-property name="dashboardId" column="DashboardId" type="java.lang.String"/>
+		<key-property name="portletId" column="PortletId" type="java.lang.String"/>
+	</composite-id>
+	<property name="portletTitle" column="PortletTitle" type="java.lang.String" />
+	<property name="visible" column="visible" type="java.lang.Boolean" />
+	<property name="sortOrder" column="SortOrder" type="java.lang.Integer"/>
+	<property name="columnName" column="ColumnName" type="java.lang.String"/>
+	<property name="createUserId" column="CreateUserId" type="java.lang.String" />
+	<property name="createDate" column="CreateDate" type="java.util.Calendar" />
+	<property name="modifyUserId" column="ModifyUserId" type="java.lang.String" />
+	<property name="modifyDate" column="ModifyDate" type="java.util.Calendar" />
+	
+	<many-to-one name="dashboard" class="DashboardImpl" insert="false" update="false">
+		<column name="UserId"/>
+		<column name="DashboardId"/>
+	</many-to-one>
+  </class>
+</hibernate-mapping>

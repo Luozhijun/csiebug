@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="csiebug.domain.hibernateImpl">
+  <class name="UserImpl" table="users">
+  	<id name="id" column="username" type="java.lang.String" />
+    <property name="password" column="password" type="java.lang.String" />
+	<property name="enabled" column="enabled" type="java.lang.Boolean" />
+	<property name="createUserId" column="CreateUserId" type="java.lang.String" />
+	<property name="createDate" column="CreateDate" type="java.util.Calendar" />
+	<property name="modifyUserId" column="ModifyUserId" type="java.lang.String" />
+	<property name="modifyDate" column="ModifyDate" type="java.util.Calendar" />
+	
+	<one-to-one name="userProfile" class="UserProfileImpl" cascade="save-update" />
+	
+	<set name="userEmails" table="user_email" cascade="save-update" inverse="true">
+    	<key column="UserId"/>
+	    <one-to-many class="UserEmailImpl"/>
+	</set>
+	
+	<set name="dashboards" table="user_dashboard" cascade="save-update" inverse="true">
+    	<key column="UserId"/>
+	    <one-to-many class="DashboardImpl"/>
+	</set>
+	
+	<set name="cookies" table="persistent_logins" cascade="save-update" inverse="true">
+    	<key column="username"/>
+	    <one-to-many class="CookieImpl"/>
+	</set>
+	
+	<set name="webservicesChannels" table="webservices_logins" cascade="save-update" inverse="true">
+    	<key column="UserId"/>
+	    <one-to-many class="WebservicesChannelImpl"/>
+	</set>
+	
+	<set name="authorities" table="authorities" cascade="save-update">
+    	<key column="username"/>
+	    <many-to-many class="RoleImpl" column="authority"/>
+	</set>
+  </class>
+</hibernate-mapping>
