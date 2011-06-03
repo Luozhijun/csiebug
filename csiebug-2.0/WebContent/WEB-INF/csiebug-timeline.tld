@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN" "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+
+<taglib>
+
+   <tlib-version>1.0</tlib-version>
+   <jsp-version>1.2</jsp-version>
+   <short-name>csiebug-timeline</short-name>
+
+   <uri>http://www.pixnet.net/blog/csiebug</uri>
+
+   <display-name>csiebug</display-name>
+   <description><![CDATA[Display test information.]]></description>
+	
+	<tag>
+		<name>timeline</name>
+		<tag-class>csiebug.web.taglib.timeline.TimelineTag</tag-class>
+      	<body-content>JSP</body-content>
+      	<display-name>TimelineTag</display-name>
+      	<description><![CDATA[The container which holds all the column specific information. A copy of each column will be fed to the Model.]]></description>
+      	
+      	<attribute>
+        	<name>timelineId</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+         	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>timelineHeight</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+         	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>timelineDataPath</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+         	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>openHourBandFlag</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+         	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>hourBandWidthPercentage</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+         	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>openDayBandFlag</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+         	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>dayBandWidthPercentage</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+         	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>openMonthBandFlag</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+         	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>monthBandWidthPercentage</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+         	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>openYearBandFlag</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+         	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>yearBandWidthPercentage</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+         	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>list</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+         	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>dataSource</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+         	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+    </tag>
+    
+</taglib>

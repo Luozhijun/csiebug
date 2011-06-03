@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>csiebug-2.0 taglib feed</title>
+    <description>csiebug-2.0 taglib有任何更新會發布在此RSS Feed上</description>
+    <link>http://localhost:8080/csiebug-2.0/example/taglibDemoList</link>
+    <category domain="localhost">csiebug/web/webapp/taglib</category>
+    <copyright>Copyright (c) 2010 George Tsai. All rights reserved.</copyright>
+    <docs>http://localhost:8080/csiebug-2.0/example/taglibDemoList</docs>
+    <language>zh-TW</language>
+    <managingEditor>csiebug@gmail.com (George Tsai)</managingEditor>
+    <webMaster>csiebug@gmail.com (George Tsai)</webMaster>
+
+    <generator>RSSFeedUtility</generator>
+    <image>
+      <url>http://localhost:8080/csiebug-2.0/images/TaiwanRSS7_thumb.png</url>
+      <title>csiebug-2.0 taglib feed</title>
+      <link>http://localhost:8080/csiebug-2.0/example/taglibDemoList</link>
+      <description>csiebug-2.0 taglib demo</description>
+
+      <width>48</width>
+      <height>48</height>
+    </image>
+    
+    <item>
+      <pubDate>18 Oct 2010 07:37:50 GMT</pubDate>
+      <link>http://test.com/0.htm</link>
+      <title>test_0</title>
+      <description>testDescription_0</description>
+    </item>
+    <item>
+      <pubDate>18 Oct 2010 07:37:50 GMT</pubDate>
+      <link>http://test.com/1.htm</link>
+      <title>test_1</title>
+      <description>testDescription_1</description>
+    </item>
+    <item>
+      <pubDate>18 Oct 2010 07:37:50 GMT</pubDate>
+      <link>http://test.com/2.htm</link>
+      <title>test_2</title>
+      <description>testDescription_2</description>
+    </item>
+  </channel>
+</rss>

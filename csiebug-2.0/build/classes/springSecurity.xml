@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- spring security 2.x-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/security 
+                           http://www.springframework.org/schema/security/spring-security-2.0.2.xsd">
+<!-- spring security 3.x
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:security="http://www.springframework.org/schema/security"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans 
+          http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+          http://www.springframework.org/schema/security 
+          http://www.springframework.org/schema/security/spring-security-3.0.xsd"> -->  
+    
+	<!--
+		SessionFilter,RemeberMeFilter和RoleVoter注入filterVariable
+		就可以讓使用者輸入特定網址後，透過cookie登入直接存取那頁
+		但是如果站台的策略是要登入的使用者(包括透過cookie登入)一律要從首頁開始的話
+		只要把上述三個bean的注入filterVariable拿掉即可
+		這東西可能不是thread-safe(還沒測過),但是影響很小
+		因為此功能會不正常只有在有兩個人在同時用直接key任意網址的方式透過cookie登入才會發生(機會比較小)
+		而且後果頂多是轉到不是自己key的網址，大部分情況可能都會被導到首頁
+		不會被存取到無權限的網址，因為這只是轉址的接口，還是會接到spring security的authenticationManager做認證
+	-->
+	<bean id="filterVariable" class="java.util.HashMap" />
+	
+	<!-- SessionExpiration filter -->
+	<!-- spring security 2.x-->
+	<bean id="sessionExpirationFilter" class="csiebug.util.SessionExpirationFilter">
+    	<security:custom-filter position="FIRST"/>
+		<property name="expiredURL" value="/index?ActFlag=timeout"/>
+		<!--<property name="filterVariable" ref="filterVariable"/>-->
+	</bean>
+	
+	<!-- remember me filter -->
+	<bean id="rememberMeFilter" class="csiebug.util.RememberMeFilter">
+		<security:custom-filter position="LAST"/>
+		
+		<property name="authenticationManager" ref="authenticationManager"/>
+		<property name="domainObjectFactory" ref="domainObjectFactory"/>
+		<property name="userService" ref="userService"/>
+		<property name="loginSuccessURL" value="/login?ActFlag=login"/>
+		<!--<property name="filterVariable" ref="filterVariable"/>-->
+	</bean>
+	
+	<!-- spring security 3.x
+	<bean id="sessionExpirationFilter" class="csiebug.util.SessionExpirationFilter">
+    	<property name="expiredUrl" value="/index?ActFlag=timeout"/>
+	</bean>-->
+	
+	<!--
+	<bean id="roleHierarchy" class="org.springframework.security.userdetails.hierarchicalroles.RoleHierarchyImpl">
+		<property name="hierarchy">
+			<value>
+				admin > ROLE_USER
+			</value>
+		</property>
+	</bean> 
+	-->
+	<!-- spring security 2.x -->
+	<bean id="accessDecisionManager" class="org.springframework.security.vote.AffirmativeBased">
+	<!-- spring security 3.x
+	<bean id="accessDecisionManager" class="org.springframework.security.access.vote.AffirmativeBased">-->
+		<property name="decisionVoters">
+			<list>
+				<bean class="csiebug.util.RoleVoter">
+					<property name="rolePrefix">
+						 <value></value>
+					</property>
+					
+					<property name="resourceDAO">
+						 <ref bean="resourceDAO"/> 
+					</property>
+					
+					<property name="domainObjectFactory"> 
+            			<ref bean="domainObjectFactory"/> 
+        			</property>
+					
+					<!--<property name="filterVariable" ref="filterVariable"/>-->
+				</bean>
+				<!--
+				<bean id="roleHierarchyVoter" class="org.springframework.security.vote.RoleHierarchyVoter">
+					<constructor-arg ref="roleHierarchy"/>
+    			</bean>
+				-->
+			</list>
+		</property>
+	</bean>
+		
+	<!-- method level security -->
+    <security:global-method-security secured-annotations="enabled" jsr250-annotations="enabled" access-decision-manager-ref="accessDecisionManager">
+    	<!--<security:protect-pointcut expression="execution(* csiebug.service.*Service.*(..))" access="ROLE_USER" />-->
+		<!-- 因為有些service method會在IndexAction中使用
+		這個Action是登入首頁不受權限控管,因此這些method也不能夠被權限控管
+		故捨棄上面的設定方式採取底下的方式濾掉這些method-->
+		<security:protect-pointcut expression="execution(* csiebug.service.ResourceService.*(..))" access="ROLE_USER" />
+		<security:protect-pointcut expression="execution(* csiebug.service.WebUtilityService.check*(..))" access="ROLE_USER" />
+		<security:protect-pointcut expression="execution(* csiebug.service.WebUtilityService.getUser*(..))" access="ROLE_USER" />
+		<security:protect-pointcut expression="execution(* csiebug.service.WebUtilityService.get*Portlets*(..))" access="ROLE_USER" />
+		<security:protect-pointcut expression="execution(* csiebug.service.UserService.add*(..))" access="ROLE_USER" />
+		<security:protect-pointcut expression="execution(* csiebug.service.UserService.update*(..))" access="ROLE_USER" />
+		<security:protect-pointcut expression="execution(* csiebug.service.UserService.deleteDashboard*(..))" access="ROLE_USER" />
+	</security:global-method-security>
+	
+	<!-- url level security -->
+	<security:http auto-config="true" access-decision-manager-ref="accessDecisionManager" access-denied-page="/accessDenied.jsp">
+		<!-- css,js,images不需要被spring security保護了 -->
+		<security:intercept-url pattern="/css/**" filters="none"/>
+		<security:intercept-url pattern="/js/**" filters="none"/>
+		<security:intercept-url pattern="/images/**" filters="none"/>
+		<security:intercept-url pattern="/*.js" filters="none"/>
+		<security:intercept-url pattern="/*-rss.xml" filters="none"/>
+		<!-- web service由遠端呼叫不透過spring security的login,所以不透過spring security保護 -->
+		<security:intercept-url pattern="/services/**" filters="none"/>
+		<!-- 以下是example會用到,所以不透過spring security保護 -->
+		<security:intercept-url pattern="/example/**" filters="none"/>
+		<security:intercept-url pattern="/timeline/timelineJSONData.jsp" filters="none"/>
+		<security:intercept-url pattern="/uploadify/uploadifyCheckJSONData.jsp" filters="none"/>
+		<security:intercept-url pattern="/uploadify/uploadify.jsp" filters="none"/>
+		<security:intercept-url pattern="/charts.swf" filters="none"/>
+		<security:intercept-url pattern="/charts/tempXML/**" filters="none"/>
+		<security:intercept-url pattern="/charts/charts_library/**" filters="none"/>
+		
+		<!-- signIn沒有登入也要可以使用,所以不透過spring security保護 -->
+		<security:intercept-url pattern="/signIn" filters="none"/>
+		
+		<!-- index沒有登入也要可以使用 -->
+		<security:intercept-url pattern="/index" access="ROLE_ANONYMOUS"/>
+		<security:intercept-url pattern="/" access="ROLE_ANONYMOUS"/>
+		
+		<security:intercept-url pattern="/**" access="ROLE_USER" />
+	    <security:form-login login-page="/index?ActFlag=nopermission" authentication-failure-url="/index?ActFlag=authenticationFailure" default-target-url="/login?ActFlag=login" />
+		<security:logout logout-success-url="/index?ActFlag=logout" />
+		<!--<security:remember-me services-ref="rememberMeServices" />-->
+		<!--<security:remember-me token-repository-ref="tokenRepository" />-->
+		<!--
+		<security:session-management session-authentication-error-url="/index?ActFlag=maxSessionExceeded" invalid-session-url="/index?ActFlag=maxSessionExceeded">
+	        <security:concurrency-control max-sessions="1" error-if-maximum-exceeded="true"/>
+	    </security:session-management>-->
+		<!--spring security 3.x
+		<security:custom-filter position="FIRST" ref="sessionExpirationFilter" />-->
+	</security:http>    
+	
+	<!-- authentication setting -->
+	<!-- spring security 2.x-->
+	<bean id="userDetailsService" class="org.springframework.security.userdetails.jdbc.JdbcDaoImpl">
+	<!-- spring security 3.x
+	<bean id="userDetailsService" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">-->
+		<property name="dataSource" ref="dataSource"/>
+	</bean> 
+	
+	<!-- spring security 3.x
+	<security:authentication-manager alias="authenticationManager">-->
+		<!--<security:authentication-provider user-service-ref='userDetailsService'>
+			<security:password-encoder hash="sha-256"/>
+		</security:authentication-provider>-->
+	<!--</security:authentication-manager>-->
+	
+	<bean id="authenticationManager" class="org.springframework.security.providers.ProviderManager">
+		<property name="providers"><!-- 可有多個提供者,其中一個驗證通過即可以了 -->  
+        	<list>
+        		<!--<ref local="daoAuthenticationProvider" />-->
+        		<ref local="ldapAuthenticationProvider" />
+		 	</list>
+		</property>
+	</bean>
+	<!--
+	<bean id="passwordEncoder" class="csiebug.util.ShaEncoder ">
+		<property name="algorithm">
+			<value>sha-256</value>
+		</property>
+	</bean>
+		
+	<bean id="daoAuthenticationProvider" class="org.springframework.security.providers.dao.DaoAuthenticationProvider">
+		<property name="userDetailsService" ref="userDetailsService"/>
+		<property name="passwordEncoder" ref="passwordEncoder" />
+	</bean>
+	-->
+	<!-- ldap setting -->
+	<!-- simple namespace-based configuration-->
+	<!-- embeded ldap server
+	<security:ldap-server id="ldapServer" ldif="classpath:users.ldif" port="33389"/>
+	<security:ldap-authentication-provider group-search-filter="member={0}" group-search-base="ou=groups" user-search-base="ou=people" user-search-filter="uid={0}" />
+	-->
+	
+	<!-- Traditional Bean version of the same configuration -->
+	<security:ldap-server id="ldapServer" url="ldap://127.0.0.1:10389" manager-dn="uid=admin,ou=system" manager-password="rum5khxm" />
+	<!--<security:ldap-server id="ldapServer" url="ldap://127.0.0.1:10389" />-->
+	
+	<bean id="ldapAuthenticationProvider" class="org.springframework.security.providers.ldap.LdapAuthenticationProvider">
+  		<security:custom-authentication-provider />
+		<constructor-arg>
+			<bean class="org.springframework.security.providers.ldap.authenticator.BindAuthenticator">
+				<constructor-arg ref="ldapServer"/>
+				<!--<property name="userDnPatterns">-->
+			    	<!--<list><value>uid={0},ou=csiebug</value></list>-->
+				<!--</property>-->
+				<property name="userSearch">
+					<bean id="userSearch" class="org.springframework.security.ldap.search.FilterBasedLdapUserSearch">  
+						<constructor-arg index="0" value="OU=csiebug"/>  
+						<constructor-arg index="1" value="uid={0}"/>  
+						<constructor-arg index="2" ref="ldapServer" /> 
+						
+						<property name="searchSubtree">
+							<value>true</value>
+						</property> 
+					</bean>
+				</property>
+			</bean>
+		  </constructor-arg>
+		  <constructor-arg>
+		    	<bean class="csiebug.util.AuthoritiesPopulator">
+		    		<property name="userDetailsService">
+		    			<ref bean="userDetailsService"/>
+		    		</property>
+		    	</bean>
+		  </constructor-arg>
+	</bean>
+	
+	
+	
+</beans>

@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN" "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+
+<taglib>
+
+   <tlib-version>1.0</tlib-version>
+   <jsp-version>1.2</jsp-version>
+   <short-name>csiebug-ui</short-name>
+
+   <uri>http://www.pixnet.net/blog/csiebug</uri>
+
+   <display-name>csiebug</display-name>
+   <description><![CDATA[Display test information.]]></description>
+	
+    <tag>
+		<name>uploadify</name>
+		<tag-class>csiebug.web.taglib.form.upload.UploadifyTag</tag-class>
+      	<body-content>JSP</body-content>
+      	<display-name>UploadifyTag</display-name>
+      	<description><![CDATA[The container which holds all the column specific information. A copy of each column will be fed to the Model.]]></description>
+      	
+      	<attribute>
+        	<name>version</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>uploadId</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>auto</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>buttonImg</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>buttonText</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>cancelImg</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>checkScript</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>displayData</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>expressInstall</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>fileExt</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>folder</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>height</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>hideButton</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>method</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>multi</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>queueID</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>queueSizeLimit</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>removeCompleted</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>rollover</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>script</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>scriptData</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>simUploadLimit</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>sizeLimit</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>width</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>onAllComplete</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+		
+		<attribute>
+        	<name>onCancel</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+		
+		<attribute>
+        	<name>onCheck</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+		
+		<attribute>
+        	<name>onClearQueue</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+	
+		<attribute>
+        	<name>onComplete</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+		
+		<attribute>
+        	<name>onError</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+		
+		<attribute>
+        	<name>onInit</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+		
+		<attribute>
+        	<name>onOpen</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+		
+		<attribute>
+        	<name>onProgress</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+		
+		<attribute>
+        	<name>onQueueFull</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+		
+		<attribute>
+        	<name>onSelect</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+		
+		<attribute>
+        	<name>onSelectOnce</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+		
+		<attribute>
+        	<name>onSWFReady</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+    </tag>
+</taglib>

@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                        http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                        http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+						http://www.springframework.org/schema/tx
+						http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+    
+	<!-- MessageSource Setting -->
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"> 
+        <property name="basename"> 
+            <value>MessageResources</value> 
+        </property> 
+    </bean>
+	<!--
+	<bean id="dataSource4Test" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+		<property name="url" value="jdbc:sqlserver://localhost:1433;databaseName=test;"/>
+		<property name="username" value="sa"/>
+		<property name="password" value="Ilovepanda"/>
+	</bean>-->
+	
+	<!-- DataSource Setting -->
+	<bean id="dataSource" class="csiebug.util.SecureBasicDataSource">
+		<!-- <property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+		<property name="url" value="jdbc:sqlserver://localhost:1433;databaseName=csiebug-2.0test;"/>
+		<property name="username" value="sa"/>
+		<property name="password" value="Ilovepanda"/> -->
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://localhost/csiebug-2.0test?useUnicode=true&amp;characterEncoding=utf-8"/>
+		<property name="username" value="root"/>
+		<property name="password" value="b645a66ed4033624c9d35bb1a6c31577"/>
+		<property name="key" value="123456789012345678901234123456789012345678901234" />
+	</bean>
+	
+	<!-- Hibernate SessionFactory Setting -->
+	<bean id="sessionFactory"  
+          class="org.springframework.orm.hibernate3.LocalSessionFactoryBean" 
+          destroy-method="destroy"> 
+        <property name="dataSource"> 
+            <ref bean="dataSource"/> 
+        </property>
+		<property name="mappingDirectoryLocations">
+	        <list>
+	            <value>classpath:/csiebug/domain/hibernateImpl</value>
+	        </list>
+    	</property>
+        <property name="hibernateProperties"> 
+            <props> 
+                <prop key="hibernate.dialect"> 
+                    <!-- org.hibernate.dialect.SQLServerDialect -->
+                    org.hibernate.dialect.MySQL5InnoDBDialect
+                </prop>
+				<prop key="hibernate.show_sql"> 
+                    false 
+                </prop>
+            </props> 
+        </property> 
+    </bean>
+	<!--
+	<bean id="sessionFactory4Test"  
+          class="org.springframework.orm.hibernate3.LocalSessionFactoryBean" 
+          destroy-method="destroy"> 
+        <property name="dataSource"> 
+            <ref bean="dataSource4Test"/> 
+        </property>
+		<property name="mappingDirectoryLocations">
+	        <list>
+	            <value>classpath:/csiebug/other/domain/hibernateImpl</value>
+	        </list>
+    	</property>
+        <property name="hibernateProperties"> 
+            <props> 
+                <prop key="hibernate.dialect"> 
+                    org.hibernate.dialect.SQLServerDialect
+                </prop>
+				<prop key="hibernate.show_sql"> 
+                    true 
+                </prop>
+            </props> 
+        </property> 
+    </bean> -->
+	
+	<!-- Hibernate TransactionManager Setting -->
+    <bean id="transactionManager" 
+          class="org.springframework.orm.hibernate3.HibernateTransactionManager"> 
+        <property name="sessionFactory"> 
+            <ref bean="sessionFactory"/> 
+        </property> 
+    </bean>
+	<!--
+	<bean id="transactionManager4Test" 
+          class="org.springframework.orm.hibernate3.HibernateTransactionManager"> 
+        <property name="sessionFactory"> 
+            <ref bean="sessionFactory4Test"/> 
+        </property> 
+    </bean>-->
+	
+	<!-- Spring AOP Setting -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<!-- the transactional semantics... -->
+	  	<tx:attributes>
+		    <!-- all methods starting with 'get' are read-only -->
+		    <!-- 
+		    <tx:method name="get*" read-only="true"/>
+		     -->
+		    <!-- other methods use the default transaction settings (see below) -->
+			<!--
+		    <tx:method name="del*" propagation="REQUIRED" />    	    
+		    <tx:method name="gen*" propagation="REQUIRES_NEW" />
+		    <tx:method name="modify*" propagation="REQUIRED"  />
+			-->
+			<!--<tx:method name="*" propagation="REQUIRED" />-->
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+	  	</tx:attributes>
+	</tx:advice>
+	
+	<aop:config>
+		<aop:pointcut id="allServiceOperation" expression="execution(* csiebug.service.*.*(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="allServiceOperation"/>
+	</aop:config>
+	<!--
+	<tx:advice id="txAdvice4Test" transaction-manager="transactionManager4Test">
+		<tx:attributes>
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+	  	</tx:attributes>
+	</tx:advice>
+	
+	<aop:config>
+		<aop:pointcut id="testServiceOperation" expression="execution(* csiebug.service.*.*(..))"/>
+		<aop:advisor advice-ref="txAdvice4Test" pointcut-ref="testServiceOperation"/>
+	</aop:config>-->
+	
+	<!-- Custom Interceptor Setting-->
+	<bean id="autoProxyCreator" class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/> 
+
+    <bean id="daoLogInterceptor" class="csiebug.util.DAOLogInterceptor"/> 
+
+    <bean id="daoLogAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor"> 
+        <property name="advice"> 
+            <ref bean="daoLogInterceptor"/> 
+        </property> 
+        <property name="patterns"> 
+            <value>csiebug.dao.*DAO.save.*</value> 
+        </property> 
+    </bean>
+	
+	<bean id="serviceLockInterceptor" class="csiebug.util.ServiceLockInterceptor">
+		<property name="excludes">
+			<list>
+				<value>csiebug.service.WebUtilityService.*.*</value>
+				<value>csiebug.service.UserService.searchUsers.*</value>
+			</list>
+		</property>
+	</bean> 
+
+    <bean id="serviceLockAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor"> 
+        <property name="advice"> 
+            <ref bean="serviceLockInterceptor"/> 
+        </property> 
+        <property name="patterns"> 
+            <value>csiebug.service.*Service.*.*</value> 
+        </property> 
+    </bean>
+	
+	<!-- ServiceStatus Observer pattern -->
+	<bean id="serviceStatus" class="csiebug.service.ServiceStatus" />
+	
+	<bean id="registerService" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+      <property name="targetObject"><ref local="serviceStatus"/></property>
+      <property name="targetMethod"><value>addObservers</value></property>
+      <property name="arguments">
+	      <list>
+	        <ref bean="webUtilityService"/>
+			<ref bean="userService"/>
+			<ref bean="resourceService"/>
+		  </list>
+      </property>
+    </bean>
+	
+	<!-- DomainObjectFactory -->
+	<bean id="domainObjectFactory" class="csiebug.domain.hibernateImpl.HibernateDomainObjectFactory" />
+	
+	<!-- DAO Setting -->
+	<bean id="userDAO" class="csiebug.dao.hibernateImpl.UserDAOImpl">
+		<property name="sessionFactory"> 
+            <ref bean="sessionFactory"/> 
+        </property>
+	</bean>
+	<bean id="roleDAO" class="csiebug.dao.hibernateImpl.RoleDAOImpl">
+		<property name="sessionFactory"> 
+            <ref bean="sessionFactory"/> 
+        </property>
+	</bean>
+	<bean id="resourceDAO" class="csiebug.dao.hibernateImpl.ResourceDAOImpl">
+		<property name="sessionFactory"> 
+            <ref bean="sessionFactory"/> 
+        </property>
+	</bean>
+	<bean id="apDAO" class="csiebug.dao.hibernateImpl.APDAOImpl">
+		<property name="sessionFactory"> 
+            <ref bean="sessionFactory"/> 
+        </property>
+	</bean>
+	<bean id="functionDAO" class="csiebug.dao.hibernateImpl.FunctionDAOImpl">
+		<property name="sessionFactory"> 
+            <ref bean="sessionFactory"/> 
+        </property>
+	</bean>
+	<bean id="codeDAO" class="csiebug.dao.hibernateImpl.CodeDAOImpl">
+		<property name="sessionFactory"> 
+            <ref bean="sessionFactory"/> 
+        </property>
+	</bean>
+	<bean id="dashboardPortletDAO" class="csiebug.dao.hibernateImpl.DashboardPortletDAOImpl">
+		<property name="sessionFactory"> 
+            <ref bean="sessionFactory"/> 
+        </property>
+	</bean>
+	
+	<!-- Service Setting -->
+	<bean id="webUtilityService" class="csiebug.service.impl.WebUtilityServiceImpl">
+		<property name="domainObjectFactory"> 
+            <ref bean="domainObjectFactory"/> 
+        </property>
+		
+		<property name="userDAO">
+        	<ref bean="userDAO" />
+        </property>
+		
+		<property name="functionDAO">
+        	<ref bean="functionDAO" />
+        </property>
+		
+		<property name="resourceDAO">
+        	<ref bean="resourceDAO" />
+        </property>
+		
+		<property name="apDAO">
+        	<ref bean="apDAO" />
+        </property>
+	</bean>
+	
+	<bean id="userService" class="csiebug.service.impl.UserServiceImpl">
+		<property name="userDAO">
+        	<ref bean="userDAO" />
+        </property>
+	</bean>
+	
+	<bean id="roleService" class="csiebug.service.impl.RoleServiceImpl">
+		<property name="roleDAO">
+        	<ref bean="roleDAO" />
+        </property>
+	</bean>
+	
+	<bean id="resourceService" class="csiebug.service.impl.ResourceServiceImpl">
+		<property name="domainObjectFactory"> 
+            <ref bean="domainObjectFactory"/> 
+        </property>
+		
+		<property name="resourceDAO">
+        	<ref bean="resourceDAO" />
+        </property>
+		
+		<property name="roleDAO">
+			<ref bean="roleDAO" />
+		</property>
+	</bean>
+	
+	<bean id="codeService" class="csiebug.service.impl.CodeServiceImpl">
+		<property name="domainObjectFactory"> 
+            <ref bean="domainObjectFactory"/> 
+        </property>
+        
+		<property name="codeDAO">
+        	<ref bean="codeDAO" />
+        </property>
+	</bean>
+	
+	<!-- Action Setting-->
+	<bean id="portletDesktopAction" class="csiebug.web.webapp.PortletDesktopAction">
+		<property name="domainObjectFactory"> 
+            <ref bean="domainObjectFactory"/> 
+        </property>
+		
+		<property name="webUtilityService"> 
+            <ref bean="webUtilityService"/> 
+        </property>
+		
+		<property name="userService"> 
+            <ref bean="userService"/> 
+        </property>
+	</bean>
+	
+	<bean id="portletAdminAction" class="csiebug.web.webapp.PortletAdminAction">
+		<property name="domainObjectFactory"> 
+            <ref bean="domainObjectFactory"/> 
+        </property>
+		
+		<property name="webUtilityService"> 
+            <ref bean="webUtilityService"/> 
+        </property>
+		
+		<property name="userService"> 
+            <ref bean="userService"/> 
+        </property>
+		
+		<property name="resourceService"> 
+            <ref bean="resourceService"/> 
+        </property>
+        
+        <property name="codeService"> 
+            <ref bean="codeService"/> 
+        </property>
+        
+        <property name="roleService"> 
+            <ref bean="roleService"/> 
+        </property>
+	</bean>
+	
+	<bean id="portletUploadAction" class="csiebug.web.webapp.PortletUploadAction">
+		<property name="domainObjectFactory"> 
+            <ref bean="domainObjectFactory"/> 
+        </property>
+		
+		<property name="webUtilityService"> 
+            <ref bean="webUtilityService"/> 
+        </property>
+		
+		<property name="userService"> 
+            <ref bean="userService"/> 
+        </property>
+		
+		<property name="resourceService"> 
+            <ref bean="resourceService"/> 
+        </property>
+	</bean>
+	
+	<bean id="indexAction" class="csiebug.web.webapp.IndexAction">
+		<property name="domainObjectFactory"> 
+            <ref bean="domainObjectFactory"/> 
+        </property>
+		
+		<property name="webUtilityService"> 
+            <ref bean="webUtilityService"/> 
+        </property>
+	</bean>
+	<bean id="loginAction" class="csiebug.web.webapp.LoginAction">
+		<property name="domainObjectFactory"> 
+            <ref bean="domainObjectFactory"/> 
+        </property>
+		
+		<property name="webUtilityService"> 
+            <ref bean="webUtilityService"/> 
+        </property>
+		
+		<property name="userService"> 
+            <ref bean="userService"/> 
+        </property>
+	</bean>
+	<bean id="signInAction" class="csiebug.web.webapp.SignInAction">
+		<property name="domainObjectFactory"> 
+            <ref bean="domainObjectFactory"/> 
+        </property>
+		
+		<property name="webUtilityService"> 
+            <ref bean="webUtilityService"/> 
+        </property>
+        
+		<property name="userService"> 
+            <ref bean="userService"/> 
+        </property>
+        
+        <property name="roleService"> 
+            <ref bean="roleService"/> 
+        </property>
+	</bean>
+	
+	<bean id="templateAction" class="csiebug.web.webapp.TemplateAction" />
+	
+	<!-- Quartz Job -->
+	<bean name="testJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+  		<property name="jobClass" value="csiebug.job.TestJob" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="testArg" value="testArgValue" />
+				<entry key="webUtilityService">
+					<ref bean="webUtilityService"/>
+				</entry>
+			</map>
+		</property> 
+	</bean>
+	
+	<bean id="testJobTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerBean">
+	    <property name="jobDetail" ref="testJob" />
+	    <!-- run at 10:40 AM every day -->
+	    <property name="cronExpression" value="0 20 14 * * ?" />
+	</bean>
+
+	<bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+	    <property name="triggers">
+	        <list>
+	            <ref bean="testJobTriggerBean" />
+			</list>
+	    </property>
+	</bean>
+</beans>

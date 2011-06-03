@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN" "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+
+<taglib>
+
+   <tlib-version>1.0</tlib-version>
+   <jsp-version>1.2</jsp-version>
+   <short-name>csiebug-ui</short-name>
+
+   <uri>http://www.pixnet.net/blog/csiebug</uri>
+
+   <display-name>csiebug</display-name>
+   <description><![CDATA[Display test information.]]></description>
+	
+	<tag>
+		<name>feed</name>
+		<tag-class>csiebug.web.taglib.rss.RSSFeedTag</tag-class>
+      	<body-content>JSP</body-content>
+      	<display-name>RSSFeedTag</display-name>
+      	<description><![CDATA[The container which holds all the column specific information. A copy of each column will be fed to the Model.]]></description>
+      	
+      	<attribute>
+        	<name>feedId</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+         	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	<attribute>
+        	<name>url</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+         	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+    </tag>
+    <tag>
+		<name>channelTitle</name>
+		<tag-class>csiebug.web.taglib.rss.RSSChannelTitleTag</tag-class>
+      	<body-content>JSP</body-content>
+      	<display-name>RSSChannelTitleTag</display-name>
+      	<description><![CDATA[The container which holds all the column specific information. A copy of each column will be fed to the Model.]]></description>
+      	
+      	<attribute>
+        	<name>feedId</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+         	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+    </tag>
+    <tag>
+		<name>channelLink</name>
+		<tag-class>csiebug.web.taglib.rss.RSSChannelLinkTag</tag-class>
+      	<body-content>JSP</body-content>
+      	<display-name>RSSChannelLinkTag</display-name>
+      	<description><![CDATA[The container which holds all the column specific information. A copy of each column will be fed to the Model.]]></description>
+      	
+      	<attribute>
+        	<name>feedId</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+         	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	<attribute>
+        	<name>asLink</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+         	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+    </tag>
+    <tag>
+		<name>channelImage</name>
+		<tag-class>csiebug.web.taglib.rss.RSSChannelImageTag</tag-class>
+      	<body-content>JSP</body-content>
+      	<display-name>RSSChannelImageTag</display-name>
+      	<description><![CDATA[The container which holds all the column specific information. A copy of each column will be fed to the Model.]]></description>
+      	
+      	<attribute>
+        	<name>feedId</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+         	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+    </tag>
+    <tag>
+		<name>channelDescription</name>
+		<tag-class>csiebug.web.taglib.rss.RSSChannelDescriptionTag</tag-class>
+      	<body-content>JSP</body-content>
+      	<display-name>RSSChannelDescriptionTag</display-name>
+      	<description><![CDATA[The container which holds all the column specific information. A copy of each column will be fed to the Model.]]></description>
+      	
+      	<attribute>
+        	<name>feedId</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+         	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+    </tag>
+    <tag>
+		<name>channelCopyright</name>
+		<tag-class>csiebug.web.taglib.rss.RSSChannelCopyrightTag</tag-class>
+      	<body-content>JSP</body-content>
+      	<display-name>RSSChannelCopyrightTag</display-name>
+      	<description><![CDATA[The container which holds all the column specific information. A copy of each column will be fed to the Model.]]></description>
+      	
+      	<attribute>
+        	<name>feedId</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+         	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+    </tag>
+    <tag>
+		<name>channelDocs</name>
+		<tag-class>csiebug.web.taglib.rss.RSSChannelDocsTag</tag-class>
+      	<body-content>JSP</body-content>
+      	<display-name>RSSChannelDocsTag</display-name>
+      	<description><![CDATA[The container which holds all the column specific information. A copy of each column will be fed to the Model.]]></description>
+      	
+      	<attribute>
+        	<name>feedId</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+         	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	<attribute>
+        	<name>asLink</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+         	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+    </tag>
+    <tag>
+		<name>channelGenerator</name>
+		<tag-class>csiebug.web.taglib.rss.RSSChannelGeneratorTag</tag-class>
+      	<body-content>JSP</body-content>
+      	<display-name>RSSChannelGeneratorTag</display-name>
+      	<description><![CDATA[The container which holds all the column specific information. A copy of each column will be fed to the Model.]]></description>
+      	
+      	<attribute>
+        	<name>feedId</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+         	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+    </tag>
+    <tag>
+		<name>channelLanguage</name>
+		<tag-class>csiebug.web.taglib.rss.RSSChannelLanguageTag</tag-class>
+      	<body-content>JSP</body-content>
+      	<display-name>RSSChannelLanguageTag</display-name>
+      	<description><![CDATA[The container which holds all the column specific information. A copy of each column will be fed to the Model.]]></description>
+      	
+      	<attribute>
+        	<name>feedId</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+         	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+    </tag>
+    <tag>
+		<name>channelLastBuildDate</name>
+		<tag-class>csiebug.web.taglib.rss.RSSChannelLastBuildDateTag</tag-class>
+      	<body-content>JSP</body-content>
+      	<display-name>RSSChannelLastBuildDateTag</display-name>
+      	<description><![CDATA[The container which holds all the column specific information. A copy of each column will be fed to the Model.]]></description>
+      	
+      	<attribute>
+        	<name>feedId</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+         	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+    </tag>
+    <tag>
+		<name>channelManagingEditor</name>
+		<tag-class>csiebug.web.taglib.rss.RSSChannelManagingEditorTag</tag-class>
+      	<body-content>JSP</body-content>
+      	<display-name>RSSChannelManagingEditorTag</display-name>
+      	<description><![CDATA[The container which holds all the column specific information. A copy of each column will be fed to the Model.]]></description>
+      	
+      	<attribute>
+        	<name>feedId</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+         	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+    </tag>
+    <tag>
+		<name>channelPubDate</name>
+		<tag-class>csiebug.web.taglib.rss.RSSChannelPubDateTag</tag-class>
+      	<body-content>JSP</body-content>
+      	<display-name>RSSChannelPubDateTag</display-name>
+      	<description><![CDATA[The container which holds all the column specific information. A copy of each column will be fed to the Model.]]></description>
+      	
+      	<attribute>
+        	<name>feedId</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+         	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+    </tag>
+    <tag>
+		<name>items</name>
+		<tag-class>csiebug.web.taglib.rss.RSSItemsTag</tag-class>
+      	<body-content>JSP</body-content>
+      	<display-name>RSSItemsTag</display-name>
+      	<description><![CDATA[The container which holds all the column specific information. A copy of each column will be fed to the Model.]]></description>
+      	
+      	<attribute>
+        	<name>feedId</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+         	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+    </tag>
+    <tag>
+		<name>itemTitle</name>
+		<tag-class>csiebug.web.taglib.rss.RSSItemTitleTag</tag-class>
+      	<body-content>JSP</body-content>
+      	<display-name>RSSItemTitleTag</display-name>
+      	<description><![CDATA[The container which holds all the column specific information. A copy of each column will be fed to the Model.]]></description>
+    </tag>
+    <tag>
+		<name>itemDescription</name>
+		<tag-class>csiebug.web.taglib.rss.RSSItemDescriptionTag</tag-class>
+      	<body-content>JSP</body-content>
+      	<display-name>RSSItemDescriptionTag</display-name>
+      	<description><![CDATA[The container which holds all the column specific information. A copy of each column will be fed to the Model.]]></description>
+    </tag>
+    <tag>
+		<name>itemComments</name>
+		<tag-class>csiebug.web.taglib.rss.RSSItemCommentsTag</tag-class>
+      	<body-content>JSP</body-content>
+      	<display-name>RSSItemCommentsTag</display-name>
+      	<description><![CDATA[The container which holds all the column specific information. A copy of each column will be fed to the Model.]]></description>
+    </tag>
+    <tag>
+		<name>itemPubDate</name>
+		<tag-class>csiebug.web.taglib.rss.RSSItemPubDateTag</tag-class>
+      	<body-content>JSP</body-content>
+      	<display-name>RSSItemPubDateTag</display-name>
+      	<description><![CDATA[The container which holds all the column specific information. A copy of each column will be fed to the Model.]]></description>
+    </tag>
+    <tag>
+		<name>itemLink</name>
+		<tag-class>csiebug.web.taglib.rss.RSSItemLinkTag</tag-class>
+      	<body-content>JSP</body-content>
+      	<display-name>RSSItemLinkTag</display-name>
+      	<description><![CDATA[The container which holds all the column specific information. A copy of each column will be fed to the Model.]]></description>
+      	
+      	<attribute>
+        	<name>asLink</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+         	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+    </tag>
+</taglib>

@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="build" name="csiebug-2.0">
+    <property environment="env"/>
+	<property name="root_dir" value="/home/csiebug/" />
+    <property name="ECLIPSE_HOME" value="${root_dir}eclipse"/>
+    <property name="junit.output.dir" value="junit"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+    <path id="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath">
+    	<fileset dir="${root_dir}apache-tomcat-7.0.11/lib">
+			<include name="**/*.jar" />
+		</fileset>
+    </path>
+    <path id="Web App Libraries.libraryclasspath">
+    	<fileset dir="WebContent/WEB-INF/lib">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+    <path id="EAR Libraries.libraryclasspath"/>
+    <path id="csiebug-2.0.classpath">
+        <pathelement location="build/classes"/>
+        <path refid="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <path refid="EAR Libraries.libraryclasspath"/>
+	</path>
+    <target name="init">
+        <mkdir dir="build/classes"/>
+        <copy includeemptydirs="false" todir="build/classes">
+            <fileset dir="src" excludes="**/*.launch, **/*.java"/>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="build/classes"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac encoding="UTF-8" debug="true" debuglevel="${debuglevel}" destdir="build/classes" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="csiebug-2.0.classpath"/>
+        </javac>
+	</target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+	
+	<!-- javadoc -->
+	<property name="build.javadocs" value="javadoc"/>
+	<property name="build.src" value="src"/>
+	<property name="packages" value="csiebug.dao.*,csiebug.service.*,csiebug.util.*,csiebug.web.html.*"/>
+	<property name="Name" value="csiebug-2.0"/>
+	<target name="javadoc" depends="build-project">
+	    <mkdir dir="${build.javadocs}"/>
+	    <javadoc packagenames="${packages}"
+	             sourcepath="${build.src}"
+	             destdir="${build.javadocs}"
+				 encoding="UTF-8"
+	             author="true"
+	             version="true"
+	             use="true"
+	             splitindex="true"
+	             windowtitle="${Name} API"
+	             doctitle="${Name}">
+	      <classpath>
+	      	<pathelement location="build/classes"/>
+	      </classpath>
+	    </javadoc>
+  	</target>
+    
+	<!-- Test -->
+	<target name="csiebug.test">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+        	<formatter type="xml"/>
+			<classpath>
+				<path refid="csiebug-2.0.classpath"/>        
+	    	</classpath>
+        	<test name="csiebug.test.util.AssertUtilityTest" todir="${junit.output.dir}"/>
+        	<test name="csiebug.test.util.DateFormatUtilityTest" todir="${junit.output.dir}"/>
+        	<test name="csiebug.test.util.DesCoderTest" todir="${junit.output.dir}"/>
+        	<test name="csiebug.test.util.FileUtilityTest" todir="${junit.output.dir}"/>
+        	<test name="csiebug.test.util.LdapClientTest" todir="${junit.output.dir}"/>
+        	<test name="csiebug.test.util.ListUtilityTest" todir="${junit.output.dir}"/>
+        	<test name="csiebug.test.util.NumberFormatUtilityTest" todir="${junit.output.dir}"/>
+        	<test name="csiebug.test.util.PropertiesUtilityTest" todir="${junit.output.dir}"/>
+        	<test name="csiebug.test.util.RSSFeedUtilityTest" todir="${junit.output.dir}"/>
+        	<test name="csiebug.test.util.ShaEncoderTest" todir="${junit.output.dir}"/>
+        	<test name="csiebug.test.util.StringUtilityTest" todir="${junit.output.dir}"/>
+        	<test name="csiebug.test.util.SVNClientTest" todir="${junit.output.dir}"/>
+        	<test name="csiebug.test.util.ZipUtilityTest" todir="${junit.output.dir}"/>
+        	<test name="csiebug.test.dao.APDAOTest" todir="${junit.output.dir}"/>
+        	<test name="csiebug.test.dao.CodeDAOTest" todir="${junit.output.dir}"/>
+        	<test name="csiebug.test.dao.DashboardPortletDAOTest" todir="${junit.output.dir}"/>
+        	<test name="csiebug.test.dao.FunctionDAOTest" todir="${junit.output.dir}"/>
+        	<test name="csiebug.test.dao.ResourceDAOTest" todir="${junit.output.dir}"/>
+        	<test name="csiebug.test.dao.RoleDAOTest" todir="${junit.output.dir}"/>
+        	<test name="csiebug.test.dao.UserDAOTest" todir="${junit.output.dir}"/>
+        	<test name="csiebug.test.service.CodeServiceTest" todir="${junit.output.dir}"/>
+        	<test name="csiebug.test.service.RoleServiceTest" todir="${junit.output.dir}"/>
+        	<test name="csiebug.test.service.ResourceServiceTest" todir="${junit.output.dir}"/>
+        	<test name="csiebug.test.service.UserServiceTest" todir="${junit.output.dir}"/>
+        	<test name="csiebug.test.service.WebUtilityServiceTest" todir="${junit.output.dir}"/>
+        	<test name="csiebug.test.webservices.TestServiceTest" todir="${junit.output.dir}"/>
+        </junit>
+    </target>
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
+    </target>
+	
+	<!-- Emma, Offline mode: separating instrumentation and execution -->
+	<property name="coverage.dir" value="coverage/" />
+	<property name="emma.dir" value="/home/csiebug/emma-2.0.5312"/>
+	<property name="src.dir" value="src/"/>
+	<property name="class.dir" value="build/classes/"/>
+	<property name="instrumented.dir" value="inst/"/>
+	<path id="emma.lib">
+		<fileset dir="${emma.dir}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+	<taskdef resource="emma_ant.properties" classpathref="emma.lib"/>
+	<target name="emma.instrument">
+		<emma enabled="true">
+			<instr instrpath="${class.dir}" destdir="${instrumented.dir}" metadatafile="${coverage.dir}/metadata.emma" merge="true" mode="overwrite">
+				<filter includes="csiebug.dao.hibernateImpl.*"/>
+				<filter includes="csiebug.service.impl.*"/>
+				<filter includes="csiebug.util.*"/>
+				<filter excludes="csiebug.dao.hibernateImpl.BasicDAOImpl"/>
+				<filter excludes="csiebug.service.impl.BasicServiceImpl"/>
+				<filter excludes="csiebug.util.AbstractWebUtility"/>
+				<filter excludes="csiebug.util.AuthoritiesPopulator"/>
+				<filter excludes="csiebug.util.CookieException"/>
+				<filter excludes="csiebug.util.DAOLogInterceptor"/>
+				<filter excludes="csiebug.util.DateFormatException"/>
+				<filter excludes="csiebug.util.HeaderFilter"/>
+				<filter excludes="csiebug.util.InvalidInputException"/>
+				<filter excludes="csiebug.util.ListException"/>
+				<filter excludes="csiebug.util.ListException"/>
+				<filter excludes="csiebug.util.RememberMeFilter"/>
+				<filter excludes="csiebug.util.RoleVoter"/>
+				<filter excludes="csiebug.util.ServiceLockInterceptor"/>
+				<filter excludes="csiebug.util.SessionExpirationFilter"/>
+				<filter excludes="csiebug.util.Struts2WebServiceDispatcher"/>
+				<filter excludes="csiebug.util.WebSessionListener"/>
+				<filter excludes="csiebug.util.WebUtility"/>
+				<filter excludes="csiebug.util.hibernate.HibernateUtility"/>
+				<filter excludes="csiebug.util.rss.RSSCategory"/>
+				<filter excludes="csiebug.util.rss.RSSChannel"/>
+				<filter excludes="csiebug.util.rss.RSSFeed"/>
+				<filter excludes="csiebug.util.rss.RSSImage"/>
+				<filter excludes="csiebug.util.rss.RSSItem"/>
+			</instr>
+		</emma>
+	</target>
+	<target name="emma.test" depends="emma.instrument">
+		<mkdir dir="${junit.output.dir}"/>
+	    <junit printsummary="withOutAndErr" haltonfailure="no" fork="true">
+	    	<!-- In version 2.0, EMMA's runtime coverage data is dumped by a JVM exit handler and for this to happen <junit> needs to be forked.-->
+	    	<jvmarg value="-Demma.coverage.out.file=${coverage.dir}coverage.emma" />
+	    	<jvmarg value="-Demma.coverage.out.merge=true" />	        
+	    	<classpath>        
+	    		<pathelement location="${instrumented.dir}"/><!-- the instrumented classes need to be first in the classpath -->
+	    		<path refid="emma.lib"/><!-- needs to have emma.jar in its classpath -->
+				<path refid="csiebug-2.0.classpath"/>
+	    	</classpath>
+	        <formatter type="xml" />
+			<test name="csiebug.test.util.AssertUtilityTest" todir="${junit.output.dir}"/>
+			<test name="csiebug.test.util.DateFormatUtilityTest" todir="${junit.output.dir}"/>
+			<test name="csiebug.test.util.DesCoderTest" todir="${junit.output.dir}"/>
+			<test name="csiebug.test.util.FileUtilityTest" todir="${junit.output.dir}"/>
+	    	<test name="csiebug.test.util.LdapClientTest" todir="${junit.output.dir}"/>
+	    	<test name="csiebug.test.util.ListUtilityTest" todir="${junit.output.dir}"/>
+			<test name="csiebug.test.util.NumberFormatUtilityTest" todir="${junit.output.dir}"/>
+	    	<test name="csiebug.test.util.PropertiesUtilityTest" todir="${junit.output.dir}"/>
+	    	<test name="csiebug.test.util.RSSFeedUtilityTest" todir="${junit.output.dir}"/>
+	    	<test name="csiebug.test.util.ShaEncoderTest" todir="${junit.output.dir}"/>
+			<test name="csiebug.test.util.StringUtilityTest" todir="${junit.output.dir}"/>
+	    	<test name="csiebug.test.util.SVNClientTest" todir="${junit.output.dir}"/>
+	    	<test name="csiebug.test.util.ZipUtilityTest" todir="${junit.output.dir}"/>
+	    	<test name="csiebug.test.dao.APDAOTest" todir="${junit.output.dir}"/>
+			<test name="csiebug.test.dao.CodeDAOTest" todir="${junit.output.dir}"/>
+			<test name="csiebug.test.dao.DashboardPortletDAOTest" todir="${junit.output.dir}"/>
+			<test name="csiebug.test.dao.FunctionDAOTest" todir="${junit.output.dir}"/>
+			<test name="csiebug.test.dao.ResourceDAOTest" todir="${junit.output.dir}"/>
+			<test name="csiebug.test.dao.RoleDAOTest" todir="${junit.output.dir}"/>
+			<test name="csiebug.test.dao.UserDAOTest" todir="${junit.output.dir}"/>
+	    	<test name="csiebug.test.service.CodeServiceTest" todir="${junit.output.dir}"/>
+	    	<test name="csiebug.test.service.RoleServiceTest" todir="${junit.output.dir}"/>
+			<test name="csiebug.test.service.ResourceServiceTest" todir="${junit.output.dir}"/>
+	    	<test name="csiebug.test.service.UserServiceTest" todir="${junit.output.dir}"/>
+	    	<test name="csiebug.test.service.WebUtilityServiceTest" todir="${junit.output.dir}"/>
+	    	<test name="csiebug.test.webservices.TestServiceTest" todir="${junit.output.dir}"/>
+	    </junit>
+	</target>
+	<target name="emma.report" depends="emma.test">					   
+		<emma enabled="true" >
+			<report sourcepath="${src.dir}" >
+				<fileset dir="${coverage.dir}" >
+			    	<include name="*.emma" />
+			    </fileset>				
+			    <xml outfile="${coverage.dir}/coverage.xml"/>
+			</report>
+		</emma>
+	</target>
+	
+	<!-- FindBugs -->
+	<property name="findbugs_home" value="/home/csiebug/findbugs-1.3.9" />
+	<path id="fundbugs_lib">
+        <pathelement location="/home/csiebug/findbugs-1.3.9/lib/findbugs-ant.jar"/>
+		<pathelement location="/home/csiebug/findbugs-1.3.9/lib/findbugs.jar"/>
+		<pathelement location="/home/csiebug/findbugs-1.3.9/lib/annotations.jar"/>
+<!--		<pathelement location="/home/csiebug/findbugs-1.3.9/lib/ant.jar"/>-->
+		<pathelement location="/home/csiebug/findbugs-1.3.9/lib/asm-3.1.jar"/>
+		<pathelement location="/home/csiebug/findbugs-1.3.9/lib/asm-analysis-3.1.jar"/>
+		<pathelement location="/home/csiebug/findbugs-1.3.9/lib/asm-commons-3.1.jar"/>
+		<pathelement location="/home/csiebug/findbugs-1.3.9/lib/asm-tree-3.1.jar"/>
+		<pathelement location="/home/csiebug/findbugs-1.3.9/lib/asm-util-3.1.jar"/>
+		<pathelement location="/home/csiebug/findbugs-1.3.9/lib/asm-xml-3.1.jar"/>
+		<pathelement location="/home/csiebug/findbugs-1.3.9/lib/bcel.jar"/>
+		<pathelement location="/home/csiebug/findbugs-1.3.9/lib/commons-lang-2.4.jar"/>
+		<pathelement location="/home/csiebug/findbugs-1.3.9/lib/dom4j-1.6.1.jar"/>
+		<pathelement location="/home/csiebug/findbugs-1.3.9/lib/jaxen-1.1.1.jar"/>
+		<pathelement location="/home/csiebug/findbugs-1.3.9/lib/jFormatString.jar"/>
+		<pathelement location="/home/csiebug/findbugs-1.3.9/lib/jsr305.jar"/>
+	</path>
+	<taskdef name="findbugs" classname="edu.umd.cs.findbugs.anttask.FindBugsTask" classpathref="fundbugs_lib"/>	
+	<target name="findbugs">
+	    <findbugs home="${findbugs_home}"
+	              output="xml:withMessages"
+	              outputFile="findbugs.xml" 
+	    		  jvmargs="-Xss1m -Xmx800m" >
+		  <auxClasspath>
+		  	<path refid="csiebug-2.0.classpath"/>
+			<path refid="fundbugs_lib"/>
+		  </auxClasspath>
+	      <sourcePath path="src" />
+	      <class location="build/classes" />
+	    </findbugs>
+	</target>
+	
+	<!-- PMD -->
+	<path id="pmd_lib">
+		<pathelement location="/home/csiebug/pmd-4.2.5/lib/asm-3.1.jar"/>
+		<pathelement location="/home/csiebug/pmd-4.2.5/lib/jaxen-1.1.1.jar"/>
+		<pathelement location="/home/csiebug/pmd-4.2.5/lib/junit-4.4.jar"/>
+		<pathelement location="/home/csiebug/pmd-4.2.5/lib/pmd-4.2.5.jar"/>
+	</path>		
+	<target name="pmd">
+	 <taskdef name="pmd" classname="net.sourceforge.pmd.ant.PMDTask" classpathref="pmd_lib"/>
+	 <pmd shortFilenames="true">
+	  <ruleset>rulesets/favorites.xml</ruleset>
+	  <ruleset>basic</ruleset>
+	  <formatter type="xml" toFile="pmd.xml"/>
+	  <fileset dir="src">
+	   <include name="**/*.java"/>
+	  </fileset>
+	 </pmd>
+	</target>
+</project>
