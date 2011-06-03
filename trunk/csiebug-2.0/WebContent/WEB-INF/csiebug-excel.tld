@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN" "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+
+<taglib>
+
+   <tlib-version>1.0</tlib-version>
+   <jsp-version>1.2</jsp-version>
+   <short-name>csiebug-ui</short-name>
+
+   <uri>http://www.pixnet.net/blog/csiebug</uri>
+
+   <display-name>csiebug</display-name>
+   <description><![CDATA[Display test information.]]></description>
+	
+    <tag>
+		<name>table</name>
+		<tag-class>csiebug.web.taglib.office.excel.TableTag</tag-class>
+      	<body-content>JSP</body-content>
+      	<display-name>TableTag</display-name>
+      	<description><![CDATA[The container which holds all the column specific information. A copy of each column will be fed to the Model.]]></description>
+      	
+      	<attribute>
+        	<name>id</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>name</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>projectId</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>style</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>className</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>data</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>downloadFileName</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>imagePath</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>formId</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>downloadPartial</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>downloadColumns</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>highlight</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+    </tag>
+    
+    <tag>
+		<name>row</name>
+		<tag-class>csiebug.web.taglib.office.excel.RowTag</tag-class>
+      	<body-content>JSP</body-content>
+      	<display-name>RowTag</display-name>
+      	<description><![CDATA[The container which holds all the column specific information. A copy of each column will be fed to the Model.]]></description>
+      	
+      	<attribute>
+        	<name>style</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>className</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>headerStyle</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>headerClassName</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>onClick</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>onDblClick</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+	        <name>rowType</name>
+	        <required>false</required>
+	        <rtexprvalue>true</rtexprvalue>
+	        <description><![CDATA[The javascript onmouseover action]]></description>
+      	</attribute>
+      	
+      	<attribute>
+	        <name>selectable</name>
+	        <required>false</required>
+	        <rtexprvalue>true</rtexprvalue>
+	        <description><![CDATA[The javascript onmouseover action]]></description>
+      	</attribute>
+      	
+      	<attribute>
+	        <name>title</name>
+	        <required>false</required>
+	        <rtexprvalue>true</rtexprvalue>
+	        <description><![CDATA[The javascript onmouseover action]]></description>
+      	</attribute>
+    </tag>
+    
+    <tag>
+		<name>column</name>
+		<tag-class>csiebug.web.taglib.office.excel.ColumnTag</tag-class>
+      	<body-content>JSP</body-content>
+      	<display-name>ColumnTag</display-name>
+      	<description><![CDATA[The container which holds all the column specific information. A copy of each column will be fed to the Model.]]></description>
+      	
+      	<attribute>
+        	<name>fieldname</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>style</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>className</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>title</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>dataType</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>colspan</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>hideable</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+		
+		<attribute>
+        	<name>selAllScript</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>typesettingAlgorithm</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>maxLineLength</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>selectable</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>onClick</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>onDblClick</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+    </tag>
+    
+    <tag>
+		<name>columns</name>
+		<tag-class>csiebug.web.taglib.office.excel.ColumnsTag</tag-class>
+      	<body-content>JSP</body-content>
+      	<display-name>ColumnsTag</display-name>
+      	<description><![CDATA[The container which holds all the column specific information. A copy of each column will be fed to the Model.]]></description>
+      	
+      	<attribute>
+        	<name>dynFields</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+    </tag>
+    
+</taglib>

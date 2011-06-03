@@ -1,0 +1,1125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN" "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+
+<taglib>
+
+   <tlib-version>1.0</tlib-version>
+   <jsp-version>1.2</jsp-version>
+   <short-name>csiebug-jqPlotChart</short-name>
+
+   <uri>http://www.pixnet.net/blog/csiebug</uri>
+
+   <display-name>csiebug</display-name>
+   <description><![CDATA[Display test information.]]></description>
+	
+    <tag>
+		<name>JQPlotChart</name>
+		<tag-class>csiebug.web.taglib.chart.JQPlotChartTag</tag-class>
+      	<body-content>JSP</body-content>
+      	<display-name>JQPlotChartTag</display-name>
+      	<description><![CDATA[The container which holds all the column specific information. A copy of each column will be fed to the Model.]]></description>
+      	
+      	<attribute>
+        	<name>chartId</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>list</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>style</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+        	<name>stackSeries</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
+      	
+      	<attribute>
+			<name>chartLegendShow</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartLegendLocation</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartLegendXoffset</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartLegendYoffset</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartLegendBorder</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartLegendBackground</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartLegendTextColor</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartLegendFontFamily</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartLegendFontSize</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartLegendRowSpacing</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartLegendRendererOptions</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartLegendPredraw</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartTitleText</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartTitleShow</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartTitleFontFamily</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartTitleFontSize</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartTitleTextAlign</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartTitleTextColor</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartTitleRenderer</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartTitleRendererOptions</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartGridDrawGridlines</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartGridGridLineColor</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartGridGridLineWidth</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartGridBackground</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartGridBorderColor</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartGridBorderWidth</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartGridShadow</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartGridShadowAngle</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartGridShadowOffset</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartGridShadowWidth</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartGridShadowDepth</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartGridShadowAlpha</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartGridRenderer</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartGridRendererOptions</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartSeriesList</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXaxisShow</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXaxisTickRenderer</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXTickOptionsMark</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXTickOptionsShowMark</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXTickOptionsShowGridline</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXTickOptionsIsMinorTick</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXTickOptionsSize</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXTickOptionsMarkSize</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXTickOptionsShow</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXTickOptionsShowLabel</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXTickOptionsFormatter</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXTickOptionsFormatString</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXTickOptionsFontFamily</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXTickOptionsFontSize</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXTickOptionsTextColor</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXTickOptionsAngle</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXTickOptionsLabelPosition</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXTickOptionsFontWeight</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXTickOptionsFontStretch</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXTickOptionsEnableFontSupport</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXTickOptionsPt2px</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXaxisLabelRenderer</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXLabelOptionsAngle</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXLabelOptionsShow</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXLabelOptionsShowLabel</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXLabelOptionsLabel</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXLabelOptionsFontFamily</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXLabelOptionsFontSize</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXLabelOptionsFontWeight</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>	
+		<attribute>
+			<name>chartXLabelOptionsFontStretch</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXLabelOptionsTextColor</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXLabelOptionsEnableFontSupport</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXLabelOptionsPt2px</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXaxisLabel</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXaxisShowLabel</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXaxisMin</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXaxisMax</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXaxisAutoscale</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXaxisPad</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXaxisPadMax</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXaxisPadMin</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXaxisTicks</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXaxisNumberTicks</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXaxisTickInterval</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXaxisRenderer</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXaxisRendererOptions</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXaxisShowTicks</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXaxisShowTickMarks</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXaxisShowMinorTicks</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXaxisUseSeriesColor</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXaxisBorderWidth</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXaxisBorderColor</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXaxisSyncTicks</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartXaxisTickSpacing</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYaxisShow</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYaxisTickRenderer</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYTickOptionsMark</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYTickOptionsShowMark</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYTickOptionsShowGridline</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYTickOptionsIsMinorTick</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYTickOptionsSize</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYTickOptionsMarkSize</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYTickOptionsShow</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYTickOptionsShowLabel</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYTickOptionsFormatter</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYTickOptionsFormatString</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYTickOptionsFontFamily</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYTickOptionsFontSize</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYTickOptionsTextColor</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYTickOptionsAngle</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYTickOptionsLabelPosition</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYTickOptionsFontWeight</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYTickOptionsFontStretch</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYTickOptionsEnableFontSupport</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYTickOptionsPt2px</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYaxisLabelRenderer</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYLabelOptionsAngle</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYLabelOptionsShow</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYLabelOptionsShowLabel</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYLabelOptionsLabel</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYLabelOptionsFontFamily</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYLabelOptionsFontSize</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYLabelOptionsFontWeight</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>	
+		<attribute>
+			<name>chartYLabelOptionsFontStretch</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYLabelOptionsTextColor</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYLabelOptionsEnableFontSupport</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYLabelOptionsPt2px</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYaxisLabel</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYaxisShowLabel</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYaxisMin</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYaxisMax</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYaxisAutoscale</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYaxisPad</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYaxisPadMax</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYaxisPadMin</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYaxisTicks</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYaxisNumberTicks</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYaxisTickInterval</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYaxisRenderer</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYaxisRendererOptions</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYaxisShowTicks</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYaxisShowTickMarks</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYaxisShowMinorTicks</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYaxisUseSeriesColor</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYaxisBorderWidth</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYaxisBorderColor</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYaxisSyncTicks</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartYaxisTickSpacing</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartHighlightShow</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartHighlightMarkerRenderer</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartHighlightShowMarker</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartHighlightLineWidthAdjust</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartHighlightSizeAdjust</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartHighlightShowTooltip</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartHighlightTooltipLocation</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartHighlightTooltipFade</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartHighlightTooltipFadeSpeed</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartHighlightTooltipOffset</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartHighlightTooltipAxes</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartHighlightUseAxesFormatters</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartHighlightTooltipFormatString</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartHighlightFormatString</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartHighlightYvalues</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+				<attribute>
+			<name>chartCursorStyle</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartCursorShow</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartCursorShowTooltip</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartCursorFollowMouse</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartCursorTooltipLocation</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartCursorTooltipOffset</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartCursorShowTooltipGridPosition</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartCursorShowTooltipUnitPosition</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartCursorShowTooltipDataPosition</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartCursorTooltipFormatString</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartCursorUseAxesFormatters</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartCursorTooltipAxisGroups</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartCursorZoom</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartCursorClickReset</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartCursorDblClickReset</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartCursorShowVerticalLine</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartCursorShowHorizontalLine</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartCursorConstrainZoomTo</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartCursorIntersectionThreshold</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartCursorShowCursorLegend</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+		<attribute>
+			<name>chartCursorCursorLegendFormatString</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+		</attribute>
+	</tag>
+</taglib>
