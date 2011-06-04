@@ -1,0 +1,9 @@
+function userDefineNewRow(newTD, columnIndex, formId, tableId, headerRowCount, blankText, warning, ok, messageInterval, message1Start, message1End, message2, message3, message4, message5, message6, message7, message8Start, message8End, message9Start, message9End, message10Start, message10End, message11, message12Start, message12End, message13, message14) {
+	if(columnIndex == 5 || columnIndex == 6) { //這兩欄是日期
+		newTD.innerHTML = getEditableLabelHTML(formId, tableId, headerRowCount, columnIndex, "date", blankText, warning, ok, messageInterval, message1Start, message1End, message2, message3, message4, message5, message6, message7, message8Start, message8End, message9Start, message9End, message10Start, message10End, message11, message12Start, message12End, message13, message14);
+	} else if(columnIndex >= 7 && columnIndex <= 13) { //這幾欄是數字
+		newTD.innerHTML = getEditableLabelHTML(formId, tableId, headerRowCount, columnIndex, "number", blankText, warning, ok, messageInterval, message1Start, message1End, message2, message3, message4, message5, message6, message7, message8Start, message8End, message9Start, message9End, message10Start, message10End, message11, message12Start, message12End, message13, message14);
+	} else {
+		newTD.innerHTML = getEditableLabelHTML(formId, tableId, headerRowCount, columnIndex, "string", blankText, warning, ok, messageInterval, message1Start, message1End, message2, message3, message4, message5, message6, message7, message8Start, message8End, message9Start, message9End, message10Start, message10End, message11, message12Start, message12End, message13, message14);
+	}
+}
