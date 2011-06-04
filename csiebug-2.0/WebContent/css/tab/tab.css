@@ -1,0 +1,62 @@
+<!-- css tab -->
+<style type="text/css">
+<!--
+/*- Menu Tabs 1--------------------------- */
+
+
+    #menu {
+      	float:left;
+      	width:100%;
+      	background:#F4F7FB;
+      	font-size:93%;
+      	line-height:normal;
+/*      border-bottom:1px solid #BCD2E6;*/
+		border-bottom:1px solid #CCCCCC;
+		margin: 0 0 5px 0;
+    }
+    #menu ul {
+    	margin:0;
+        padding:0 0 0 0;
+        list-style:none;
+    }
+    #menu li {
+      	display:inline;
+      	margin:0;
+      	padding:0;
+    }
+    #menu a {
+     	float:left;
+      	background:url("<%=webutil.getBasePathForHTML()%>images/tableft1.gif") no-repeat left top;
+      	margin:0;
+      	padding:0 0 0 4px;
+      	text-decoration:none;
+    }
+    #menu a div {
+    	float:left;
+      	display:block;
+      	background:url("<%=webutil.getBasePathForHTML()%>images/tabright1.gif") no-repeat right top;
+      	padding:5px 15px 4px 6px;
+      	color:#627EB7;
+    }
+    /* Commented Backslash Hack hides rule from IE5-Mac \*/
+    #menu a div {float:none;}
+    /* End IE5-Mac hack */
+    #menu a:hover div {
+    	color:#627EB7;
+    }
+    #menu a:hover {
+    	background-position:0% -42px;
+    }
+    #menu a:hover div {
+    	background-position:100% -42px;
+    }
+
+    #menu #current a {
+        background-position:0% -42px;
+    }
+    #menu #current a div {
+        background-position:100% -42px;
+    }
+-->
+</style>
+		
