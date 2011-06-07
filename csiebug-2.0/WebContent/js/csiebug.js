@@ -49,12 +49,12 @@ function sourcePrint(obj) {
 //幫String物件加上trim()的function
 String.prototype.trim = function() {
   return this.replace(/(^\s*)|(\s*$)/g,'');
-}
+};
 
 //幫String物件加上startsWith()的function
 String.prototype.startsWith = function(prefix) {
     return this.indexOf(prefix) === 0;
-}
+};
 
 //幫String物件加上endsWith()的function
 String.prototype.endsWith = function(suffix) {
@@ -75,6 +75,29 @@ function replaceAll(value,find,replace){
  		value = value.replace(find, replace);
  	}
  	return value;
+}
+
+/**
+ * 去掉開頭空白
+ * @param value
+ * @returns
+ * @author csiebug
+ * @version 2011/6/7
+ */
+function ltrim(value) {
+	var strValue = value;
+	
+	while(strValue.startsWith(" ") || strValue.startsWith("\t") || strValue.startsWith("\n")) {
+		if(strValue.startsWith(" ")) {
+			strValue = strValue.replace(" ", "");
+		} else if(strValue.startsWith("\t")) {
+			strValue = strValue.replace("\t", "");
+		} else if(strValue.startsWith("\n")) {
+			strValue = strValue.replace("\n", "");
+		}
+	}
+	
+	return strValue;
 }
 
 /**
