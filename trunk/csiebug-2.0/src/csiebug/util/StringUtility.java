@@ -177,11 +177,13 @@ public class StringUtility {
 		
 		String strValue = value;
 		
-		while(strValue.startsWith(" ") || strValue.startsWith("\t")) {
+		while(strValue.startsWith(" ") || strValue.startsWith("\t") || strValue.startsWith("\n")) {
 			if(strValue.startsWith(" ")) {
 				strValue = strValue.replaceFirst(" ", "");
-			} else {
+			} else if(strValue.startsWith("\t")) {
 				strValue = strValue.replaceFirst("\t", "");
+			} else if(strValue.startsWith("\n")) {
+				strValue = strValue.replaceFirst("\n", "");
 			}
 		}
 		
