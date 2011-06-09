@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+	
+<hibernate-configuration> 
+
+    <session-factory> 
+
+        <!-- 顯示實際操作資料庫時的SQL --> 
+        <property name="show_sql">true</property> 
+        <!-- SQL方言，這邊設定的是SQL server --> 
+        <property name="dialect">org.hibernate.dialect.SQLServerDialect</property> 
+        <!-- JDBC驅動程式 --> 
+        <property name="connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property> 
+        <!-- JDBC URL --> 
+        <property name="connection.url">jdbc:sqlserver://localhost:1433;databaseName=csiebug-2.0;</property> 
+        <!-- 資料庫使用者 --> 
+        <property name="connection.username">sa</property> 
+        <!-- 資料庫密碼 --> 
+        <property name="connection.password">xxx</property> 
+        <!-- C3P0 連接池設定 --> 
+        <property name="c3p0.min_size">5</property> 
+        <property name="c3p0.max_size">20</property> 
+        <property name="c3p0.timeout">1800</property> 
+        <property name="c3p0.max_statements">50</property> 
+    
+
+        <!-- 物件與資料庫表格映射文件 --> 
+        <mapping resource="csiebug/domain/hibernateImpl/code.hbm.xml"/> 
+        
+    </session-factory> 
+
+</hibernate-configuration>
+
