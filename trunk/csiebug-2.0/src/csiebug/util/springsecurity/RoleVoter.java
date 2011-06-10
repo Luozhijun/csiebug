@@ -1,4 +1,4 @@
-package csiebug.util;
+package csiebug.util.springsecurity;
 
 import java.lang.reflect.Method;
 //import java.util.Collection;
@@ -27,6 +27,8 @@ import csiebug.domain.DomainObjectFactory;
 import csiebug.domain.ResourceType;
 import csiebug.domain.Role;
 import csiebug.dao.ResourceDAO;
+import csiebug.util.AssertUtility;
+import csiebug.util.WebUtility;
 
 /**
  * 根據角色授權
