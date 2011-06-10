@@ -1,4 +1,4 @@
-package csiebug.util;
+package csiebug.util.springsecurity.filter;
 
 import org.apache.commons.codec.DecoderException;
 import org.springframework.security.Authentication;
@@ -21,6 +21,12 @@ import csiebug.domain.Role;
 import csiebug.domain.User;
 import csiebug.service.ServiceException;
 import csiebug.service.UserService;
+import csiebug.util.AssertUtility;
+import csiebug.util.CookieException;
+import csiebug.util.DesCoder;
+import csiebug.util.ShaEncoder;
+import csiebug.util.StringUtility;
+import csiebug.util.WebUtility;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;

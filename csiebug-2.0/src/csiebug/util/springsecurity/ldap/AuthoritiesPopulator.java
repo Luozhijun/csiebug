@@ -1,10 +1,12 @@
-package csiebug.util;
+package csiebug.util.springsecurity.ldap;
 
 import org.springframework.ldap.core.DirContextOperations;
 import org.springframework.security.GrantedAuthority;
 import org.springframework.security.ldap.LdapAuthoritiesPopulator;
 import org.springframework.security.userdetails.UserDetails;
 import org.springframework.security.userdetails.UserDetailsService;
+
+import csiebug.util.AssertUtility;
 
 /**
  * ldap只做認證
