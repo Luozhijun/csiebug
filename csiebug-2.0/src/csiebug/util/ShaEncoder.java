@@ -1,12 +1,33 @@
 package csiebug.util;
 
 import java.io.UnsupportedEncodingException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.util.Scanner;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+
+import org.apache.commons.codec.DecoderException;
 
 import sun.misc.BASE64Encoder;
 
 public class ShaEncoder {
+	public static void main(String[] args) throws InvalidKeyException, InvalidKeySpecException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, DecoderException {
+		Scanner in = new Scanner(System.in);
+		
+		System.out.print("請輸入密碼:");
+		String password = in.nextLine();
+		
+		System.out.println("加密密碼:" + getSHA256String(password));
+		
+		in.close();
+	}
+	
 	private static String convertToHex(byte[] data) {
 		AssertUtility.notNull(data);
 		
