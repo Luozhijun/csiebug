@@ -152,7 +152,7 @@
 				<filter excludes="csiebug.dao.hibernateImpl.BasicDAOImpl"/>
 				<filter excludes="csiebug.service.impl.BasicServiceImpl"/>
 				<filter excludes="csiebug.util.AbstractWebUtility"/>
-				<filter excludes="csiebug.util.AuthoritiesPopulator"/>
+				<filter excludes="csiebug.util.springsecurity.ldap.AuthoritiesPopulator"/>
 				<filter excludes="csiebug.util.CookieException"/>
 				<filter excludes="csiebug.util.DAOLogInterceptor"/>
 				<filter excludes="csiebug.util.DateFormatException"/>
@@ -160,8 +160,8 @@
 				<filter excludes="csiebug.util.InvalidInputException"/>
 				<filter excludes="csiebug.util.ListException"/>
 				<filter excludes="csiebug.util.ListException"/>
-				<filter excludes="csiebug.util.RememberMeFilter"/>
-				<filter excludes="csiebug.util.RoleVoter"/>
+				<filter excludes="csiebug.util.springsecurity.filter.RememberMeFilter"/>
+				<filter excludes="csiebug.util.springsecurity.RoleVoter"/>
 				<filter excludes="csiebug.util.ServiceLockInterceptor"/>
 				<filter excludes="csiebug.util.SessionExpirationFilter"/>
 				<filter excludes="csiebug.util.Struts2WebServiceDispatcher"/>
@@ -173,6 +173,7 @@
 				<filter excludes="csiebug.util.rss.RSSFeed"/>
 				<filter excludes="csiebug.util.rss.RSSImage"/>
 				<filter excludes="csiebug.util.rss.RSSItem"/>
+				<filter excludes="csiebug.util.ftp.FTPClient"/>
 			</instr>
 		</emma>
 	</target>
