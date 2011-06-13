@@ -740,6 +740,10 @@ function checkDataType(obj, warning, ok, messageInterval, message1Start, message
 		          		} else if(timePartStart[0] == timePartEnd[0] && timePartEnd[1] != "" && compareTime(timePartStart[1], timePartEnd[1])) {
 		          			flag = false;
 		          		}
+		          	} else { //其他只能做單純的字典比對
+		          		if(end.value != "" && obj.value > end.value) {
+		          			flag = false;
+		          		}
 		          	}
 					
 					if(!flag) {
@@ -783,6 +787,10 @@ function checkDataType(obj, warning, ok, messageInterval, message1Start, message
 		          		if(timePartEnd[0] != "" && compareDate(timePartStart[0], timePartEnd[0], defaultDateFormat)) {
 		          			flag = false;
 		          		} else if(timePartStart[0] == timePartEnd[0] && timePartEnd[1] != "" && compareTime(timePartStart[1], timePartEnd[1])) {
+		          			flag = false;
+		          		}
+		          	} else { //其他只能做單純的字典比對
+		          		if(start.value != "" && start.value > obj.value) {
 		          			flag = false;
 		          		}
 		          	}
