@@ -38,5 +38,10 @@
     	<key column="username"/>
 	    <many-to-many class="RoleImpl" column="authority"/>
 	</set>
+	
+	<set name="userResources" table="user_resources" cascade="save-update">
+    	<key column="UserId" />
+	    <many-to-many class="ResourceImpl" column="ResourceId" />
+	</set>
   </class>
 </hibernate-mapping>

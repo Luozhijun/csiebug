@@ -59,6 +59,10 @@ public class PortletAdminAction extends PortletBasicAction {
 		this.resourceService = resourceService;
 	}
 	
+	public ResourceService getResourceService() {
+		return resourceService;
+	}
+	
 	public void setCodeService(CodeService codeService) {
 		this.codeService = codeService;
 	}

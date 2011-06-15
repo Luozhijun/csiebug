@@ -1424,8 +1424,7 @@ function sortGrid(tableId, rowIndex, columnIndex, isCurrency) {
 //				if (td.getAttribute("dataType") == "number" || td.getAttribute("dataType") == "currency") {
 //					tableHtml = tableHtml + "<td style=\"mso-number-format:\@\"><p align=\"right\">" + td.innerHTML + "</p></td>";
 //				} else {
-//					//一律加上單引號,避免有0開頭的資料被excel自作聰明的去掉
-//					tableHtml = tableHtml + "<td>'" + ltrim(td.innerHTML) + "</td>";
+//					tableHtml = tableHtml + "<td style=\"mso-number-format:\@\">" + ltrim(td.innerHTML) + "</td>";
 //				}
 //			} else {
 //				for(var k = 0; k < columns.split(",").length; k++) {
@@ -1434,8 +1433,7 @@ function sortGrid(tableId, rowIndex, columnIndex, isCurrency) {
 //						if (td.getAttribute("dataType") == "number" || td.getAttribute("dataType") == "currency") {
 //							tableHtml = tableHtml + "<td style=\"mso-number-format:\@\"><p align=\"right\">" + td.innerHTML + "</p></td>";
 //						} else {
-//							//一律加上單引號,避免有0開頭的資料被excel自作聰明的去掉
-//							tableHtml = tableHtml + "<td>'" + ltrim(td.innerHTML) + "</td>";
+//							tableHtml = tableHtml + "<td style=\"mso-number-format:\@\">" + ltrim(td.innerHTML) + "</td>";
 //						}
 //						break;
 //					}
@@ -1496,8 +1494,7 @@ function sortGrid(tableId, rowIndex, columnIndex, isCurrency) {
 //					if (td.getAttribute("dataType") == "number" || td.getAttribute("dataType") == "currency") {
 //						tableHtml = tableHtml + "<td style=\"mso-number-format:\@\"><p align=\"right\">" + td.innerHTML + "</p></td>";
 //					} else {
-//						//一律加上單引號,避免有0開頭的資料被excel自作聰明的去掉
-//						tableHtml = tableHtml + "<td>'" + ltrim(td.innerHTML) + "</td>";
+//						tableHtml = tableHtml + "<td style=\"mso-number-format:\@\">" + ltrim(td.innerHTML) + "</td>";
 //					}
 //				} else {
 //					for(var k = 0; k < columns.split(",").length; k++) {
@@ -1506,8 +1503,7 @@ function sortGrid(tableId, rowIndex, columnIndex, isCurrency) {
 //							if (td.getAttribute("dataType") == "number" || td.getAttribute("dataType") == "currency") {
 //								tableHtml = tableHtml + "<td style=\"mso-number-format:\@\"><p align=\"right\">" + td.innerHTML + "</p></td>";
 //							} else {
-//								//一律加上單引號,避免有0開頭的資料被excel自作聰明的去掉
-//								tableHtml = tableHtml + "<td>'" + ltrim(td.innerHTML) + "</td>";
+//								tableHtml = tableHtml + "<td style=\"mso-number-format:\@\">" + ltrim(td.innerHTML) + "</td>";
 //							}
 //							break;
 //						}

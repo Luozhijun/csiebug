@@ -207,7 +207,9 @@ public class CodeServiceTest extends AbstractTransactionalJUnit4SpringContextTes
 		List<Code> expectList = new ArrayList<Code>();
 		expectList.add(code);
 		EasyMock.expect(mockCodeDAO.search(code)).andReturn(expectList);
-		mockCodeDAO.delete(code);
+		List<Code> deleteList = new ArrayList<Code>();
+		deleteList.add(code);
+		mockCodeDAO.delete(deleteList);
 		expectList = new ArrayList<Code>();
 		EasyMock.expect(mockCodeDAO.search(code)).andReturn(expectList);
 		
@@ -215,7 +217,7 @@ public class CodeServiceTest extends AbstractTransactionalJUnit4SpringContextTes
 	}
 	
 	@Test
-	public void testDeleteCode() throws Exception {
+	public void testDeleteCodes() throws Exception {
 		Code code = prepareCodeData(false);
 		
 		setUpForDeleteCode(code);
@@ -225,7 +227,9 @@ public class CodeServiceTest extends AbstractTransactionalJUnit4SpringContextTes
 		assertEquals(1, list.size());
 		assertEquals(code, list.get(0));
 		
-		codeService.deleteCode(code);
+		List<Code> deleteCodes = new ArrayList<Code>();
+		deleteCodes.add(code);
+		codeService.deleteCodes(deleteCodes);
 		
 		list = codeService.searchCodes(code);
 		

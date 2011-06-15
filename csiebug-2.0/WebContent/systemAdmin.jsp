@@ -61,6 +61,10 @@
 							(var.roleList)<br>
 							<input id="updateUserRoleButton_(var.id)" name="updateUserRoleButton_(var.id)" type="button" class="Button" onmouseover="className='ButtonHover'" onmouseout="className='Button'" onClick="updateUserRole('systemAdminForm', this, '(var.id)');" value="<%=webutil.getMessage("common.save")%>">
 						</c:column>
+						<c:column fieldname="resourceList" title='<%=webutil.getMessage("systemAdmin.availableResources") %>'>
+							(var.resourceList)<br>
+							<input id="updateUserResourceButton_(var.id)" name="updateUserResourceButton_(var.id)" type="button" class="Button" onmouseover="className='ButtonHover'" onmouseout="className='Button'" onClick="updateUserResource('systemAdminForm', this, '(var.id)');" value="<%=webutil.getMessage("common.save")%>">
+						</c:column>
 					</c:row>
 				</c:table>
 			</div>
@@ -75,6 +79,9 @@
 						<c:text id="roleName" name="roleName" header='<%=webutil.getMessage("systemAdmin.RoleName") %>' isReturnValue="false"></c:text>
 					</tr>
 					<tr>
+						<c:multiselect id="roleResources" name="roleResources" header='<%=webutil.getMessage("systemAdmin.availableResources") %>' totalOption="resources" />
+					</tr>
+					<tr>
 						<td>
 							<input id="saveRoleButton" name="saveRoleButton" type="button" class="Button" onmouseover="className='ButtonHover'" onmouseout="className='Button'" onClick="saveRole('systemAdminForm', this, '<%=webutil.getMessage("common.warning")%>', '<%=webutil.getMessage("common.error.required5")%>', '<%=webutil.getMessage("common.ok")%>');" value="<%=webutil.getMessage("common.save")%>">
 						</td>
@@ -85,7 +92,7 @@
 				
 				<input id="addRoleButton" name="addRoleButton" type="button" class="Button" onmouseover="className='ButtonHover'" onmouseout="className='Button'" onClick="addRole();" value="<%=webutil.getMessage("systemAdmin.AddRole")%>">
 				<input id="cancelEditRoleButton" name="cancelEditRoleButton" type="button" class="Button" onmouseover="className='ButtonHover'" onmouseout="className='Button'" onClick="closeRoleEditor();" value="<%=webutil.getMessage("systemAdmin.CancelEditRole")%>">
-				<input id="deleteRoleButton" name="deleteRoleButton" type="button" class="Button" onmouseover="className='ButtonHover'" onmouseout="className='Button'" onClick="deleteRole('<%=webutil.getMessage("common.warning")%>', '<%=webutil.getMessage("common.confirm.delete") %>', '<%=webutil.getMessage("common.error.required4")%>', '<%=webutil.getMessage("common.ok")%>', '<%=webutil.getMessage("common.cancel") %>');" value="<%=webutil.getMessage("common.delete")%>">
+				<input id="deleteRoleButton" name="deleteRoleButton" type="button" class="Button" onmouseover="className='ButtonHover'" onmouseout="className='Button'" onClick="deleteRole('<%=webutil.getMessage("common.warning")%>', '<%=webutil.getMessage("common.confirm.delete") %>', '<%=webutil.getMessage("common.error.required4")%>', '<%=webutil.getMessage("systemAdmin.cannotDeleteThisRole") %>', '<%=webutil.getMessage("common.ok")%>', '<%=webutil.getMessage("common.cancel") %>');" value="<%=webutil.getMessage("common.delete")%>">
 				<input type="hidden" id="roles" name="roles"></input>
 				
 				<c:table id="roleGrid" name="roleGrid" data="roles" noDataStringFlag="true">

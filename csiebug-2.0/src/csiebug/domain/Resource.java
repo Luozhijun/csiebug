@@ -18,4 +18,8 @@ public interface Resource extends BasicObject {
 	Set<Role> getAuthorityResources();
 	void addAuthorityResource(Role role);
 	void removeAuthorityResource(Role role);
+	void setUserResources(Set<User> users);
+	Set<User> getUserResources();
+	void addUserResource(User user);
+	void removeUserResource(User user);
 }

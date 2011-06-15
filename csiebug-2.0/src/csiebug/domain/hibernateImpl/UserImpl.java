@@ -40,6 +40,7 @@ public class UserImpl extends BasicObjectImpl implements User {
 	private Set<Role> roles = new HashSet<Role>();
 	private Set<Cookie> cookies = new HashSet<Cookie>();
 	private Set<WebservicesChannel> webservicesChannels = new HashSet<WebservicesChannel>();
+	private Set<Resource> resources = new HashSet<Resource>();
 	
 	public void setId(String username) {
 		this.username = username;
@@ -371,6 +372,22 @@ public class UserImpl extends BasicObjectImpl implements User {
 		}
 		
 		return majorEmail;
+	}
+	
+	public void setUserResources(Set<Resource> resource) {
+		this.resources = resource;
+	}
+
+	public Set<Resource> getUserResources() {
+		return resources;
+	}
+	
+	public void addUserResource(Resource resource) {
+		resources.add(resource);
+	}
+	
+	public void removeUserResource(Resource resource) {
+		resources.remove(resource);
 	}
 	
 	public boolean equals(Object obj) {

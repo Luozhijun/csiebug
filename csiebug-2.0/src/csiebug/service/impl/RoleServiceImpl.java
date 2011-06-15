@@ -48,13 +48,13 @@ public class RoleServiceImpl extends BasicServiceImpl implements RoleService {
 		}
 	}
 	
-	public void deleteRole(Role obj) throws ServiceException {
-		notNull(obj, "Can not delete null!");
-		
-		try {
-			roleDAO.delete(obj);
-		} catch (DAOException e) {
-			throw new ServiceException("RoleDAO delete error!", e);
+	public void deleteRoles(List<Role> obj) throws ServiceException {
+		if(obj != null && obj.size() > 0) {
+			try {
+				roleDAO.delete(obj);
+			} catch (DAOException e) {
+				throw new ServiceException("RoleDAO delete error!", e);
+			}
 		}
 	}
 }

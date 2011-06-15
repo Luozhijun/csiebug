@@ -81,4 +81,9 @@ public interface User extends BasicObject {
 	 * @return
 	 */
 	String getMajorEmail();
+	
+	void setUserResources(Set<Resource> resource);
+	Set<Resource> getUserResources();
+	void addUserResource(Resource resource);
+	void removeUserResource(Resource resource);
 }

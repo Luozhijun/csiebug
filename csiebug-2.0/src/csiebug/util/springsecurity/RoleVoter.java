@@ -26,12 +26,13 @@ import csiebug.domain.Resource;
 import csiebug.domain.DomainObjectFactory;
 import csiebug.domain.ResourceType;
 import csiebug.domain.Role;
+import csiebug.domain.User;
 import csiebug.dao.ResourceDAO;
 import csiebug.util.AssertUtility;
 import csiebug.util.WebUtility;
 
 /**
- * 根據角色授權
+ * 混合式授權(使用者授權+角色授權)
  * 此程式被呼叫是在當被保護的資源(URL或程式的method)被存取之前
  * 在spring security設定檔中被排除的資源不會被此程式檢查授權
  * @author George_Tsai
@@ -39,14 +40,15 @@ import csiebug.util.WebUtility;
  */
 
 public class RoleVoter implements AccessDecisionVoter {
-	private String rolePrefix = "ROLE_";
+//	private String rolePrefix = "ROLE_";
 	private ResourceDAO resourceDAO;
 	private DomainObjectFactory domainObjectFactory;
 	private HashMap<String, String> filterVariable;
 	
 	public boolean supports(ConfigAttribute attribute) {
-		AssertUtility.notNull(attribute);
-		return ((attribute.getAttribute() != null) && attribute.getAttribute().startsWith(getRolePrefix()));
+//		AssertUtility.notNull(attribute);
+//		return ((attribute.getAttribute() != null) && attribute.getAttribute().startsWith(getRolePrefix()));
+		return true;
 	}
 
 	public boolean supports(@SuppressWarnings("rawtypes") Class arg0) {
@@ -60,6 +62,7 @@ public class RoleVoter implements AccessDecisionVoter {
 		
 		int result = AccessDecisionVoter.ACCESS_ABSTAIN;
 		
+		String userId = authentication.getName();
 		GrantedAuthority[] authorities = authentication.getAuthorities();
         
         //如果使用者是ROLE_ANONYMOUS時,無權限存取
@@ -100,7 +103,6 @@ public class RoleVoter implements AccessDecisionVoter {
         } else {
         //使用者擁有某些角色時,則需要判斷此資源是否可以被此使用者存取
         	try {
-        		//查出使用者欲存取的資源,可被哪些角色存取
         		List<Resource> list = null;
         		Resource authorityResource = domainObjectFactory.createResource(); 
         		
@@ -134,18 +136,29 @@ public class RoleVoter implements AccessDecisionVoter {
 	        		return AccessDecisionVoter.ACCESS_GRANTED;
 	        	} else {
 	        		for(int i = 0; i < list.size(); i++) {
+	        			Set<User> users = list.get(i).getUserResources();
 		        		Set<Role> roles = list.get(i).getAuthorityResources();
-		        		Iterator<Role> iterator = roles.iterator();
+		        		Iterator<User> userIterator = users.iterator();
+		        		Iterator<Role> roleIterator = roles.iterator();
 		        		
-		        		//若此資源沒有特別設定可被存取的角色,則表示只要登入系統就可使用
-		        		if(roles.size() == 0) {
+		        		//若此資源沒有特別設定可被存取的角色和使用者,則表示只要登入系統就可使用
+		        		if(roles.size() == 0 && users.size() == 0) {
 		        			return AccessDecisionVoter.ACCESS_GRANTED;
 		        		} else {
-		        		//反之,則使用者擁有的角色,至少有一個必須是可存取此資源的角色才有權限存取
+		        		//使用者有在此資源存取的使用者清單中,
+		        		//或使用者擁有的角色,至少有一個必須是可存取此資源的角色
+		        		//才有權限存取
 		        			result = AccessDecisionVoter.ACCESS_DENIED;
-			        		
-			        		while(iterator.hasNext()) {
-			        			Role role = iterator.next();
+		        			
+		        			while(userIterator.hasNext()) {
+		        				User user = userIterator.next();
+			        			if(userId.equalsIgnoreCase(user.getId())) {
+			        				return AccessDecisionVoter.ACCESS_GRANTED;
+			        			}
+		        			}
+		        			
+			        		while(roleIterator.hasNext()) {
+			        			Role role = roleIterator.next();
 			        			for(int j = 0; j < authorities.length; j++) {
 			        				if(authorities[j].getAuthority().equalsIgnoreCase(role.getId())) {
 			        					return AccessDecisionVoter.ACCESS_GRANTED;
@@ -164,13 +177,13 @@ public class RoleVoter implements AccessDecisionVoter {
         return result;
 	}
 	
-	public void setRolePrefix(String rolePrefix) {
-		this.rolePrefix = rolePrefix;
-	}
-
-	public String getRolePrefix() {
-		return rolePrefix;
-	}
+//	public void setRolePrefix(String rolePrefix) {
+//		this.rolePrefix = rolePrefix;
+//	}
+//
+//	public String getRolePrefix() {
+//		return rolePrefix;
+//	}
 
 	public void setResourceDAO(ResourceDAO resourceDAO) {
 		this.resourceDAO = resourceDAO;

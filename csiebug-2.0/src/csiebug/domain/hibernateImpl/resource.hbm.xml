@@ -17,6 +17,11 @@
 	    <many-to-many class="RoleImpl" column="authority" />
 	</set>
 	
+	<set name="userResources" table="user_resources" cascade="save-update">
+    	<key column="ResourceId" />
+	    <many-to-many class="UserImpl" column="UserId" />
+	</set>
+	
 	<subclass name="ObjectMethodImpl" discriminator-value="OBJECT_METHOD" />
 	<subclass name="URLImpl" discriminator-value="URL" />
 	<subclass name="PortletImpl" discriminator-value="PORTLET" />
