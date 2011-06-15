@@ -52,13 +52,13 @@ public class DesCoder {
 				
 			System.out.print("加密密碼:" + encryptCode(password, key));
 		} else if(action == 2) {
-			System.out.println("請輸入加密密碼:");
+			System.out.print("請輸入加密密碼:");
 			String cipherText = in.nextLine();
 			
-			System.out.println("請輸入解密金鑰:(請輸入48碼數字)");
+			System.out.print("請輸入解密金鑰:(請輸入48碼數字)");
 			String key = in.nextLine();
 			
-			System.out.println("密碼:" + decryptCode(cipherText, key));
+			System.out.print("密碼:" + decryptCode(cipherText, key));
 		}
 		
 		in.close();

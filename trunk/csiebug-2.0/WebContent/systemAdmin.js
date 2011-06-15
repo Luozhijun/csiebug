@@ -114,7 +114,17 @@ function updateUserRole(form, button, id) {
 	document.getElementById(form).submit();
 }
 
-function selectToEditForRole(roleId, roleName) {
+function updateUserResource(form, button, id) {
+	//lockButton();
+	//loading(button);
+	loadingBlockPage('', 0);
+	
+	document.getElementById("users").value = id;
+	document.getElementById("systemAdminActFlag").value = "systemAdminUpdateUserResource";
+	document.getElementById(form).submit();
+}
+
+function selectToEditForRole(roleId, roleName, resources) {
 	var roleIdControl = document.getElementById("roleId");
 	var roleNameControl = document.getElementById("roleName");
 	roleIdControl.className = "TextReadOnly";
@@ -127,12 +137,42 @@ function selectToEditForRole(roleId, roleName) {
 		
 		roleIdControl.value = roleId;
 		roleNameControl.value = roleName;
+		unSelAll("roleResources", '');
+		if(resources.trim() != "") {
+			var selectOptions = resources.split(",");
+			selResources(selectOptions);
+		}
 	}
+}
+
+function selResources(selectOptions) {
+	var hiddenUnSelect = document.getElementById("roleResources_unselect");
+	var unSelect = document.getElementById("roleResources_unselect_display");
+	var hiddenSelect = document.getElementById("roleResources");
+	var select = document.getElementById("roleResources_display");
+	
+	for(var i = unSelect.length - 1; i >= 0; i--) {
+		for(var j = 0; j < selectOptions.length; j++) {
+			if(unSelect[i].value == selectOptions[j]) {
+				try { //standard
+					select.add(new Option(unSelect[i].text, unSelect[i].value), null);
+				} catch(ex) { //just for ie
+					select.add(new Option(unSelect[i].text, unSelect[i].value));
+				}
+				unSelect.remove(i);
+				break;
+			}
+		}
+	}
+	
+	setHiddenValue(hiddenUnSelect, unSelect, hiddenSelect, select);
 }
 
 function clearRoleEditor() {
 	document.getElementById("roleId").value = "";
 	document.getElementById("roleName").value = "";
+	
+	unSelAll("roleResources", '');
 }
 
 function saveRole(form, button, warning, required, ok) {
@@ -176,30 +216,48 @@ function closeRoleEditor() {
 	document.getElementById("roleEditor").style.display = "none";
 }
 
-function deleteRole(warning, message1, message2, ok, cancel) {
+function deleteRole(warning, message1, message2, message3, ok, cancel) {
 	var trs = document.getElementById("roleGrid").getElementsByTagName("tr");
 	
+	var deleteFlag = true;
 	var roles = "";
 	for(var i = 1; i < trs.length - 1; i++) {
 		var tr = trs[i];
 		var tds = tr.getElementsByTagName("td");
 		var chk = tds[0].getElementsByTagName("input");
 		var roleId = replaceAll(tds[1].innerHTML, "\n", "");
-						
+		
 		if(chk[0] != null && chk[0].checked == true) {
-			if(roles != "") {
-				roles = roles + ",";
+			if(roleId == "admin" || roleId == "ROLE_USER") {
+				chk[0].checked = false;
+				if(tr.className == "TR_FOCUS") {
+					if((i - 1 + 1) % 2 == 1) {
+						tr.className = "TR_ODD";
+					} else {
+						tr.className = "TR_EVEN";
+					}
+				}
+				
+				deleteFlag = false;
+			} else {
+				if(roles != "") {
+					roles = roles + ",";
+				}
+				
+				roles = roles + roleId;
 			}
-			
-			roles = roles + roleId; 
 		}
 	}
 	
-	if(roles != "") {
-		document.getElementById("roles").value = roles;
-		openConfirmDialog(null, warning, message1, ok, cancel, 'deleteRole2()', '', null);
+	if(!deleteFlag) {
+		openAlertDialog(null, warning, message3, ok, '', null, 0);
 	} else {
-		openAlertDialog(null, warning, message2, ok, '', null, 0);
+		if(roles != "") {
+			document.getElementById("roles").value = roles;
+			openConfirmDialog(null, warning, message1, ok, cancel, 'deleteRole2()', '', null);
+		} else {
+			openAlertDialog(null, warning, message2, ok, '', null, 0);
+		}
 	}
 }
 

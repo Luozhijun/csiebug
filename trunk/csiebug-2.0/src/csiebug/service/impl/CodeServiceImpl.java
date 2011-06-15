@@ -58,13 +58,13 @@ public class CodeServiceImpl extends BasicServiceImpl implements CodeService {
 		}
 	}
 	
-	public void deleteCode(Code code) throws ServiceException {
-		notNull(code, "Can not delete null!");
-		
-		try {
-			codeDAO.delete(code);
-		} catch (DAOException e) {
-			throw new ServiceException("CodeDAO delete code error!", e);
+	public void deleteCodes(List<Code> codes) throws ServiceException {
+		if(codes != null && codes.size() > 0) {
+			try {
+				codeDAO.delete(codes);
+			} catch (DAOException e) {
+				throw new ServiceException("CodeDAO delete code error!", e);
+			}
 		}
 	}
 	

@@ -9,6 +9,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import csiebug.domain.Resource;
 import csiebug.domain.ResourceType;
 import csiebug.domain.Role;
+import csiebug.domain.User;
 
 /**
  * 
@@ -24,6 +25,7 @@ public class ResourceImpl extends BasicObjectImpl implements Resource {
 	private ResourceType resourceType;
 	
 	private Set<Role> roles = new HashSet<Role>();
+	private Set<User> users = new HashSet<User>();
 	
 	public void setId(String id) {
 		this.resourceId = id;
@@ -48,6 +50,18 @@ public class ResourceImpl extends BasicObjectImpl implements Resource {
 	}
 	public void removeAuthorityResource(Role role) {
 		roles.remove(role);
+	}
+	public void setUserResources(Set<User> users) {
+		this.users = users;
+	}
+	public Set<User> getUserResources() {
+		return this.users;
+	}
+	public void addUserResource(User user) {
+		users.add(user);
+	}
+	public void removeUserResource(User user) {
+		users.remove(user);
 	}
 	public boolean equals(Object obj) {
         if(obj == this) {

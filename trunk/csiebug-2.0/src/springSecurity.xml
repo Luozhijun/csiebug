@@ -25,15 +25,14 @@
 		因為此功能會不正常只有在有兩個人在同時用直接key任意網址的方式透過cookie登入才會發生(機會比較小)
 		而且後果頂多是轉到不是自己key的網址，大部分情況可能都會被導到首頁
 		不會被存取到無權限的網址，因為這只是轉址的接口，還是會接到spring security的authenticationManager做認證
-	-->
-	<bean id="filterVariable" class="java.util.HashMap" />
+	<bean id="filterVariable" class="java.util.HashMap" />-->
 	
 	<!-- SessionExpiration filter -->
 	<!-- spring security 2.x-->
 	<bean id="sessionExpirationFilter" class="csiebug.util.SessionExpirationFilter">
     	<security:custom-filter position="FIRST"/>
 		<property name="expiredURL" value="/index?ActFlag=timeout"/>
-		<!--<property name="filterVariable" ref="filterVariable"/>-->
+		<!-- <property name="filterVariable" ref="filterVariable"/> -->
 	</bean>
 	
 	<!-- remember me filter -->
@@ -44,7 +43,7 @@
 		<property name="domainObjectFactory" ref="domainObjectFactory"/>
 		<property name="userService" ref="userService"/>
 		<property name="loginSuccessURL" value="/login?ActFlag=login"/>
-		<!--<property name="filterVariable" ref="filterVariable"/>-->
+		<!-- <property name="filterVariable" ref="filterVariable"/> -->
 	</bean>
 	
 	<!-- spring security 3.x
@@ -68,9 +67,9 @@
 		<property name="decisionVoters">
 			<list>
 				<bean class="csiebug.util.springsecurity.RoleVoter">
-					<property name="rolePrefix">
+					<!-- <property name="rolePrefix">
 						 <value></value>
-					</property>
+					</property> -->
 					
 					<property name="resourceDAO">
 						 <ref bean="resourceDAO"/> 
@@ -80,8 +79,9 @@
             			<ref bean="domainObjectFactory"/> 
         			</property>
 					
-					<!--<property name="filterVariable" ref="filterVariable"/>-->
+					<!-- <property name="filterVariable" ref="filterVariable"/> -->
 				</bean>
+				
 				<!--
 				<bean id="roleHierarchyVoter" class="org.springframework.security.vote.RoleHierarchyVoter">
 					<constructor-arg ref="roleHierarchy"/>

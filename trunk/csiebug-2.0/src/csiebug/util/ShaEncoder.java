@@ -23,7 +23,7 @@ public class ShaEncoder {
 		System.out.print("請輸入密碼:");
 		String password = in.nextLine();
 		
-		System.out.println("加密密碼:" + getSHA256String(password));
+		System.out.print("加密密碼:" + getSHA256String(password));
 		
 		in.close();
 	}

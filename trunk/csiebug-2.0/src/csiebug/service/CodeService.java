@@ -41,10 +41,10 @@ public interface CodeService extends BasicService {
 	
 	/**
 	 * 刪除代碼
-	 * @param user
+	 * @param codes
 	 * @throws ServiceException
 	 */
-	void deleteCode(Code code) throws ServiceException;
+	void deleteCodes(List<Code> codes) throws ServiceException;
 	
 	/**
 	 * 將符合條件的code的id,value轉成Map

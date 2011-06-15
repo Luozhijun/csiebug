@@ -55,6 +55,7 @@
 <script src="<%=webutil.getBasePathForHTML()%>js/csiebug-form/csiebug-editableSelect.js"></script>
 <script src="<%=webutil.getBasePathForHTML()%>js/csiebug-form/csiebug-keyValue.js"></script>
 <script src="<%=webutil.getBasePathForHTML()%>js/csiebug-form/csiebug-multiText.js"></script>
+<script src="<%=webutil.getBasePathForHTML()%>js/csiebug-form/csiebug-multiSelect.js"></script>
 <script src="<%=webutil.getBasePathForHTML()%>js/csiebug-grid/csiebug-grid.js"></script>
 
 <script type="text/javascript">

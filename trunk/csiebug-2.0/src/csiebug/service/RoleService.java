@@ -36,5 +36,5 @@ public interface RoleService extends BasicService {
 	 * @param obj
 	 * @throws ServiceException
 	 */
-	void deleteRole(Role obj) throws ServiceException;
+	void deleteRoles(List<Role> obj) throws ServiceException;
 }
