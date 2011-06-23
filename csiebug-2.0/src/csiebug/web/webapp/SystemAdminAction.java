@@ -32,6 +32,7 @@ import csiebug.domain.Resource;
 import csiebug.domain.Role;
 import csiebug.domain.User;
 import csiebug.service.CodeService;
+import csiebug.service.ResourceService;
 import csiebug.service.RoleService;
 import csiebug.service.ServiceException;
 import csiebug.service.UserService;
@@ -78,6 +79,10 @@ public class SystemAdminAction {
 	    	saveRole();
 	    } else if(actFlag.equalsIgnoreCase("systemAdminDeleteRole")) {
 	    	deleteRoles();
+	    } else if(actFlag.equalsIgnoreCase("systemAdminUpdateResourceRole")) {
+	    	updateResourceRole();
+	    } else if(actFlag.equalsIgnoreCase("systemAdminUpdateResourceUser")) {
+	    	updateResourceUser();
 	    } else if(actFlag.equalsIgnoreCase("systemAdminSaveCode")) {
 	    	saveCode();
 	    } else if(actFlag.equalsIgnoreCase("systemAdminDeleteCode")) {
@@ -90,6 +95,7 @@ public class SystemAdminAction {
 		tabs.put(action.getMessage("systemAdmin.tab.SystemLock"), "systemLock");
 		tabs.put(action.getMessage("systemAdmin.tab.UserManagement"), "userManagement");
 		tabs.put(action.getMessage("systemAdmin.tab.RoleManagement"), "roleManagement");
+		tabs.put(action.getMessage("systemAdmin.tab.ResourceManagement"), "resourceManagement");
 		tabs.put(action.getMessage("systemAdmin.tab.CodeManagement"), "codeManagement");
 		action.setRequestAttribute("systemAdminTabs", tabs);
 		
@@ -111,6 +117,10 @@ public class SystemAdminAction {
 	    	tabId = "roleManagement";
 	    } else if(actFlag.equalsIgnoreCase("systemAdminDeleteRole")) {
 	    	tabId = "roleManagement";
+	    } else if(actFlag.equalsIgnoreCase("systemAdminUpdateResourceRole")) {
+	    	tabId = "resourceManagement";
+	    } else if(actFlag.equalsIgnoreCase("systemAdminUpdateResourceUser")) {
+	    	tabId = "resourceManagement";
 	    } else if(actFlag.equalsIgnoreCase("systemAdminSaveCode")) {
 	    	tabId = "codeManagement";
 	    } else if(actFlag.equalsIgnoreCase("systemAdminDeleteCode")) {
@@ -121,8 +131,11 @@ public class SystemAdminAction {
 		
 		makeSystemLockControl();
 		makeTotalResourceOption();
+		makeTotalRoleOption();
+		makeTotalUserOption();
 		makeUserManagementControl();
 		makeRoleManagementControl();
+		makeResourceManagementControl();
 		makeCodeManagementControl();
 	}
 	
@@ -134,8 +147,24 @@ public class SystemAdminAction {
 		Resource voResource = action.getDomainObjectFactory().createResource();
 		List<Resource> resources = action.getResourceService().searchResources(voResource);
 		//轉型
-		List<Map<String, String>> resouceList = ListUtility.castList(ListUtility.toList(resources, Resource.class), Integer.parseInt(action.getEnvVariable("defaultDateFormat")));
-		action.setRequestAttribute("resources", ListUtility.toMap(resouceList, "id", "id"));
+		List<Map<String, String>> resourceList = ListUtility.castList(ListUtility.toList(resources, Resource.class), Integer.parseInt(action.getEnvVariable("defaultDateFormat")));
+		action.setRequestAttribute("totalResourceOption", ListUtility.toMap(resourceList, "id", "id"));
+	}
+	
+	private void makeTotalRoleOption() throws ServiceException, NumberFormatException, IllegalArgumentException, DateFormatException, IllegalAccessException, InvocationTargetException, NamingException {
+		Role voRole = action.getDomainObjectFactory().createRole();
+		List<Role> roles = action.getRoleService().searchRoles(voRole);
+		//轉型
+		List<Map<String, String>> roleList = ListUtility.castList(ListUtility.toList(roles, Role.class), Integer.parseInt(action.getEnvVariable("defaultDateFormat")));
+		action.setRequestAttribute("totalRoleOption", ListUtility.toMap(roleList, "id", "id"));
+	}
+	
+	private void makeTotalUserOption() throws ServiceException, NumberFormatException, IllegalArgumentException, DateFormatException, IllegalAccessException, InvocationTargetException, NamingException {
+		User voUser = action.getDomainObjectFactory().createUser();
+		List<User> users = action.getUserService().searchUsers(voUser);
+		//轉型
+		List<Map<String, String>> userList = ListUtility.castList(ListUtility.toList(users, User.class), Integer.parseInt(action.getEnvVariable("defaultDateFormat")));
+		action.setRequestAttribute("totalUserOption", ListUtility.toMap(userList, "id", "id"));
 	}
 	
 	private void makeUserManagementControl() throws ServiceException, IllegalArgumentException, IllegalAccessException, InvocationTargetException, NamingException, DateFormatException, ListException, HtmlRenderException {
@@ -149,8 +178,8 @@ public class SystemAdminAction {
 		//轉型
 		List<Map<String, String>> list = ListUtility.castList(ListUtility.toList(users, User.class), Integer.parseInt(action.getEnvVariable("defaultDateFormat")));
 		
-		//join role data
-		List<Map<String, String>> roleList = new ArrayList<Map<String,String>>();
+		//join role and resource data
+		List<Map<String, String>> roleResourceList = new ArrayList<Map<String,String>>();
 		for(int i = 0; i < users.size(); i++) {
 			User user = users.get(i);
 			
@@ -192,15 +221,15 @@ public class SystemAdminAction {
 			multiSelect.setId("resource_" + user.getId());
 			multiSelect.setName("resource_" + user.getId());
 			multiSelect.setTypesetting("false");
-			multiSelect.setTotalOption("resources");
+			multiSelect.setTotalOption("totalResourceOption");
 			action.setRequestAttribute("resourceList_" + user.getId(), resourceId.toString());
 			multiSelect.setUserValue("resourceList_" + user.getId());
 			
 			map.put("resourceList", multiSelect.render());
 			
-			roleList.add(map);
+			roleResourceList.add(map);
 		}
-		list = ListUtility.leftJoin(list, roleList, new String[]{"id"});
+		list = ListUtility.leftJoin(list, roleResourceList, new String[]{"id"});
 		
 		action.setRequestAttribute("users", list);
 	}
@@ -238,6 +267,70 @@ public class SystemAdminAction {
 		action.setRequestAttribute("roles", roleList);
 		
 		action.setRequestAttribute("onDblClickForRole", "selectToEditForRole('(var.id)', '(var.roleName)', '(var.resources)');");
+	}
+	
+	private void makeResourceManagementControl() throws ServiceException, IllegalArgumentException, IllegalAccessException, InvocationTargetException, NamingException, DateFormatException, ListException, HtmlRenderException {
+		Resource voObj = action.getDomainObjectFactory().createResource();
+		List<Resource> resources = action.getResourceService().searchResources(voObj);
+		//轉型
+		List<Map<String, String>> list = ListUtility.castList(ListUtility.toList(resources, Resource.class), Integer.parseInt(action.getEnvVariable("defaultDateFormat")));
+		
+		//join role and user data
+		List<Map<String, String>> roleUserList = new ArrayList<Map<String,String>>();
+		for(int i = 0; i < resources.size(); i++) {
+			Resource resource = resources.get(i);
+			
+			Map<String, String> map = new LinkedHashMap<String, String>();
+			map.put("id", resource.getId());
+			map.put("resourceType", resource.getResourceType().toString());
+			
+			StringBuffer roleId = new StringBuffer();
+			Iterator<Role> iterator = resource.getAuthorityResources().iterator();
+			while(iterator.hasNext()) {
+				Role role = iterator.next();
+				
+				if(!roleId.toString().equals("")) {
+					roleId.append(",");
+				}
+				
+				roleId.append(role.getId());
+			}
+			
+			HtmlMultiSelect multiSelectRole = new HtmlMultiSelect();
+			multiSelectRole.setId("roles_" + resource.getId());
+			multiSelectRole.setName("roles_" + resource.getId());
+			multiSelectRole.setTypesetting("false");
+			multiSelectRole.setTotalOption("totalRoleOption");
+			action.setRequestAttribute("roleList_" + resource.getId(), roleId.toString());
+			multiSelectRole.setUserValue("roleList_" + resource.getId());
+			
+			map.put("roleList", multiSelectRole.render());
+			
+			StringBuffer userId = new StringBuffer();
+			Iterator<User> iteratorUser = resource.getUserResources().iterator();
+			while(iteratorUser.hasNext()) {
+				if(!userId.toString().equals("")) {
+					userId.append(",");
+				}
+				
+				userId.append(iteratorUser.next().getId());
+			}
+			
+			HtmlMultiSelect multiSelectUser = new HtmlMultiSelect();
+			multiSelectUser.setId("users_" + resource.getId());
+			multiSelectUser.setName("users_" + resource.getId());
+			multiSelectUser.setTypesetting("false");
+			multiSelectUser.setTotalOption("totalUserOption");
+			action.setRequestAttribute("userList_" + resource.getId(), userId.toString());
+			multiSelectUser.setUserValue("userList_" + resource.getId());
+			
+			map.put("userList", multiSelectUser.render());
+			
+			roleUserList.add(map);
+		}
+		list = ListUtility.leftJoin(list, roleUserList, new String[]{"id"});
+		
+		action.setRequestAttribute("resourceGrid", list);
 	}
 	
 	private void makeCodeManagementControl() throws ServiceException, IllegalArgumentException, IllegalAccessException, InvocationTargetException, NamingException, DateFormatException, UnsupportedEncodingException {
@@ -495,6 +588,78 @@ public class SystemAdminAction {
 		}
 		
 		roleService.deleteRoles(deleteRoles);
+	}
+	
+	private void updateResourceRole() throws NamingException, ServiceException {
+		String[] resources = action.getRequestValue("resources").split(",");
+		
+		for(int i = 0; i < resources.length; i++) {
+			ResourceService resourceService = action.getResourceService();
+			Resource voResourceObj = action.getDomainObjectFactory().createResource();
+			voResourceObj.setId(resources[i]);
+			
+			String[] roles = action.getRequestValue("roles_" + resources[i]).split(",");
+			
+			Resource resource = resourceService.searchResources(voResourceObj).get(0);
+			Object[] originalRoles = resource.getAuthorityResources().toArray();
+			for(int j = 0; j < originalRoles.length; j++) {
+				Role role = (Role)originalRoles[j];
+				
+				resource.removeAuthorityResource(role);
+				role.removeAuthorityResource(resource);
+			}
+			
+			resourceService.saveResource(resource);
+			
+			for(int j = 0; j < roles.length; j++) {
+				Role voRoleObj = action.getDomainObjectFactory().createRole();
+				voRoleObj.setId(roles[j]);
+				
+				List<Role> list = action.getRoleService().searchRoles(voRoleObj);
+				if(list.size() == 1) {
+					Role role = list.get(0);
+					resource.addAuthorityResource(role);
+				}
+			}
+			
+			resourceService.saveResource(resource);
+		}
+	}
+	
+	private void updateResourceUser() throws NamingException, ServiceException {
+		String[] resources = action.getRequestValue("resources").split(",");
+		
+		for(int i = 0; i < resources.length; i++) {
+			ResourceService resourceService = action.getResourceService();
+			Resource voResourceObj = action.getDomainObjectFactory().createResource();
+			voResourceObj.setId(resources[i]);
+			
+			String[] users = action.getRequestValue("users_" + resources[i]).split(",");
+			
+			Resource resource = resourceService.searchResources(voResourceObj).get(0);
+			Object[] originalUsers = resource.getUserResources().toArray();
+			for(int j = 0; j < originalUsers.length; j++) {
+				User user = (User)originalUsers[j];
+				
+				resource.removeUserResource(user);
+				user.removeUserResource(resource);
+			}
+			
+			resourceService.saveResource(resource);
+			
+			for(int j = 0; j < users.length; j++) {
+				User voUserObj = action.getDomainObjectFactory().createUser();
+				voUserObj.setId(users[j]);
+				
+				List<User> list = action.getUserService().searchUsers(voUserObj);
+				if(list.size() == 1) {
+					User user = list.get(0);
+					resource.addUserResource(user);
+				}
+			}
+			
+			resourceService.saveResource(resource);
+		}
 	}
 	
 	private void saveCode() throws NamingException, ServiceException {
