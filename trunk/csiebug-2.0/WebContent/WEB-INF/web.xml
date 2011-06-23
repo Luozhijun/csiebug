@@ -73,7 +73,7 @@
   
   <filter>  
   	<description>Set HTTP headers for a mapping.</description>  
-  	<filter-name>CSSHeaderFilter</filter-name>  
+  	<filter-name>ExpiresFileHeaderFilter</filter-name>  
   	<filter-class>csiebug.util.HeaderFilter</filter-class>  
   	<init-param>  
   		<description>Add an Expires Header</description>  
@@ -83,78 +83,35 @@
   </filter>
   
   <filter-mapping>  
-  	<filter-name>CSSHeaderFilter</filter-name>  
-  	<url-pattern>*.css</url-pattern>  
+  	<filter-name>ExpiresFileHeaderFilter</filter-name>  
+  	<url-pattern>*.css</url-pattern>
+  	<url-pattern>*.js</url-pattern>
+  	<url-pattern>*.gif</url-pattern>
+  	<url-pattern>*.png</url-pattern>
+  	<url-pattern>*.ico</url-pattern>
   	<dispatcher>REQUEST</dispatcher>  
   </filter-mapping>
   
-  <filter>  
-  	<description>Set HTTP headers for a mapping.</description>  
-  	<filter-name>JSHeaderFilter</filter-name>  
-  	<filter-class>csiebug.util.HeaderFilter</filter-class>  
-  	<init-param>  
-  		<description>Add an Expires Header</description>  
-  		<param-name>header</param-name>  
-  		<param-value>Expires: Fri, 31 Dec 2011 20:00:00 GMT</param-value>  
-  	</init-param>  
-  </filter>
-  
-  <filter-mapping>  
-  	<filter-name>JSHeaderFilter</filter-name>  
-  	<url-pattern>*.js</url-pattern>  
-  	<dispatcher>REQUEST</dispatcher>  
-  </filter-mapping>
-  
-  <filter>  
-  	<description>Set HTTP headers for a mapping.</description>  
-  	<filter-name>GIFHeaderFilter</filter-name>  
-  	<filter-class>csiebug.util.HeaderFilter</filter-class>  
-  	<init-param>  
-  		<description>Add an Expires Header</description>  
-  		<param-name>header</param-name>  
-  		<param-value>Expires: Fri, 31 Dec 2011 20:00:00 GMT</param-value>  
-  	</init-param>  
-  </filter>
-  
-  <filter-mapping>  
-  	<filter-name>GIFHeaderFilter</filter-name>  
-  	<url-pattern>*.gif</url-pattern>  
-  	<dispatcher>REQUEST</dispatcher>  
-  </filter-mapping>
-  
-  <filter>  
-  	<description>Set HTTP headers for a mapping.</description>  
-  	<filter-name>PNGHeaderFilter</filter-name>  
-  	<filter-class>csiebug.util.HeaderFilter</filter-class>  
-  	<init-param>  
-  		<description>Add an Expires Header</description>  
-  		<param-name>header</param-name>  
-  		<param-value>Expires: Fri, 31 Dec 2011 20:00:00 GMT</param-value>  
-  	</init-param>  
-  </filter>
-  
-  <filter-mapping>  
-  	<filter-name>PNGHeaderFilter</filter-name>  
-  	<url-pattern>*.png</url-pattern>  
-  	<dispatcher>REQUEST</dispatcher>  
-  </filter-mapping>
-  
-  <filter>  
-  	<description>Set HTTP headers for a mapping.</description>  
-  	<filter-name>ICOHeaderFilter</filter-name>  
-  	<filter-class>csiebug.util.HeaderFilter</filter-class>  
-  	<init-param>  
-  		<description>Add an Expires Header</description>  
-  		<param-name>header</param-name>  
-  		<param-value>Expires: Fri, 31 Dec 2011 20:00:00 GMT</param-value>  
-  	</init-param>  
-  </filter>
-  
-  <filter-mapping>  
-  	<filter-name>ICOHeaderFilter</filter-name>  
-  	<url-pattern>*.ico</url-pattern>  
-  	<dispatcher>REQUEST</dispatcher>  
-  </filter-mapping>
+  <!-- webutilities:
+  http://code.google.com/p/webutilities/
+   -->
+  <filter>
+        <filter-name>compressionFilter</filter-name>
+        <filter-class>com.googlecode.webutilities.filters.CompressionFilter</filter-class>
+        <init-param>
+                <param-name>compressionThreshold</param-name>
+                <param-value>512</param-value> <!--  anything above 512bytes  -->
+        </init-param>
+        <init-param>
+                <param-name>ignoreURLPattern</param-name>
+                <param-value>.*\.(png|gif|jpg|tiff|bmp|mpg|jpeg)</param-value>
+        </init-param>   
+ </filter>
+ 
+ <filter-mapping>
+   <filter-name>compressionFilter</filter-name>
+   <url-pattern>/*</url-pattern>
+ </filter-mapping>
   
   <listener>
     <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
@@ -268,8 +225,10 @@
   	<env-entry-name>CDNJS</env-entry-name>
   	<env-entry-type>java.lang.String</env-entry-type>
   	<env-entry-value>
-  		http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js
-  		http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js
+  		<!-- http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js
+  		http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js -->
+  		/csiebug-2.0/js/backup/jquery-1.5.2.min.js
+  		/csiebug-2.0/js/backup/jquery-ui-1.7.2.custom.min.js
   	</env-entry-value>
   </env-entry>
   <env-entry>

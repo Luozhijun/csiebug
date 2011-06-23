@@ -54,4 +54,11 @@ public interface ResourceService extends BasicService {
 	 * @throws ServiceException
 	 */
 	void addPortletToRole(Portlet portlet, Role role) throws ServiceException;
+	
+	/**
+	 * 儲存資源
+	 * @param obj
+	 * @throws ServiceException
+	 */
+	void saveResource(Resource obj) throws ServiceException;
 }

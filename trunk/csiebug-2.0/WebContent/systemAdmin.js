@@ -283,6 +283,26 @@ function cancelFocusForRole() {
 	}
 }
 
+function updateResourceRole(form, button, id) {
+	//lockButton();
+	//loading(button);
+	loadingBlockPage('', 0);
+	
+	document.getElementById("resources").value = id;
+	document.getElementById("systemAdminActFlag").value = "systemAdminUpdateResourceRole";
+	document.getElementById(form).submit();
+}
+
+function updateResourceUser(form, button, id) {
+	//lockButton();
+	//loading(button);
+	loadingBlockPage('', 0);
+	
+	document.getElementById("resources").value = id;
+	document.getElementById("systemAdminActFlag").value = "systemAdminUpdateResourceUser";
+	document.getElementById(form).submit();
+}
+
 function selectToEditForCode(codeTypeText, codeId, codeType, codeValue, codeDescription, codeEnable) {
 	var codeIdControl = document.getElementById("codeId");
 	var codeTypeControl = document.getElementById("codeType");

@@ -79,7 +79,7 @@
 						<c:text id="roleName" name="roleName" header='<%=webutil.getMessage("systemAdmin.RoleName") %>' isReturnValue="false"></c:text>
 					</tr>
 					<tr>
-						<c:multiselect id="roleResources" name="roleResources" header='<%=webutil.getMessage("systemAdmin.availableResources") %>' totalOption="resources" />
+						<c:multiselect id="roleResources" name="roleResources" header='<%=webutil.getMessage("systemAdmin.availableResources") %>' totalOption="totalResourceOption" />
 					</tr>
 					<tr>
 						<td>
@@ -100,6 +100,25 @@
 						<c:column dataType="selAllCheckBox" title='<%=webutil.getMessage("common.delete") %>' />
 						<c:column fieldname="id" title='<%=webutil.getMessage("systemAdmin.RoleId") %>'></c:column>
 						<c:column fieldname="roleName" title='<%=webutil.getMessage("systemAdmin.RoleName") %>'></c:column>
+					</c:row>
+				</c:table>
+			</div>
+			
+			<div id="resourceManagement" <%if(!((String)webutil.getRequestAttribute("defaultTab")).equalsIgnoreCase("resourceManagement")) {out.print("style=\"display:none\"");} %>>
+				<br></br>
+				<input type="hidden" id="resources" name="resources"></input>
+				<c:table id="resourceGrid" name="resourceGrid" data="resourceGrid" noDataStringFlag="true">
+					<c:row>
+						<c:column fieldname="id" title='<%=webutil.getMessage("systemAdmin.ResourceId")%>' sortable="true" />
+						<c:column fieldname="resourceType" title='<%=webutil.getMessage("systemAdmin.ResourceType")%>' sortable="true" />
+						<c:column fieldname="roleList" title='<%=webutil.getMessage("systemAdmin.AuthorityRole") %>'>
+							(var.roleList)<br>
+							<input id="updateResourceRoleButton_(var.id)" name="updateResourceRoleButton_(var.id)" type="button" class="Button" onmouseover="className='ButtonHover'" onmouseout="className='Button'" onClick="updateResourceRole('systemAdminForm', this, '(var.id)');" value="<%=webutil.getMessage("common.save")%>">
+						</c:column>
+						<c:column fieldname="userList" title='<%=webutil.getMessage("systemAdmin.AuthorityUser") %>'>
+							(var.userList)<br>
+							<input id="updateResourceUserButton_(var.id)" name="updateResourceUserButton_(var.id)" type="button" class="Button" onmouseover="className='ButtonHover'" onmouseout="className='Button'" onClick="updateResourceUser('systemAdminForm', this, '(var.id)');" value="<%=webutil.getMessage("common.save")%>">
+						</c:column>
 					</c:row>
 				</c:table>
 			</div>

@@ -110,4 +110,14 @@ public class ResourceServiceImpl extends BasicServiceImpl implements ResourceSer
 			throw new ServiceException("RoleDAO insert/update error!", e);
 		}
 	}
+	
+	public void saveResource(Resource obj) throws ServiceException {
+		notNull(obj, "Can not save null!");
+		
+		try {
+			resourceDAO.insertOrUpdate(obj);
+		} catch (DAOException e) {
+			throw new ServiceException("ResourceDAO insert/update error!", e);
+		}
+	}
 }

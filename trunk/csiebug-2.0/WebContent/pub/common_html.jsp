@@ -43,6 +43,6 @@
 
 <img id="waitButton" src="<%=webutil.getBasePathForHTML()%>images/gif_wait.gif" style="position:relative;left:0;top:0; z-index:5;display:none;">
 
-<iframe id="downloadExcelIframe" name="downloadExcelIframe" width="0" height="0"></iframe>
+<iframe id="downloadExcelIframe" name="downloadExcelIframe" style="display:none" width="0" height="0"></iframe>
 
-<iframe id="uploadFileIframe" name="uploadFileIframe" width="0" height="0"></iframe>
+<iframe id="uploadFileIframe" name="uploadFileIframe" style="display:none" width="0" height="0"></iframe>
