@@ -392,6 +392,10 @@ function addStep(obj, step, max) {
 	var isCurrency = false;
 	var originalValue;
 	
+	if(obj.value == "") {
+		obj.value = "0";
+	}
+	
 	if(obj.value.indexOf(",") != -1) {
 		isCurrency = true;
 		originalValue = parseInt(replaceAll(obj.value, ',', ''), 10);
@@ -423,6 +427,10 @@ function addStep(obj, step, max) {
 function subtractStep(obj, step, min) {
 	var isCurrency = false;
 	var originalValue;
+	
+	if(obj.value == "") {
+		obj.value = "0";
+	}
 	
 	if(obj.value.indexOf(",") != -1) {
 		isCurrency = true;
@@ -656,6 +664,16 @@ function checkDataType(obj, warning, ok, messageInterval, message1Start, message
 				if(flag) { //將IP中空白字元去除
 					if(obj.getAttribute("Masked") == "true") {
 						obj.value = completeIPAddressForMask(obj.value);
+					} else {
+						obj.value = replaceAll(obj.value, " ", "");
+					}
+				}
+			} else if(obj.getAttribute("dataType") == "ipv6") {
+				flag = isValidIPv6Address(obj.value);
+				messageType = "ip";
+				if(flag) { //將IP中空白字元去除
+					if(obj.getAttribute("Masked") == "true") {
+						obj.value = completeIPv6AddressForMask(obj.value);
 					} else {
 						obj.value = replaceAll(obj.value, " ", "");
 					}
@@ -1643,6 +1661,92 @@ function completeIPAddressForMask(value) {
 			result = result + " " + ipPart[i];
 		} else if(ipPart[i].length == 1) {
 			result = result + "  " + ipPart[i];
+		}
+	}
+	
+	return result;
+}
+
+//Address Format
+//
+//		IPv6 addresses have two logical parts: a 64-bit network prefix, and a 64-bit host address part. (The host address is often automatically generated from the interface MAC address.[34]) An IPv6 address is represented by 8 groups of 16-bit hexadecimal values separated by colons (:) shown as follows:
+//
+//		A typical example of an IPv6 address is
+//
+//		    2001:0db8:85a3:0000:0000:8a2e:0370:7334
+//
+//		The hexadecimal digits are case-insensitive.
+//
+//		The 128-bit IPv6 address can be abbreviated with the following rules:
+//
+//		    Rule one: Leading zeroes within a 16-bit value may be omitted. For example, the address fe80:0000:0000:0000:0202:b3ff:fe1e:8329 may be written as fe80:0:0:0:202:b3ff:fe1e:8329
+//		    Rule two: A single occurrence of consecutive groups of zeroes within an address may be replaced by a double colon. For example, fe80:0:0:0:202:b3ff:fe1e:8329 becomes fe80::202:b3ff:fe1e:8329
+//
+//		A single IPv6 address can be represented in several different ways, such as 2001:db8::1:0:0:1 and 2001:0DB8:0:0:1::1. RFC 5952 recommends a canonical textual representation.
+	
+/**
+ * 檢查IPv6格式
+ * @param value
+ * @return
+ * @author csiebug
+ * @version 2011/6/1
+ */
+function isValidIPv6Address(value) {
+	var flag = true;
+	var ipPart = value.toLowerCase().split(":");
+	
+	if(ipPart.length < 3 && ipPart.length > 8) {
+		flag = false;
+		alert('1');
+	} else {
+		for(var i = 0; i < ipPart.length; i++) {
+			if(ipPart[i].length <= 4) {
+				for(var j = 0; j < ipPart[i].length; j++) {
+					var char = ipPart[i].substring(j, j + 1);
+					if(char != ' ') {
+						var char16 = parseInt(ipPart[i].substring(j, j + 1), 16);
+						
+						if(!(char16 >= 0 && char16 <= 15)) {
+							flag = false;
+							break;
+						}
+					}
+				}
+			} else {
+				flag = false;
+				break;
+			}
+		}
+	}
+	
+	return flag;
+}
+
+/**
+ * 將IPv6中間空白字元去除,並排列整齊
+ * @param value
+ * @author csiebug
+ * @version 2011/6/1
+ */
+function completeIPv6AddressForMask(value) {
+	var result = "";
+	
+	var temp = replaceAll(value, " ", "");
+	var ipPart = temp.split(":");
+	
+	for(var i = 0; i < ipPart.length; i++) {
+		if(i != 0) {
+			result = result + ":";
+		}
+		
+		if(ipPart[i].length == 4) {
+			result = result + ipPart[i];
+		} else if(ipPart[i].length == 3) {
+			result = result + " " + ipPart[i];
+		} else if(ipPart[i].length == 2) {
+			result = result + "  " + ipPart[i];
+		} else if(ipPart[i].length == 1) {
+			result = result + "   " + ipPart[i];
 		}
 	}
 	

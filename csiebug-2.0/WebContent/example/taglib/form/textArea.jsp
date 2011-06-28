@@ -130,6 +130,9 @@
 						<tr>
 							<textarea id="textArea51" name="textArea51" header='<%=webutil.getMessage("common.IP") %>' dataType="IP"/>
 						</tr>
+						<tr>
+							<textarea id="textArea53" name="textArea53" header='<%=webutil.getMessage("common.IP") %>' dataType="IPv6"/>
+						</tr>
 					</table>
 					</c:code>
 					
@@ -177,6 +180,9 @@
 						</tr>
 						<tr>
 							<c:textarea id="textArea51" name="textArea51" header='<%=webutil.getMessage("common.IP") %>' dataType="IP"/>
+						</tr>
+						<tr>
+							<c:textarea id="textArea53" name="textArea53" header='<%=webutil.getMessage("common.IP") %>' dataType="IPv6"/>
 						</tr>
 					</table>
 				</div>
@@ -348,6 +354,9 @@
 						<tr>
 							<textarea id="textArea52" name="textArea52" header='<%=webutil.getMessage("common.IP") %>' dataType="IP" isMasked="true"/>
 						</tr>
+						<tr>
+							<textarea id="textArea54" name="textArea54" header='<%=webutil.getMessage("common.IP") %>' dataType="IPv6" isMasked="true"/>
+						</tr>
 					</table>
 					</c:code>
 					
@@ -369,6 +378,9 @@
 						</tr>
 						<tr>
 							<c:textarea id="textArea52" name="textArea52" header='<%=webutil.getMessage("common.IP") %>' dataType="IP" isMasked="true"/>
+						</tr>
+						<tr>
+							<c:textarea id="textArea54" name="textArea54" header='<%=webutil.getMessage("common.IP") %>' dataType="IPv6" isMasked="true"/>
 						</tr>
 					</table>
 				</div>

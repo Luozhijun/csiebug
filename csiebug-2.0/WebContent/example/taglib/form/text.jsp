@@ -130,6 +130,9 @@
 						<tr>
 							<text id="text50" name="text50" header='<%=webutil.getMessage("common.IP") %>' dataType="IP"/>
 						</tr>
+						<tr>
+							<text id="text52" name="text52" header='<%=webutil.getMessage("common.IP") %>' dataType="IPv6"/>
+						</tr>
 					</table>
 					</c:code>
 					
@@ -177,6 +180,9 @@
 						</tr>
 						<tr>
 							<c:text id="text50" name="text50" header='<%=webutil.getMessage("common.IP") %>' dataType="IP"/>
+						</tr>
+						<tr>
+							<c:text id="text52" name="text52" header='<%=webutil.getMessage("common.IP") %>' dataType="IPv6"/>
 						</tr>
 					</table>
 				</div>
@@ -348,6 +354,9 @@
 						<tr>
 							<text id="text51" name="text51" header='<%=webutil.getMessage("common.IP") %>' dataType="ip" isMasked="true"/>
 						</tr>
+						<tr>
+							<text id="text53" name="text53" header='<%=webutil.getMessage("common.IP") %>' dataType="IPv6" isMasked="true"/>
+						</tr>
 					</table>
 					</c:code>
 					
@@ -369,6 +378,9 @@
 						</tr>
 						<tr>
 							<c:text id="text51" name="text51" header='<%=webutil.getMessage("common.IP") %>' dataType="ip" isMasked="true"/>
+						</tr>
+						<tr>
+							<c:text id="text53" name="text53" header='<%=webutil.getMessage("common.IP") %>' dataType="IPv6" isMasked="true"/>
 						</tr>
 					</table>
 				</div>
