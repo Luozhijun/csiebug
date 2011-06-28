@@ -363,11 +363,23 @@ public class HtmlTextInterval extends HtmlComponent {
         if(className != null) {
         	htmlBuilder.className(className);
         } else {
-        	if(dataType == null || dataType.equalsIgnoreCase("string") || dataType.equalsIgnoreCase("function") || dataType.equalsIgnoreCase("email") || dataType.equalsIgnoreCase("IDNO") || dataType.equalsIgnoreCase("password")) {
+        	if(dataType == null || dataType.equalsIgnoreCase("string") || dataType.equalsIgnoreCase("function") || dataType.equalsIgnoreCase("password")) {
             	if(isReadOnly.equalsIgnoreCase("true")) {
             		htmlBuilder.className("TextReadOnly");
             	} else {
             		htmlBuilder.className("Text");
+            	}
+    		} else if(dataType.equalsIgnoreCase("email")) {
+    			if(isReadOnly == null || isReadOnly.equalsIgnoreCase("false")) {
+            		htmlBuilder.className("TextEmail");
+            	} else {
+            		htmlBuilder.className("TextEmailReadOnly");
+            	}
+    		} else if(dataType.equalsIgnoreCase("IDNO")) {
+    			if(isReadOnly == null || isReadOnly.equalsIgnoreCase("false")) {
+            		htmlBuilder.className("TextIDNO");
+            	} else {
+            		htmlBuilder.className("TextIDNOReadOnly");
             	}
     		} else if(dataType.equalsIgnoreCase("number") || dataType.equalsIgnoreCase("currency")) {
     			if(isReadOnly.equalsIgnoreCase("true")) {
