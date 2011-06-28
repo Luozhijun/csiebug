@@ -405,6 +405,12 @@ public class HtmlTextInterval extends HtmlComponent {
             	} else {
             		htmlBuilder.className("TextIP");
             	}
+    		} else if(dataType.equalsIgnoreCase("ipv6")) {
+    			if(isReadOnly.equalsIgnoreCase("true")) {
+            		htmlBuilder.className("TextIPv6ReadOnly");
+            	} else {
+            		htmlBuilder.className("TextIPv6");
+            	}
     		}
         }
         
@@ -439,6 +445,14 @@ public class HtmlTextInterval extends HtmlComponent {
             			webutil.addPageLoadScript("$(\"#" + htmlId + "_start\").mask(\"299.299.299.299\");");
             		} else {
             			webutil.addPageLoadScript("$(\"#" + htmlId + "_end\").mask(\"299.299.299.299\");");
+            		}
+            		htmlBuilder.tagProperty("Masked", "true");
+            	} else if(dataType.equalsIgnoreCase("ipv6")) {
+            		webutil.addPageLoadScript("$.mask.definitions['f']='[ 0123456789abcdef]';");
+            		if(type == 1) {
+            			webutil.addPageLoadScript("$(\"#" + htmlId + "_start\").mask(\"ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff\");");
+            		} else {
+            			webutil.addPageLoadScript("$(\"#" + htmlId + "_end\").mask(\"ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff\");");
             		}
             		htmlBuilder.tagProperty("Masked", "true");
             	}

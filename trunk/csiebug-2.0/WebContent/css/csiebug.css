@@ -1733,65 +1733,78 @@ div.portlet-content-minimized {
 {
     FONT-SIZE: 12px;
     TEXT-ALIGN: left;
-    WIDTH: 100px;
+    WIDTH: 80px;
 }
 .TextDateReadOnly
 {
     FONT-SIZE: 12px;
     TEXT-ALIGN: left;
-    WIDTH: 100px;
+    WIDTH: 80px;
     BACKGROUND-COLOR: red;
 }
 .TextTime
 {
     FONT-SIZE: 12px;
     TEXT-ALIGN: left;
-    WIDTH: 100px;
+    WIDTH: 50px;
 }
 .TextTimeReadOnly
 {
     FONT-SIZE: 12px;
     TEXT-ALIGN: left;
-    WIDTH: 100px;
+    WIDTH: 50px;
     BACKGROUND-COLOR: red;
 }
 .TextDatetime
 {
     FONT-SIZE: 12px;
     TEXT-ALIGN: left;
-    WIDTH: 120px;
+    WIDTH: 130px;
 }
 .TextDatetimeReadOnly
 {
     FONT-SIZE: 12px;
     TEXT-ALIGN: left;
-    WIDTH: 120px;
+    WIDTH: 130px;
     BACKGROUND-COLOR: red;
 }
 .TextColor
 {
     FONT-SIZE: 12px;
     TEXT-ALIGN: left;
-    WIDTH: 100px;
+    WIDTH: 60px;
 }
 .TextColorReadOnly
 {
     FONT-SIZE: 12px;
     TEXT-ALIGN: left;
-    WIDTH: 100px;
+    WIDTH: 60px;
     BACKGROUND-COLOR: red;
 }
 .TextIP
 {
     FONT-SIZE: 12px;
     TEXT-ALIGN: left;
-    WIDTH: 120px;
+    WIDTH: 110px;
 }
 .TextIPReadOnly
 {
     FONT-SIZE: 12px;
     TEXT-ALIGN: left;
-    WIDTH: 120px;
+    WIDTH: 110px;
+    BACKGROUND-COLOR: red;
+}
+.TextIPv6
+{
+    FONT-SIZE: 12px;
+    TEXT-ALIGN: left;
+    WIDTH: 260px;
+}
+.TextIPv6ReadOnly
+{
+    FONT-SIZE: 12px;
+    TEXT-ALIGN: left;
+    WIDTH: 260px;
     BACKGROUND-COLOR: red;
 }
 .TextArea

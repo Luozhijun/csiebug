@@ -126,6 +126,9 @@
 						<tr>
 							<multitext id="multiText39" name="multiText39" header='<%=webutil.getMessage("common.IP") %>' dataType="IP"/>
 						</tr>
+						<tr>
+							<multitext id="multiText41" name="multiText41" header='<%=webutil.getMessage("common.IP") %>' dataType="IPv6"/>
+						</tr>
 					</table>
 					</c:code>
 					
@@ -170,6 +173,9 @@
 						</tr>
 						<tr>
 							<c:multitext id="multiText39" name="multiText39" header='<%=webutil.getMessage("common.IP") %>' dataType="IP"/>
+						</tr>
+						<tr>
+							<c:multitext id="multiText41" name="multiText41" header='<%=webutil.getMessage("common.IP") %>' dataType="IPv6"/>
 						</tr>
 					</table>
 				</div>
@@ -296,6 +302,9 @@
 						<tr>
 							<multitext id="multiText40" name="multiText40" header='<%=webutil.getMessage("common.IP") %>' dataType="IP" isMasked="true"/>
 						</tr>
+						<tr>
+							<multitext id="multiText42" name="multiText42" header='<%=webutil.getMessage("common.IP") %>' dataType="IPv6" isMasked="true"/>
+						</tr>
 					</table>
 					</c:code>
 					
@@ -314,6 +323,9 @@
 						</tr>
 						<tr>
 							<c:multitext id="multiText40" name="multiText40" header='<%=webutil.getMessage("common.IP") %>' dataType="IP" isMasked="true"/>
+						</tr>
+						<tr>
+							<c:multitext id="multiText42" name="multiText42" header='<%=webutil.getMessage("common.IP") %>' dataType="IPv6" isMasked="true"/>
 						</tr>
 					</table>
 				</div>

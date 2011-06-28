@@ -151,6 +151,9 @@
 						<tr>
 							<editableLabel id="editableLabel41" name="editableLabel41" header='<%=webutil.getMessage("common.IP") %>' dataType="IP"/>
 						</tr>
+						<tr>
+							<editableLabel id="editableLabel43" name="editableLabel43" header='<%=webutil.getMessage("common.IP") %>' dataType="IPv6"/>
+						</tr>
 					</table>
 					</c:code>
 					
@@ -195,6 +198,9 @@
 						</tr>
 						<tr>
 							<c:editableLabel id="editableLabel41" name="editableLabel41" header='<%=webutil.getMessage("common.IP") %>' dataType="IP"/>
+						</tr>
+						<tr>
+							<c:editableLabel id="editableLabel43" name="editableLabel43" header='<%=webutil.getMessage("common.IP") %>' dataType="IPv6"/>
 						</tr>
 					</table>
 				</div>
@@ -321,6 +327,9 @@
 						<tr>
 							<editableLabel id="editableLabel42" name="editableLabel42" header='<%=webutil.getMessage("common.IP") %>' dataType="IP" isMasked="true"/>
 						</tr>
+						<tr>
+							<editableLabel id="editableLabel44" name="editableLabel44" header='<%=webutil.getMessage("common.IP") %>' dataType="IPv6" isMasked="true"/>
+						</tr>
 					</table>
 					</c:code>
 					
@@ -339,6 +348,9 @@
 						</tr>
 						<tr>
 							<c:editableLabel id="editableLabel42" name="editableLabel42" header='<%=webutil.getMessage("common.IP") %>' dataType="IP" isMasked="true"/>
+						</tr>
+						<tr>
+							<c:editableLabel id="editableLabel44" name="editableLabel44" header='<%=webutil.getMessage("common.IP") %>' dataType="IPv6" isMasked="true"/>
 						</tr>
 					</table>
 				</div>

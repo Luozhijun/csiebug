@@ -263,6 +263,12 @@ public class HtmlTextArea extends HtmlComponent {
                 	} else {
                 		htmlBuilder.className("TextIP");
                 	}
+        		} else if(dataType.equalsIgnoreCase("ipv6")) {
+        			if(isReadOnly.equalsIgnoreCase("true")) {
+                		htmlBuilder.className("TextIPv6ReadOnly");
+                	} else {
+                		htmlBuilder.className("TextIPv6");
+                	}
         		}
             }
             
@@ -286,6 +292,10 @@ public class HtmlTextArea extends HtmlComponent {
 	            		webutil.addPageLoadScript("$.mask.definitions['2']='[ 12]';");
 	            		webutil.addPageLoadScript("$.mask.definitions['9']='[ 1234567890]';");
 	            		webutil.addPageLoadScript("$(\"#" + htmlId + "\").mask(\"299.299.299.299\");");
+	            		htmlBuilder.tagProperty("Masked", "true");
+	            	} else if(dataType.equalsIgnoreCase("ipv6")) {
+	            		webutil.addPageLoadScript("$.mask.definitions['f']='[ 0123456789abcdef]';");
+	            		webutil.addPageLoadScript("$(\"#" + htmlId + "\").mask(\"ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff\");");
 	            		htmlBuilder.tagProperty("Masked", "true");
 	            	}
             	}
