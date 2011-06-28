@@ -1716,6 +1716,32 @@ div.portlet-content-minimized {
     WIDTH: 100px;
     BACKGROUND-COLOR: lightgrey;
 }
+.TextEmail
+{
+    FONT-SIZE: 12px;
+    TEXT-ALIGN: left;
+    WIDTH: 200px;
+}
+.TextEmailReadOnly
+{
+    FONT-SIZE: 12px;
+    TEXT-ALIGN: left;
+    WIDTH: 200px;
+    BACKGROUND-COLOR: lightgrey;
+}
+.TextIDNO
+{
+    FONT-SIZE: 12px;
+    TEXT-ALIGN: left;
+    WIDTH: 90px;
+}
+.TextIDNOReadOnly
+{
+    FONT-SIZE: 12px;
+    TEXT-ALIGN: left;
+    WIDTH: 90px;
+    BACKGROUND-COLOR: lightgrey;
+}
 .TextCurrency
 {
     FONT-SIZE: 12px;
