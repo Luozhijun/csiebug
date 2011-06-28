@@ -1697,7 +1697,6 @@ function isValidIPv6Address(value) {
 	
 	if(ipPart.length < 3 && ipPart.length > 8) {
 		flag = false;
-		alert('1');
 	} else {
 		for(var i = 0; i < ipPart.length; i++) {
 			if(ipPart[i].length <= 4) {
