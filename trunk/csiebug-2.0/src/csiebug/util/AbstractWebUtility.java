@@ -1859,16 +1859,50 @@ public abstract class AbstractWebUtility {
 						link.append(htmlBuilder.toString());
 					} else if(jsFiles[i].isDirectory()){
 						if(recursive) {
-							link.append(getAllJSFileLink(jsDir + "/" + jsFiles[i].getName(), true));
+							if(jsFiles[i].getName().equalsIgnoreCase("locale")) {
+								link.append(getLocaleJSFileLink(jsDir));
+							} else {
+								link.append(getAllJSFileLink(jsDir + "/" + jsFiles[i].getName(), true));
+							}
 						}
 					}
 				}
+			}
+			
+			if(!recursive) {
+				link.append(getLocaleJSFileLink(jsDir));
 			}
 			
 			return link.toString();
 		} else {
 			throw new FileNotFoundException("Directory not found!!");
 		}
+	}
+	
+	/**
+	 * 取得locale js link
+	 * @return
+	 * @throws NamingException 
+	 */
+	public String getLocaleJSFileLink(String jsDir) throws NamingException {
+		String locale = "zh_TW";
+		if(!getLoginUserLocale().equals("")) {
+			locale = getLoginUserLocale();
+		} else {
+			if(getSysLocale() != null) {
+				locale = getEnvVariable("sysLocale");
+			} else if(getRequest().getLocale() != null) {
+				if(AssertUtility.isNotNullAndNotSpace(getRequest().getLocale().getCountry())) {
+					locale = getRequest().getLocale().getLanguage().toLowerCase() + "_" + getRequest().getLocale().getCountry().toUpperCase();
+				} else {
+					locale = getRequest().getLocale().getLanguage().toLowerCase();
+				}
+			}
+		}
+		
+		HtmlBuilder htmlBuilder = new HtmlBuilder();
+		htmlBuilder.scriptStart().src(getBasePathForHTML() + StringUtility.removeStartEndSlash(jsDir) + "/locale/csiebug-" + locale + ".js").tagClose().scriptEnd();
+		return htmlBuilder.toString();
 	}
 	
 	/**

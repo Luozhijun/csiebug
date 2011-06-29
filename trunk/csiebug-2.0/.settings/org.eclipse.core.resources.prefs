@@ -1,6 +1,9 @@
-#Wed May 11 10:09:22 CST 2011
+#Wed Jun 29 15:15:44 CST 2011
 eclipse.preferences.version=1
 encoding//WebContent/uploadify/uploadify.jsp=UTF-8
 encoding//src/MessageResources.properties=UTF-8
 encoding//src/MessageResources_en_US.properties=UTF-8
+encoding//src/MessageResources_ja_JP.properties=UTF-8
+encoding//src/MessageResources_ko_KR.properties=UTF-8
+encoding//src/MessageResources_zh_CN.properties=UTF-8
 encoding//src/MessageResources_zh_TW.properties=UTF-8
