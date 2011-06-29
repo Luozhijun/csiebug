@@ -2969,12 +2969,12 @@ function getDisplayYear(year, type) {
 	var strValue = "";
 	
 	if(type == 1 || type == 2 || type == 3 || type == 4 || type == 5 || type == 10 || type == 11) {
-		strValue = ("" + year).substring(2, 4) + "年";
+		strValue = ("" + year).substring(2, 4) + yearText;
 	} else {
 		if(type >= 1000) {
-			strValue = getLocalYear(year) + "年";
+			strValue = getLocalYear(year) + yearText;
 		} else {
-			strValue = year + "年";
+			strValue = year + yearText;
 		}
 	}
 	
@@ -2995,7 +2995,7 @@ function getDisplayMonth(month, type) {
 	if(month < 10) {
 		strValue = "0";
 	}
-	strValue = strValue + month + "月";
+	strValue = strValue + month + monthText;
 	
 	return strValue;
 }
@@ -3207,7 +3207,6 @@ function getCalendar(obj, year, month, type, func, imagePath, warning, ok, messa
 	var firstday = new Date(year, month, 1);
 	
 	var displayDay = new Array('日','一','二','三','四','五','六');
-	var displayDayForEng = new Array('Sun', 'Mon', 'Tue', 'Wed', 'Thr', 'Fri', 'Sat');
 	
 	//產生小月曆主體
 	strHtml = strHtml + "<p align='center'>";
@@ -3248,7 +3247,7 @@ function getCalendar(obj, year, month, type, func, imagePath, warning, ok, messa
 		if(type >= 1000) {
 			strHtml = strHtml + displayDay[i];
 		} else {
-			strHtml = strHtml + displayDayForEng[i];
+			strHtml = strHtml + displayDayForLocale[i];
 		}
 		if(i == 0) {
 			strHtml = strHtml + "</font>";
