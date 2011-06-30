@@ -29,7 +29,16 @@
 			
 			<!-- 以下為頁面編輯區 -->
 			
-			<c:tree list="exampleDemo"/>
+			<table width="90%" height="90%">
+				<tr>
+					<td valign="top" width="20%" height="100%">
+						<c:tree list="exampleDemo"/>
+					</td>
+					<td valign="top" width="80%" height="100%">
+						<iframe id="mainFrame" name="mainFrame" width="100%" height="100%"></iframe>
+					</td>
+				</tr>
+			</table>
 			
 			<!-- 頁面編輯區結束 -->
 			

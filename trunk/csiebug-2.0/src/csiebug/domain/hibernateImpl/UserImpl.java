@@ -350,6 +350,20 @@ public class UserImpl extends BasicObjectImpl implements User {
 		}
 		return this.userProfile.getLocale();
 	}
+	public void setBirthday(Calendar birthday) {
+		if(userProfile == null) {
+			userProfile = new UserProfileImpl();
+			userProfile.setId(this.username);
+		}
+		this.userProfile.setBirthday(birthday);
+	}
+	public Calendar getBirthday() {
+		if(userProfile == null) {
+			userProfile = new UserProfileImpl();
+			userProfile.setId(this.username);
+		}
+		return this.userProfile.getBirthday();
+	}
 	
 	public String getMajorEmail() {
 		String majorEmail = "";

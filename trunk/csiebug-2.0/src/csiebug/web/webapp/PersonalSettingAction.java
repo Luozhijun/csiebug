@@ -50,7 +50,7 @@ public class PersonalSettingAction {
 		this.action = action;
 	}
 	
-	public void main() throws NamingException, ServiceException, NoSuchAlgorithmException, UnsupportedEncodingException, EmailFormatException, InvalidKeyException, InvalidKeySpecException, NoSuchPaddingException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException, DecoderException {
+	public void main() throws NamingException, ServiceException, NoSuchAlgorithmException, UnsupportedEncodingException, EmailFormatException, InvalidKeyException, InvalidKeySpecException, NoSuchPaddingException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException, DecoderException, NumberFormatException, DateFormatException {
 		String actFlag = action.getRequestValue("personalSettingActFlag");
 		
 		if(actFlag.equalsIgnoreCase("personalSettingUserSave")) {
@@ -63,6 +63,9 @@ public class PersonalSettingAction {
 	public void makeControl() throws ServiceException, IllegalArgumentException, IllegalAccessException, InvocationTargetException, NamingException, DateFormatException {
 		User loginUser = action.getLoginUser();
 		action.setRequestAttribute("nickname", loginUser.getNickname());
+		if(loginUser.getBirthday() != null) {
+			action.setRequestAttribute("birthday", DateFormatUtility.getDisplayDate(loginUser.getBirthday(), Integer.parseInt(action.getSysDateFormat())));
+		}
 		action.setRequestAttribute("registerDate", DateFormatUtility.getDisplayDate(loginUser.getCreateDate(), Integer.parseInt(action.getEnvVariable("defaultDateFormat"))));
 		action.setRequestAttribute("lastLoginDate", DateFormatUtility.getDisplayDate(loginUser.getModifyDate(), Integer.parseInt(action.getEnvVariable("defaultDateFormat"))));
 		
@@ -89,12 +92,15 @@ public class PersonalSettingAction {
 		action.setRequestAttribute("userLocale", loginUser.getLocale());
 	}
 	
-	private void saveUser() throws ServiceException, NamingException, EmailFormatException {
+	private void saveUser() throws ServiceException, NamingException, EmailFormatException, NumberFormatException, DateFormatException {
 		User loginUser = action.getLoginUser();
 		loginUser.setNickname(action.getRequestValue("nickname"));
 		loginUser.setLocale(action.getRequestValue("locale"));
 		if(!action.getRequestValue("locale").trim().equals("")) {
 			action.setLoginUserLocale(loginUser.getLocale());
+		}
+		if(!action.getRequestValue("birthday").trim().equals("")) {
+			loginUser.setBirthday(DateFormatUtility.toCalendar(action.getRequestValue("birthday"), Integer.parseInt(action.getSysDateFormat())));
 		}
 		loginUser.setModifyUserId(loginUser.getId());
 		loginUser.setModifyDate(Calendar.getInstance());

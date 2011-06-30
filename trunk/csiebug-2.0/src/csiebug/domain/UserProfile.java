@@ -1,5 +1,7 @@
 package csiebug.domain;
 
+import java.util.Calendar;
+
 /**
  * 
  * @author George_Tsai
@@ -13,4 +15,6 @@ public interface UserProfile extends BasicObject {
 	String getNickname();
 	void setLocale(String locale);
 	String getLocale();
+	void setBirthday(Calendar birthday);
+	Calendar getBirthday();
 }
