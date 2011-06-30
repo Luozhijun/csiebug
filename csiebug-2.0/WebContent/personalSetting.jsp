@@ -24,6 +24,9 @@
 					<c:text id="nickname" name="nickname" header='<%=webutil.getMessage("common.UserName") %>' userValue="nickname" />
 				</tr>
 				<tr>
+					<c:text id="birthday" name="birthday" header='<%=webutil.getMessage("common.birthday") %>' userValue="birthday" dataType="date" isMasked="true"/>
+				</tr>
+				<tr>
 					<td class="TdHeader"><label class = "LabelHeader"><%=webutil.getMessage("systemAdmin.RegisterDate")%>：</label>
 					&nbsp;&nbsp;</td>
 					<td class="TdBody"><label class = "LabelHeader"><%=webutil.getRequestAttribute("registerDate")%></label></td>

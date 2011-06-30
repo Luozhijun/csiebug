@@ -59,6 +59,11 @@
 <script src="<%=webutil.getBasePathForHTML()%>js/csiebug-grid/csiebug-grid.js"></script>
 
 <script type="text/javascript">
+	$(document).ready(function() {
+		<% if(webutil.getRequestAttribute("Script") != null) { out.print(webutil.getRequestAttribute("Script").toString()); }%>
+		<% if(webutil.getRequestAttribute("Msg") != null) { out.print(webutil.getRequestAttribute("Msg").toString()); }%>
+	});
+	
 	//---禁回此頁 Begin--- 
 	function forward() { 
 	    setTimeout("forward()",100); 

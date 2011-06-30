@@ -1,5 +1,6 @@
 package csiebug.domain;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
 
@@ -71,6 +72,8 @@ public interface User extends BasicObject {
 	String getNickname();
 	void setLocale(String locale);
 	String getLocale();
+	void setBirthday(Calendar birthday);
+	Calendar getBirthday();
 	void setUserEmails(Set<UserEmail> userEmails);
 	Set<UserEmail> getUserEmails();
 	void addUserEmail(UserEmail userEmail);

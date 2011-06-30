@@ -1,5 +1,7 @@
 package csiebug.domain.hibernateImpl;
 
+import java.util.Calendar;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
@@ -17,6 +19,7 @@ public class UserProfileImpl extends BasicObjectImpl implements UserProfile {
 	private String userId;
 	private String nickname;
 	private String locale;
+	private Calendar birthday;
 	
 	public void setId(String userId) {
 		this.userId = userId;
@@ -35,6 +38,12 @@ public class UserProfileImpl extends BasicObjectImpl implements UserProfile {
 	}
 	public String getLocale() {
 		return locale;
+	}
+	public void setBirthday(Calendar birthday) {
+		this.birthday = birthday;
+	}
+	public Calendar getBirthday() {
+		return birthday;
 	}
 	
 	public boolean equals(Object obj) {
