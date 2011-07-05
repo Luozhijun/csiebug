@@ -102,19 +102,19 @@ public class LdapClient {
 	 * @return
 	 * @throws NamingException
 	 */
-	public Map<String, String> lookup(String dn) throws NamingException {
+	public Map<String, Object> lookup(String dn) throws NamingException {
 		String[] parse = parseDN(dn);
 		String baseDN = parse[1];
 		String id = parse[0];
 		
-		Map<String, String> map = new LinkedHashMap<String, String>();
+		Map<String, Object> map = new LinkedHashMap<String, Object>();
 		try {
 			Attributes attributes = ((LdapCtx)ctx.lookup(baseDN)).getAttributes(id);
 	        NamingEnumeration<String> attributeNames = attributes.getIDs();
 	        
 	        while(attributeNames.hasMore()) {
 	        	String attributeName = attributeNames.next();
-	        	map.put(attributeName, "" + attributes.get(attributeName).get());
+	        	map.put(attributeName, attributes.get(attributeName).get());
 	        }
 		} catch(NameNotFoundException nnfex) {
 			logger.info("Name not found!!", nnfex);
@@ -131,7 +131,7 @@ public class LdapClient {
 	 * @return
 	 * @throws NamingException
 	 */
-	public Map<String, String> lookupOrganization(String baseDN, String id) throws NamingException {
+	public Map<String, Object> lookupOrganization(String baseDN, String id) throws NamingException {
 		return lookup(getOrganizationDN(baseDN, id));
 	}
 	
@@ -142,7 +142,7 @@ public class LdapClient {
 	 * @return
 	 * @throws NamingException
 	 */
-	public Map<String, String> lookupUser(String baseDN, String id) throws NamingException {
+	public Map<String, Object> lookupUser(String baseDN, String id) throws NamingException {
 		return lookup(getUserDN(baseDN, id));
 	}
 	

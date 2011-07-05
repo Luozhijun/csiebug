@@ -937,13 +937,7 @@ public class DateFormatUtility {
 		Calendar cal1 = toCalendar(value1, type);
 		Calendar cal2 = toCalendar(value2, type);
 		
-		if(cal1.after(cal2)) {
-			return true;
-		} else if(cal1.before(cal2)) {
-			return false;
-		} else {
-			return false;
-		}
+		return cal1.after(cal2);
 	}
 	
 	/**

@@ -9,11 +9,6 @@ package csiebug.web.webservices;
  * @version 2010/11/2
  */
 public class TestService extends BasicService {
-	@Override  
-	protected void onInit() throws javax.xml.rpc.ServiceException {
-		super.onInit();
-	}
-	
 	public String testMethod() {
 		return "hello world!";
 	}

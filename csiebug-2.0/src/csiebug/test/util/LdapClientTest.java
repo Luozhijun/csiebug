@@ -46,7 +46,7 @@ public class LdapClientTest {
 		//建立一個組織
 		client.createOrganization(baseDN, id);
 		
-		Map<String, String> map = client.lookupOrganization(baseDN, id);
+		Map<String, Object> map = client.lookupOrganization(baseDN, id);
 		
 		//看看是否真的建立
 		assertEquals(id, map.get("ou"));
@@ -99,7 +99,7 @@ public class LdapClientTest {
 		attributes.put("description", description);
 		client.createOrganization(baseDN, id, attributes);
 		
-		Map<String, String> map = client.lookupOrganization(baseDN, id);
+		Map<String, Object> map = client.lookupOrganization(baseDN, id);
 		
 		//看看是否真的建立
 		assertEquals(id, map.get("ou"));
@@ -166,7 +166,7 @@ public class LdapClientTest {
 		//建立一個組織
 		client.createOrganization(baseDN, id);
 		
-		Map<String, String> map = client.lookupOrganization(baseDN, id);
+		Map<String, Object> map = client.lookupOrganization(baseDN, id);
 		
 		//看看是否真的建立
 		assertEquals(id, map.get("ou"));
@@ -204,7 +204,7 @@ public class LdapClientTest {
 		//建立一個組織
 		client.createOrganization(baseDN, id);
 		
-		Map<String, String> map = client.lookupOrganization(baseDN, id);
+		Map<String, Object> map = client.lookupOrganization(baseDN, id);
 		
 		//看看是否真的建立
 		assertEquals(id, map.get("ou"));
@@ -256,7 +256,7 @@ public class LdapClientTest {
 		client.createOrganization(baseDN2, id2, true);
 		
 		//從root去lookup,並不會找subtree
-		Map<String, String> map = client.lookupOrganization(baseDN, id2);
+		Map<String, Object> map = client.lookupOrganization(baseDN, id2);
 		assertNull(map);
 		
 		//從baseDN2去找
@@ -299,7 +299,7 @@ public class LdapClientTest {
 		//建立一個使用者
 		client.createUser(baseDN, id, cn, sn);
 		
-		Map<String, String> map = client.lookupUser(baseDN, id);
+		Map<String, Object> map = client.lookupUser(baseDN, id);
 		
 		//看看是否真的建立
 		assertEquals(id, map.get("uid"));
@@ -355,7 +355,7 @@ public class LdapClientTest {
 		attributes.put("description", description);
 		client.createUser(baseDN, id, cn, sn, attributes);
 		
-		Map<String, String> map = client.lookupUser(baseDN, id);
+		Map<String, Object> map = client.lookupUser(baseDN, id);
 		
 		//看看是否真的建立
 		assertEquals(id, map.get("uid"));
@@ -411,7 +411,7 @@ public class LdapClientTest {
 		//建立一個使用者
 		client.createUser(baseDN, id, cn, sn, nickname, password);
 		
-		Map<String, String> map = client.lookupUser(baseDN, id);
+		Map<String, Object> map = client.lookupUser(baseDN, id);
 		
 		//看看是否真的建立
 		assertEquals(id, map.get("uid"));
@@ -481,7 +481,7 @@ public class LdapClientTest {
 		//建立一個使用者
 		client.createUser(baseDN, id, cn, sn);
 		
-		Map<String, String> map = client.lookupUser(baseDN, id);
+		Map<String, Object> map = client.lookupUser(baseDN, id);
 		
 		//看看是否真的建立
 		assertEquals(id, map.get("uid"));
@@ -527,7 +527,7 @@ public class LdapClientTest {
 		//建立一個使用者
 		client.createUser(baseDN, id, cn, sn);
 		
-		Map<String, String> map = client.lookupUser(baseDN, id);
+		Map<String, Object> map = client.lookupUser(baseDN, id);
 		
 		//看看是否真的建立
 		assertEquals(id, map.get("uid"));
@@ -558,7 +558,7 @@ public class LdapClientTest {
 		client.createUser(baseDN2, id, cn, sn, true);
 		
 		//從baseDN去lookup,並不會找subtree
-		Map<String, String> map = client.lookupUser(baseDN, id);
+		Map<String, Object> map = client.lookupUser(baseDN, id);
 		assertNull(map);
 		
 		//從baseDN2去找

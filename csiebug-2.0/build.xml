@@ -153,6 +153,7 @@
 				<filter excludes="csiebug.service.impl.BasicServiceImpl"/>
 				<filter excludes="csiebug.util.AbstractWebUtility"/>
 				<filter excludes="csiebug.util.springsecurity.ldap.AuthoritiesPopulator"/>
+				<filter excludes="csiebug.util.springsecurity.ldap.SecureSpringSecurityContextSource"/>
 				<filter excludes="csiebug.util.CookieException"/>
 				<filter excludes="csiebug.util.DAOLogInterceptor"/>
 				<filter excludes="csiebug.util.DateFormatException"/>
