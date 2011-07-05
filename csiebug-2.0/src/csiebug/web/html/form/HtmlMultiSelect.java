@@ -358,7 +358,7 @@ public class HtmlMultiSelect extends HtmlComponent {
 	        		for(int i = 0; i < arySelectKey.length; i++) {
 	        			if(optionMap.get(arySelectKey[i]) != null) {
 			        		htmlBuilder.appendString("\t");
-			        		htmlBuilder.option(arySelectKey[i].toString(), optionMap.get(arySelectKey[i]));
+			        		htmlBuilder.option(arySelectKey[i], optionMap.get(arySelectKey[i]));
 	        			}
 		        	}
 	        	}
