@@ -21,10 +21,16 @@ import org.tmatesoft.svn.core.wc.SVNRevision;
 
 import csiebug.util.DesCoder;
 import csiebug.util.FileUtility;
+import csiebug.util.PropertiesUtility;
 import csiebug.util.svn.SVNClient;
 
 public class SVNClientTest {
-
+	private String testFileSystemHome;
+	
+	private void init() throws IOException {
+		testFileSystemHome = PropertiesUtility.load("csiebug/test/util/test.properties").getProperty("testFileSystemHome");
+	}
+	
 	@Test
 	public void testPrintRepositoryTree() throws SVNException, InvalidKeyException, InvalidKeySpecException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException, UnsupportedEncodingException, DecoderException {
 		String url = "http://localhost/svn/csiebug/csiebug-2.0/WebContent/example/svn/";
@@ -84,14 +90,16 @@ public class SVNClientTest {
 	}
 	
 	@Test
-	public void testCheckout() throws SVNException, InvalidKeyException, InvalidKeySpecException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException, UnsupportedEncodingException, DecoderException {
+	public void testCheckout() throws SVNException, InvalidKeyException, InvalidKeySpecException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException, DecoderException, IOException {
+		init();
+		
 		String url = "http://localhost/svn/csiebug/csiebug-2.0/";
 		String name = "test";
 		String key = "123456789012345678901234123456789012345678901234";
 		String encryptPassword = "cc4e1b57691c47fc";
 		SVNClient client = new SVNClient(url, name, DesCoder.decryptCode(encryptPassword, key));
 		
-		String dirPath = "/home/csiebug/test/svn/";
+		String dirPath = testFileSystemHome + "/test/svn/";
 		File dir = new File(dirPath);
 		String svnPath = "http://localhost/svn/csiebug/csiebug-2.0/WebContent/example/svn/";
 		
@@ -155,6 +163,8 @@ public class SVNClientTest {
 	
 //	@Test
 	public void testUpdate() throws SVNException, IOException, InvalidKeyException, InvalidKeySpecException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidAlgorithmParameterException, IllegalBlockSizeException, BadPaddingException, DecoderException {
+		init();
+		
 		String url = "http://localhost/svn/csiebug/csiebug-2.0/";
 		String name = "test";
 		String key = "123456789012345678901234123456789012345678901234";
@@ -162,14 +172,14 @@ public class SVNClientTest {
 		SVNClient client = new SVNClient(url, name, DesCoder.decryptCode(encryptPassword, key));
 		
 		//先checkout下來
-		String dirPath = "/home/csiebug/test/svn/";
+		String dirPath = testFileSystemHome + "/test/svn/";
 		File dir = new File(dirPath);
 		String svnPath = "http://localhost/svn/csiebug/csiebug-2.0/WebContent/example/svn/";
 		
 		//checkout 最新版本
 		client.checkout(svnPath, dirPath, true);
 		
-		String filePath = "/home/csiebug/csiebug-2.0/test1.htm";
+		String filePath = testFileSystemHome + "/csiebug-2.0/test1.htm";
 		File test1 = new File(filePath);
 		String keyWord = "在此修改,用來測試history";
 		
@@ -184,7 +194,7 @@ public class SVNClientTest {
 		//checkout 最新版本
 		client.checkout(svnPath, dirPath, true);
 		
-		filePath = "/home/csiebug/csiebug-2.0/subFolder/test2.htm";
+		filePath = testFileSystemHome + "/csiebug-2.0/subFolder/test2.htm";
 		File test2 = new File(filePath);
 		String keyWord2 = "在此修改,用來測試svn";
 		

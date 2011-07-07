@@ -22,7 +22,7 @@ import sun.net.ftp.FtpClient;
 
 public class FTPClient {
 	private FtpClient client;
-	private static File localPWD;
+	private File localPWD;
 	
 	public static final void main(String[] args) throws IOException, StringParseException {
 		if(args != null && args.length == 1) {
@@ -139,7 +139,7 @@ public class FTPClient {
 					System.out.println("尚未連接主機");
 				}
 			} else if(action.equalsIgnoreCase("llist")) {
-				File[] files = FTPClient.localList();
+				File[] files = ftpClient.localList();
 				StringBuffer dirList = new StringBuffer();
 				StringBuffer fileList = new StringBuffer();
 				for(int i = 0; i < files.length; i++) {
@@ -376,7 +376,7 @@ public class FTPClient {
 	 * local端目前目錄檔案列表
 	 * @return
 	 */
-	public static File[] localList() {
+	public File[] localList() {
 		return localPWD.listFiles();
 	}
 	
