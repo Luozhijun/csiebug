@@ -79,6 +79,47 @@ public class FileUtility {
 	}
 	
 	/**
+	 * 串接檔案
+	 * @param files
+	 * @param destFile
+	 * @throws IOException 
+	 */
+	public static void catFile(File[] files, File destFile) throws IOException {
+		AssertUtility.notNull(files);
+		AssertUtility.notNull(destFile);
+		
+		if(files.length > 1) {
+			BufferedInputStream[] biss = new BufferedInputStream[files.length];
+			BufferedOutputStream bos = null;
+			try { 
+			      byte[] data = new byte[1]; 
+			      bos = new BufferedOutputStream(new FileOutputStream(destFile));
+			      
+			      for(int i = 0; i < biss.length; i++) {
+			    	  biss[i] = new BufferedInputStream(new FileInputStream(files[i]));
+			    	  while(biss[i].read(data) != -1) {
+				    	  bos.write(data); 
+				      }
+			      }
+			      			      
+			      // 將緩衝區中的資料全部寫出 
+			      bos.flush();
+		    } finally {
+			      //關閉串流
+		    	  for(int i = 0; i < biss.length; i++) {
+		    		  if(biss[i] != null)
+		    			  biss[i].close();
+		    	  }
+			      
+			      if(bos != null)
+			        bos.close();
+		    }
+		} else if(files.length == 1) {
+			copyFile(files[0], destFile);
+		}
+	}
+	
+	/**
 	 * 檔案比對
 	 * @param file1
 	 * @param file2

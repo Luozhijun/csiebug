@@ -1,11 +1,16 @@
 package csiebug.web.webapp.example.taglib.form.upload;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.naming.NamingException;
 
 import csiebug.service.ServiceException;
 import csiebug.util.AssertUtility;
+import csiebug.web.html.form.upload.PlUploadEventEnum;
 import csiebug.web.webapp.BasicAction;
 
 public class PlUploadAction extends BasicAction {
@@ -44,6 +49,26 @@ public class PlUploadAction extends BasicAction {
 			}
 		}
 		
+		
+		List<Map<String, String>> filters = new ArrayList<Map<String,String>>();
+		Map<String, String> filterOption = new LinkedHashMap<String, String>();
+		filterOption.put("title", "Image files");
+		filterOption.put("extensions", "jpg,gif,png");
+		filters.add(filterOption);
+		setRequestAttribute("fileFilter", filters);
+		
+		Map<String, String> preInitEvent = new LinkedHashMap<String, String>();
+		preInitEvent.put(PlUploadEventEnum.Init.toString(), "function(up, info) {\n" +
+	                "alert('Info:' + info + ', Features:' + up.features);\n" +
+	            "}");
+		preInitEvent.put(PlUploadEventEnum.UploadFile.toString(), "function(up, file) {\n" +
+                "alert('UploadFile:' + file);\n" +
+            "}");
+		setRequestAttribute("preInitEvent", preInitEvent);
+		
+		Map<String, String> multipartParams = new LinkedHashMap<String, String>();
+//		multipartParams.put("ActFlag", "example");
+		setRequestAttribute("multipartParams", multipartParams);
 	}
 	
 	//畫面控制項函數區結束

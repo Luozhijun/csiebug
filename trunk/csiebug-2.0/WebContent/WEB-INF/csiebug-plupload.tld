@@ -186,5 +186,12 @@
          	<rtexprvalue>true</rtexprvalue>
            	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
       	</attribute>
+      	
+      	<attribute>
+        	<name>folder</name>
+         	<required>false</required>
+         	<rtexprvalue>true</rtexprvalue>
+           	<description><![CDATA[Used to uniquely identify the column when the same property is used for more than one column.]]></description>
+      	</attribute>
     </tag>
 </taglib>

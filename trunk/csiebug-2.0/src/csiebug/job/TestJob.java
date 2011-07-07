@@ -28,7 +28,7 @@ public class TestJob extends QuartzJobBean {
 	 */
 	protected void executeInternal(JobExecutionContext arg0)
 			throws JobExecutionException {
-//		System.out.println("我有被執行耶!!" + testArg);
+		System.out.println("我有被執行耶!!" + testArg);
 		
 //		try {
 //			lockService();

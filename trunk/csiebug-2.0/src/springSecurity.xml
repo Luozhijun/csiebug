@@ -121,6 +121,7 @@
 		<security:intercept-url pattern="/timeline/timelineJSONData.jsp" filters="none"/>
 		<security:intercept-url pattern="/uploadify/uploadifyCheckJSONData.jsp" filters="none"/>
 		<security:intercept-url pattern="/uploadify/uploadify.jsp" filters="none"/>
+		<security:intercept-url pattern="/plupload/plupload.jsp" filters="none"/>
 		<security:intercept-url pattern="/charts.swf" filters="none"/>
 		<security:intercept-url pattern="/charts/tempXML/**" filters="none"/>
 		<security:intercept-url pattern="/charts/charts_library/**" filters="none"/>

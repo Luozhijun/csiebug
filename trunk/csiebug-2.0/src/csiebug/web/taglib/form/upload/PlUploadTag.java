@@ -34,6 +34,7 @@ public class PlUploadTag extends BodyTagSupport implements TryCatchFinally {
 	private String multipartParams;
 	private String requiredFeatures;
 	private String headers;
+	private String folder;
 	
 	//Queue widget specific options
 	private String preinit;
@@ -44,14 +45,23 @@ public class PlUploadTag extends BodyTagSupport implements TryCatchFinally {
 	
 	private WebUtility webutil = new WebUtility();
 	
+	@SuppressWarnings("unchecked")
 	public int doStartTag() throws JspException {
 		try { 
             JspWriter out = pageContext.getOut();
             
-            @SuppressWarnings("unchecked")
-			HtmlPlUpload htmlPlUpload = new HtmlPlUpload(uploadId, runtimes, url, maxFileSize, chunkSize, uniqueNames, resizeWidth, resizeHeight, resizeQuality, (List<Map<String, String>>)webutil.getRequestAttribute(filters), flashSWFURL, silverlightXAPURL, browseButton, dropElement, container, multipart, multipartParams, requiredFeatures, headers, preinit, dragdrop, rename, multipleQueues, urlstreamUpload);
+            List<Map<String, String>> listFilter = null;
+            if(filters != null && webutil.getRequestAttribute(filters) != null) {
+            	listFilter = (List<Map<String, String>>)webutil.getRequestAttribute(filters);
+            }
+            Map<String, String> mapPreinit = null;
+            if(preinit != null && webutil.getRequestAttribute(preinit) != null) {
+            	mapPreinit = (Map<String, String>)webutil.getRequestAttribute(preinit);
+            }
+			HtmlPlUpload htmlPlUpload = new HtmlPlUpload(uploadId, runtimes, url, maxFileSize, chunkSize, uniqueNames, resizeWidth, resizeHeight, resizeQuality, listFilter, flashSWFURL, silverlightXAPURL, browseButton, dropElement, container, multipart, multipartParams, requiredFeatures, headers, mapPreinit, dragdrop, rename, multipleQueues, urlstreamUpload, folder);
             out.println(htmlPlUpload.render());
         } catch(Exception e) {
+        	e.printStackTrace();
         	throw new JspException(e);
         } 
  
@@ -192,5 +202,77 @@ public class PlUploadTag extends BodyTagSupport implements TryCatchFinally {
 
 	public String getMultipart() {
 		return multipart;
+	}
+	
+	public void setDragdrop(String dragdrop) {
+		this.dragdrop = dragdrop;
+	}
+
+	public String getDragdrop() {
+		return dragdrop;
+	}
+	
+	public void setHeaders(String headers) {
+		this.headers = headers;
+	}
+
+	public String getHeaders() {
+		return headers;
+	}
+	
+	public void setMultipartParams(String multipartParams) {
+		this.multipartParams = multipartParams;
+	}
+
+	public String getMultipartParams() {
+		return multipartParams;
+	}
+	
+	public void setMultipleQueues(String multipleQueues) {
+		this.multipleQueues = multipleQueues;
+	}
+
+	public String getMultipleQueues() {
+		return multipleQueues;
+	}
+	
+	public void setPreinit(String preinit) {
+		this.preinit = preinit;
+	}
+
+	public String getPreinit() {
+		return preinit;
+	}
+	
+	public void setRename(String rename) {
+		this.rename = rename;
+	}
+
+	public String getRename() {
+		return rename;
+	}
+	
+	public void setRequiredFeatures(String requiredFeatures) {
+		this.requiredFeatures = requiredFeatures;
+	}
+
+	public String getRequiredFeatures() {
+		return requiredFeatures;
+	}
+	
+	public void setUrlstreamUpload(String urlstreamUpload) {
+		this.urlstreamUpload = urlstreamUpload;
+	}
+
+	public String getUrlstreamUpload() {
+		return urlstreamUpload;
+	}
+
+	public void setFolder(String folder) {
+		this.folder = folder;
+	}
+
+	public String getFolder() {
+		return folder;
 	}
 }
