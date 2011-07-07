@@ -530,14 +530,10 @@ public class HtmlTextInterval extends HtmlComponent {
 	            }
         	}
         }
-        if(type == 1 && userValueStart != null) {
-        	if(webutil.getRequestAttribute(userValueStart) != null) {
-        		strValue = webutil.getRequestAttribute(userValueStart).toString();
-        	}
-        } else if(type == 2 && userValueEnd != null){
-        	if(webutil.getRequestAttribute(userValueEnd) != null) {
-        		strValue = webutil.getRequestAttribute(userValueEnd).toString();
-        	}
+        if(type == 1 && userValueStart != null && webutil.getRequestAttribute(userValueStart) != null) {
+        	strValue = webutil.getRequestAttribute(userValueStart).toString();
+        } else if(type == 2 && userValueEnd != null && webutil.getRequestAttribute(userValueEnd) != null) {
+        	strValue = webutil.getRequestAttribute(userValueEnd).toString();
         }
         if(dataType != null && !strValue.equals("")) {
         	if(dataType.equalsIgnoreCase("currency")) {
