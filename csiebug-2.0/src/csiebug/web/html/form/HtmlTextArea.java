@@ -365,40 +365,28 @@ public class HtmlTextArea extends HtmlComponent {
             if(defaultValue != null) {
             	strValue = defaultValue;
             }
-            if(isReturnValue == null || isReturnValue.equalsIgnoreCase("true")) {
-                if(webutil.getRequest().getParameter(name) != null) {
-                	strValue = StringUtility.cleanXSSPattern(webutil.getRequest().getParameter(name));
-                }
+            if((isReturnValue == null || isReturnValue.equalsIgnoreCase("true")) && webutil.getRequest().getParameter(name) != null) {
+                strValue = StringUtility.cleanXSSPattern(webutil.getRequest().getParameter(name));
             }
-            if(userValue != null) {
-            	if(webutil.getRequestAttribute(userValue) != null) {
-            		strValue = webutil.getRequestAttribute(userValue).toString();
-            	}
+            if(userValue != null && webutil.getRequestAttribute(userValue) != null) {
+            	strValue = webutil.getRequestAttribute(userValue).toString();
             }
-            if(dataType != null) {
+            if(dataType != null && !strValue.equals("")) {
             	if(dataType.equalsIgnoreCase("currency")) {
-            		if(!strValue.equals("")) {
-            			strValue = NumberFormatUtility.getCurrency(strValue);
-            		}
+            		strValue = NumberFormatUtility.getCurrency(strValue);
             	} else if(dataType.equalsIgnoreCase("color")) {
-            		if(strValue.equals("")) {
-            			strValue = "#ffffff";
-            		}
-            	} else if(dataType.equalsIgnoreCase("time12")) {
-            		if(!strValue.equals("") && htmlId != null) {
-            			strValue = DateFormatUtility.completeHourMinuteSecond(strValue);
-            			if(!DateFormatUtility.compareTime(strValue, "11:59")) {
-            				webutil.setRequestAttribute(htmlId + "_midOptionValue", "am");
-            			} else {
-            				webutil.setRequestAttribute(htmlId + "_midOptionValue", "pm");
-            				strValue = StringUtility.addZero((Integer.parseInt(strValue.split(":")[0], 10) - 12), 2) + ":" + strValue.split(":")[1];
-            			}
-            			select.setUserValue(htmlId + "_midOptionValue");
-            		}
-            	} else if(dataType.equalsIgnoreCase("time24")) {
-            		if(!strValue.equals("") && htmlId != null) {
-            			strValue = DateFormatUtility.completeHourMinuteSecond(strValue);
-            		}
+            		strValue = "#ffffff";
+            	} else if(dataType.equalsIgnoreCase("time12") && htmlId != null) {
+        			strValue = DateFormatUtility.completeHourMinuteSecond(strValue);
+        			if(!DateFormatUtility.compareTime(strValue, "11:59")) {
+        				webutil.setRequestAttribute(htmlId + "_midOptionValue", "am");
+        			} else {
+        				webutil.setRequestAttribute(htmlId + "_midOptionValue", "pm");
+        				strValue = StringUtility.addZero((Integer.parseInt(strValue.split(":")[0], 10) - 12), 2) + ":" + strValue.split(":")[1];
+        			}
+        			select.setUserValue(htmlId + "_midOptionValue");
+            	} else if(dataType.equalsIgnoreCase("time24") && htmlId != null) {
+            		strValue = DateFormatUtility.completeHourMinuteSecond(strValue);
             	}
             }
             htmlBuilder.value(strValue);
@@ -438,30 +426,28 @@ public class HtmlTextArea extends HtmlComponent {
             if(onClick != null) {
             	htmlBuilder.onClick(onClick);
             } else {
-            	if(isReadOnly.equalsIgnoreCase("false")) {
-            		if(op != null && op.equals(OpEnum.TEXT)) {
-            			//如果是日期格式，提供onClick事件可以呼叫小月曆
-            			if(dataType != null && dataType.toLowerCase().equalsIgnoreCase("date")) {
-    	        			if(onChange != null) {
-    	        				if(imagePath != null) {
-    	        					htmlBuilder.onClick("openCalendar(this, " + webutil.getEnvVariable("defaultDateFormat") + ", '" + onChange.replaceAll("'", "&quote") + "', '" + imagePath + "', '" + webutil.getMessage("common.warning") + "', '" + webutil.getMessage("common.ok") + "', '" + webutil.getMessage("common.error.interval") + "', '" + webutil.getMessage("common.error.DataType1Start") + "', '" + webutil.getMessage("common.error.DataType1End") + "', '" + webutil.getMessage("common.error.DataType2") + "', '" + webutil.getMessage("common.error.DataType3") + "', '" + webutil.getMessage("common.error.DataType4") + "', '" + webutil.getMessage("common.error.DataType5") + "', '" + webutil.getMessage("common.error.DataType6") + "', '" + webutil.getMessage("common.error.DataType7") + "', '" + webutil.getMessage("common.error.DataType8Start") + "', '" + webutil.getMessage("common.error.DataType8End") + "', '" + webutil.getMessage("common.error.DataType9Start") + "', '" + webutil.getMessage("common.error.DataType9End") + "', '" + webutil.getMessage("common.error.DataType10Start") + "', '" + webutil.getMessage("common.error.DataType10End") + "', '" + webutil.getMessage("common.error.DataType11") + "', '" + webutil.getMessage("common.error.DataType12Start") + "', '" + webutil.getMessage("common.error.DataType12End") + "', '" + webutil.getMessage("common.error.DataType13") + "', '" + webutil.getMessage("common.error.DataType14") + "');");
-    	        				} else {
-    	        					htmlBuilder.onClick("openCalendar(this, " + webutil.getEnvVariable("defaultDateFormat") + ", '" + onChange.replaceAll("'", "&quote") + "', '" + webutil.getBasePathForHTML() + "images', '" + webutil.getMessage("common.warning") + "', '" + webutil.getMessage("common.ok") + "', '" + webutil.getMessage("common.error.interval") + "', '" + webutil.getMessage("common.error.DataType1Start") + "', '" + webutil.getMessage("common.error.DataType1End") + "', '" + webutil.getMessage("common.error.DataType2") + "', '" + webutil.getMessage("common.error.DataType3") + "', '" + webutil.getMessage("common.error.DataType4") + "', '" + webutil.getMessage("common.error.DataType5") + "', '" + webutil.getMessage("common.error.DataType6") + "', '" + webutil.getMessage("common.error.DataType7") + "', '" + webutil.getMessage("common.error.DataType8Start") + "', '" + webutil.getMessage("common.error.DataType8End") + "', '" + webutil.getMessage("common.error.DataType9Start") + "', '" + webutil.getMessage("common.error.DataType9End") + "', '" + webutil.getMessage("common.error.DataType10Start") + "', '" + webutil.getMessage("common.error.DataType10End") + "', '" + webutil.getMessage("common.error.DataType11") + "', '" + webutil.getMessage("common.error.DataType12Start") + "', '" + webutil.getMessage("common.error.DataType12End") + "', '" + webutil.getMessage("common.error.DataType13") + "', '" + webutil.getMessage("common.error.DataType14") + "');");
-    	        				}
-    	        			} else {
-    	        				if(imagePath != null) {
-    	        					htmlBuilder.onClick("openCalendar(this, " + webutil.getEnvVariable("defaultDateFormat") + ", '', '" + imagePath + "', '" + webutil.getMessage("common.warning") + "', '" + webutil.getMessage("common.ok") + "', '" + webutil.getMessage("common.error.interval") + "', '" + webutil.getMessage("common.error.DataType1Start") + "', '" + webutil.getMessage("common.error.DataType1End") + "', '" + webutil.getMessage("common.error.DataType2") + "', '" + webutil.getMessage("common.error.DataType3") + "', '" + webutil.getMessage("common.error.DataType4") + "', '" + webutil.getMessage("common.error.DataType5") + "', '" + webutil.getMessage("common.error.DataType6") + "', '" + webutil.getMessage("common.error.DataType7") + "', '" + webutil.getMessage("common.error.DataType8Start") + "', '" + webutil.getMessage("common.error.DataType8End") + "', '" + webutil.getMessage("common.error.DataType9Start") + "', '" + webutil.getMessage("common.error.DataType9End") + "', '" + webutil.getMessage("common.error.DataType10Start") + "', '" + webutil.getMessage("common.error.DataType10End") + "', '" + webutil.getMessage("common.error.DataType11") + "', '" + webutil.getMessage("common.error.DataType12Start") + "', '" + webutil.getMessage("common.error.DataType12End") + "', '" + webutil.getMessage("common.error.DataType13") + "', '" + webutil.getMessage("common.error.DataType14") + "');");
-    	        				} else {
-    	        					htmlBuilder.onClick("openCalendar(this, " + webutil.getEnvVariable("defaultDateFormat") + ", '', '" + webutil.getBasePathForHTML() + "images', '" + webutil.getMessage("common.warning") + "', '" + webutil.getMessage("common.ok") + "', '" + webutil.getMessage("common.error.interval") + "', '" + webutil.getMessage("common.error.DataType1Start") + "', '" + webutil.getMessage("common.error.DataType1End") + "', '" + webutil.getMessage("common.error.DataType2") + "', '" + webutil.getMessage("common.error.DataType3") + "', '" + webutil.getMessage("common.error.DataType4") + "', '" + webutil.getMessage("common.error.DataType5") + "', '" + webutil.getMessage("common.error.DataType6") + "', '" + webutil.getMessage("common.error.DataType7") + "', '" + webutil.getMessage("common.error.DataType8Start") + "', '" + webutil.getMessage("common.error.DataType8End") + "', '" + webutil.getMessage("common.error.DataType9Start") + "', '" + webutil.getMessage("common.error.DataType9End") + "', '" + webutil.getMessage("common.error.DataType10Start") + "', '" + webutil.getMessage("common.error.DataType10End") + "', '" + webutil.getMessage("common.error.DataType11") + "', '" + webutil.getMessage("common.error.DataType12Start") + "', '" + webutil.getMessage("common.error.DataType12End") + "', '" + webutil.getMessage("common.error.DataType13") + "', '" + webutil.getMessage("common.error.DataType14") + "');");
-    	        				}
-    	        			}
-            			}
-    	        		//如果是顏色格式，提供onClick事件可以呼叫色盤
-    	        		if(dataType != null && dataType.equalsIgnoreCase("color")) {
-    	        			htmlBuilder.onClick("showColorPicker('" + htmlId + "');");
-    	        		}
-    	        	}
-            	}
+            	if((isReadOnly == null || !isReadOnly.equalsIgnoreCase("true")) && op != null && op.equals(OpEnum.TEXT)) {
+        			//如果是日期格式，提供onClick事件可以呼叫小月曆
+        			if(dataType != null && dataType.toLowerCase().equalsIgnoreCase("date")) {
+	        			if(onChange != null) {
+	        				if(imagePath != null) {
+	        					htmlBuilder.onClick("openCalendar(this, " + webutil.getEnvVariable("defaultDateFormat") + ", '" + onChange.replaceAll("'", "&quote") + "', '" + imagePath + "', '" + webutil.getMessage("common.warning") + "', '" + webutil.getMessage("common.ok") + "', '" + webutil.getMessage("common.error.interval") + "', '" + webutil.getMessage("common.error.DataType1Start") + "', '" + webutil.getMessage("common.error.DataType1End") + "', '" + webutil.getMessage("common.error.DataType2") + "', '" + webutil.getMessage("common.error.DataType3") + "', '" + webutil.getMessage("common.error.DataType4") + "', '" + webutil.getMessage("common.error.DataType5") + "', '" + webutil.getMessage("common.error.DataType6") + "', '" + webutil.getMessage("common.error.DataType7") + "', '" + webutil.getMessage("common.error.DataType8Start") + "', '" + webutil.getMessage("common.error.DataType8End") + "', '" + webutil.getMessage("common.error.DataType9Start") + "', '" + webutil.getMessage("common.error.DataType9End") + "', '" + webutil.getMessage("common.error.DataType10Start") + "', '" + webutil.getMessage("common.error.DataType10End") + "', '" + webutil.getMessage("common.error.DataType11") + "', '" + webutil.getMessage("common.error.DataType12Start") + "', '" + webutil.getMessage("common.error.DataType12End") + "', '" + webutil.getMessage("common.error.DataType13") + "', '" + webutil.getMessage("common.error.DataType14") + "');");
+	        				} else {
+	        					htmlBuilder.onClick("openCalendar(this, " + webutil.getEnvVariable("defaultDateFormat") + ", '" + onChange.replaceAll("'", "&quote") + "', '" + webutil.getBasePathForHTML() + "images', '" + webutil.getMessage("common.warning") + "', '" + webutil.getMessage("common.ok") + "', '" + webutil.getMessage("common.error.interval") + "', '" + webutil.getMessage("common.error.DataType1Start") + "', '" + webutil.getMessage("common.error.DataType1End") + "', '" + webutil.getMessage("common.error.DataType2") + "', '" + webutil.getMessage("common.error.DataType3") + "', '" + webutil.getMessage("common.error.DataType4") + "', '" + webutil.getMessage("common.error.DataType5") + "', '" + webutil.getMessage("common.error.DataType6") + "', '" + webutil.getMessage("common.error.DataType7") + "', '" + webutil.getMessage("common.error.DataType8Start") + "', '" + webutil.getMessage("common.error.DataType8End") + "', '" + webutil.getMessage("common.error.DataType9Start") + "', '" + webutil.getMessage("common.error.DataType9End") + "', '" + webutil.getMessage("common.error.DataType10Start") + "', '" + webutil.getMessage("common.error.DataType10End") + "', '" + webutil.getMessage("common.error.DataType11") + "', '" + webutil.getMessage("common.error.DataType12Start") + "', '" + webutil.getMessage("common.error.DataType12End") + "', '" + webutil.getMessage("common.error.DataType13") + "', '" + webutil.getMessage("common.error.DataType14") + "');");
+	        				}
+	        			} else {
+	        				if(imagePath != null) {
+	        					htmlBuilder.onClick("openCalendar(this, " + webutil.getEnvVariable("defaultDateFormat") + ", '', '" + imagePath + "', '" + webutil.getMessage("common.warning") + "', '" + webutil.getMessage("common.ok") + "', '" + webutil.getMessage("common.error.interval") + "', '" + webutil.getMessage("common.error.DataType1Start") + "', '" + webutil.getMessage("common.error.DataType1End") + "', '" + webutil.getMessage("common.error.DataType2") + "', '" + webutil.getMessage("common.error.DataType3") + "', '" + webutil.getMessage("common.error.DataType4") + "', '" + webutil.getMessage("common.error.DataType5") + "', '" + webutil.getMessage("common.error.DataType6") + "', '" + webutil.getMessage("common.error.DataType7") + "', '" + webutil.getMessage("common.error.DataType8Start") + "', '" + webutil.getMessage("common.error.DataType8End") + "', '" + webutil.getMessage("common.error.DataType9Start") + "', '" + webutil.getMessage("common.error.DataType9End") + "', '" + webutil.getMessage("common.error.DataType10Start") + "', '" + webutil.getMessage("common.error.DataType10End") + "', '" + webutil.getMessage("common.error.DataType11") + "', '" + webutil.getMessage("common.error.DataType12Start") + "', '" + webutil.getMessage("common.error.DataType12End") + "', '" + webutil.getMessage("common.error.DataType13") + "', '" + webutil.getMessage("common.error.DataType14") + "');");
+	        				} else {
+	        					htmlBuilder.onClick("openCalendar(this, " + webutil.getEnvVariable("defaultDateFormat") + ", '', '" + webutil.getBasePathForHTML() + "images', '" + webutil.getMessage("common.warning") + "', '" + webutil.getMessage("common.ok") + "', '" + webutil.getMessage("common.error.interval") + "', '" + webutil.getMessage("common.error.DataType1Start") + "', '" + webutil.getMessage("common.error.DataType1End") + "', '" + webutil.getMessage("common.error.DataType2") + "', '" + webutil.getMessage("common.error.DataType3") + "', '" + webutil.getMessage("common.error.DataType4") + "', '" + webutil.getMessage("common.error.DataType5") + "', '" + webutil.getMessage("common.error.DataType6") + "', '" + webutil.getMessage("common.error.DataType7") + "', '" + webutil.getMessage("common.error.DataType8Start") + "', '" + webutil.getMessage("common.error.DataType8End") + "', '" + webutil.getMessage("common.error.DataType9Start") + "', '" + webutil.getMessage("common.error.DataType9End") + "', '" + webutil.getMessage("common.error.DataType10Start") + "', '" + webutil.getMessage("common.error.DataType10End") + "', '" + webutil.getMessage("common.error.DataType11") + "', '" + webutil.getMessage("common.error.DataType12Start") + "', '" + webutil.getMessage("common.error.DataType12End") + "', '" + webutil.getMessage("common.error.DataType13") + "', '" + webutil.getMessage("common.error.DataType14") + "');");
+	        				}
+	        			}
+        			}
+	        		//如果是顏色格式，提供onClick事件可以呼叫色盤
+	        		if(dataType != null && dataType.equalsIgnoreCase("color")) {
+	        			htmlBuilder.onClick("showColorPicker('" + htmlId + "');");
+	        		}
+    	        }
             }
             
             if(onKeyDown != null) {

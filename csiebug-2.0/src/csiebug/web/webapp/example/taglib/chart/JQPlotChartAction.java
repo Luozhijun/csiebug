@@ -160,7 +160,7 @@ public class JQPlotChartAction extends BasicAction {
 		for (int i = 0; i < 5; i++){ 
 			JQPlotPoint point = new JQPlotPoint();
 			point.setX("" + i);
-			point.setY("" + (3 + Math.pow(i/4, 2)));
+			point.setY("" + (3 + Math.pow(i/(double)4, 2)));
 			line.addPoint(point);
 		} 
 		data.add(line);
@@ -169,7 +169,7 @@ public class JQPlotChartAction extends BasicAction {
 		for (int i = 0; i < 5; i++){ 
 			JQPlotPoint point = new JQPlotPoint();
 			point.setX("" + i);
-			point.setY("" + (-3 - Math.pow(i/4, 2)));
+			point.setY("" + (-3 - Math.pow(i/(double)4, 2)));
 			line.addPoint(point);
 		} 
 		data.add(line);

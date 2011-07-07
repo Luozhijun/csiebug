@@ -150,10 +150,8 @@ public class HtmlKeyValue extends HtmlComponent {
         	}
 	    }
         
-		if(onChange == null) {
-			if(htmlId != null) {
-				onChange = "refreshValue(this);";
-			}
+		if(onChange == null && htmlId != null) {
+			onChange = "refreshValue(this);";
 		}
 		
 		HtmlEditableSelect htmlEditableSelect = new HtmlEditableSelect(htmlId, name, isReadOnly, className, isReturnValue, defaultValue, onChange, null, null, null, null, isRequired, userValue, style, option, caseSensitive, op, "false");

@@ -146,10 +146,8 @@ public class HtmlCheckBox extends HtmlComponent {
             	strValue = "";
             }
         }
-        if(userValue != null) {
-        	if(webutil.getRequestAttribute(userValue) != null) {
-        		strValue = webutil.getRequestAttribute(userValue).toString();
-        	}
+        if(userValue != null && webutil.getRequestAttribute(userValue) != null) {
+        	strValue = webutil.getRequestAttribute(userValue).toString();
         }
         
         if(value != null) {

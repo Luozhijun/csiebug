@@ -1857,13 +1857,11 @@ public abstract class AbstractWebUtility {
 						HtmlBuilder htmlBuilder = new HtmlBuilder();
 						htmlBuilder.scriptStart().src(getBasePathForHTML() + StringUtility.removeStartEndSlash(jsDir) + "/" + jsFiles[i].getName()).tagClose().scriptEnd();
 						link.append(htmlBuilder.toString());
-					} else if(jsFiles[i].isDirectory()){
-						if(recursive) {
-							if(jsFiles[i].getName().equalsIgnoreCase("locale")) {
-								link.append(getLocaleJSFileLink(jsDir));
-							} else {
-								link.append(getAllJSFileLink(jsDir + "/" + jsFiles[i].getName(), true));
-							}
+					} else if(jsFiles[i].isDirectory() && recursive) {
+						if(jsFiles[i].getName().equalsIgnoreCase("locale")) {
+							link.append(getLocaleJSFileLink(jsDir));
+						} else {
+							link.append(getAllJSFileLink(jsDir + "/" + jsFiles[i].getName(), true));
 						}
 					}
 				}
@@ -1989,10 +1987,8 @@ public abstract class AbstractWebUtility {
 						HtmlBuilder htmlBuilder = new HtmlBuilder();
 						htmlBuilder.linkStart().href(getBasePathForHTML() + StringUtility.removeStartEndSlash(cssDir) + "/" + cssFiles[i].getName()).rel("stylesheet").type("text/css").tagClose();
 						link.append(htmlBuilder.toString());
-					} else if(cssFiles[i].isDirectory()){
-						if(recursive) {
-							link.append(getAllCSSFileLink(cssDir + "/" + cssFiles[i].getName(), true));
-						}
+					} else if(cssFiles[i].isDirectory() && recursive) {
+						link.append(getAllCSSFileLink(cssDir + "/" + cssFiles[i].getName(), true));
 					}
 				}
 			}

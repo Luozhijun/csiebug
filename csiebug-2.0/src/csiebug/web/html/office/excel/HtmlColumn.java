@@ -467,18 +467,16 @@ public class HtmlColumn extends HtmlComponent implements Serializable {
         if(row.getCurrentMap() != null) {
         	Map<String, String> map = row.getCurrentMap();
         	
-        	if(fieldname != null) {
-        		if(map.get(fieldname) != null) {
-        			if(typesettingAlgorithm != null && !typesettingAlgorithm.equalsIgnoreCase("none")) {
-        				if(maxLineLength != null && NumberFormatUtility.isValidPositiveInteger(maxLineLength)) {
-        					strValue = StringUtility.getTypesettingString(map.get(fieldname).toString(), "<br>", Integer.parseInt(maxLineLength), typesettingAlgorithm);
-        				} else {
-        					strValue = StringUtility.getTypesettingString(map.get(fieldname).toString(), "<br>", defaultMaxLineLength, typesettingAlgorithm);
-        				}
-        			} else {
-        				strValue = map.get(fieldname).toString();
-        			}
-        		}
+        	if(fieldname != null && map.get(fieldname) != null) {
+    			if(typesettingAlgorithm != null && !typesettingAlgorithm.equalsIgnoreCase("none")) {
+    				if(maxLineLength != null && NumberFormatUtility.isValidPositiveInteger(maxLineLength)) {
+    					strValue = StringUtility.getTypesettingString(map.get(fieldname).toString(), "<br>", Integer.parseInt(maxLineLength), typesettingAlgorithm);
+    				} else {
+    					strValue = StringUtility.getTypesettingString(map.get(fieldname).toString(), "<br>", defaultMaxLineLength, typesettingAlgorithm);
+    				}
+    			} else {
+    				strValue = map.get(fieldname).toString();
+    			}
         	}
         }
         

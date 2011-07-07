@@ -47,10 +47,8 @@ public class HtmlColumns extends HtmlComponentOnlyBody {
 		HtmlBuilder htmlBuilder = new HtmlBuilder();
         
         try {
-        	if(dynFields != null) {
-    			if(webutil.getRequestAttribute(dynFields) != null) {
-                	dynDatas = (List<Map<String, String>>)webutil.getRequestAttribute(dynFields);
-                }
+        	if(dynFields != null && webutil.getRequestAttribute(dynFields) != null) {
+                dynDatas = (List<Map<String, String>>)webutil.getRequestAttribute(dynFields);
             }
         	
 	        for(int i = 0; i < dynDatas.size(); i++) {
@@ -312,18 +310,16 @@ public class HtmlColumns extends HtmlComponentOnlyBody {
         if(row.getCurrentMap() != null) {
         	Map<String, String> dataMap = row.getCurrentMap();
         	
-        	if(map.get("fieldname") != null) {
-        		if(dataMap.get(map.get("fieldname")) != null) {
-        			if(map.get("typesettingAlgorithm") != null && !map.get("typesettingAlgorithm").equalsIgnoreCase("none")) {
-        				if(map.get("maxLineLength") != null && NumberFormatUtility.isValidPositiveInteger(map.get("maxLineLength"))) {
-        					strValue = StringUtility.getTypesettingString(dataMap.get(map.get("fieldname")), "<br>", Integer.parseInt(map.get("maxLineLength")), map.get("typesettingAlgorithm"));
-        				} else {
-        					strValue = StringUtility.getTypesettingString(dataMap.get(map.get("fieldname")), "<br>", defaultMaxLineLength, map.get("typesettingAlgorithm"));
-        				}
-        			} else {
-        				strValue = dataMap.get(map.get("fieldname"));
-        			}
-        		}
+        	if(map.get("fieldname") != null && dataMap.get(map.get("fieldname")) != null) {
+    			if(map.get("typesettingAlgorithm") != null && !map.get("typesettingAlgorithm").equalsIgnoreCase("none")) {
+    				if(map.get("maxLineLength") != null && NumberFormatUtility.isValidPositiveInteger(map.get("maxLineLength"))) {
+    					strValue = StringUtility.getTypesettingString(dataMap.get(map.get("fieldname")), "<br>", Integer.parseInt(map.get("maxLineLength")), map.get("typesettingAlgorithm"));
+    				} else {
+    					strValue = StringUtility.getTypesettingString(dataMap.get(map.get("fieldname")), "<br>", defaultMaxLineLength, map.get("typesettingAlgorithm"));
+    				}
+    			} else {
+    				strValue = dataMap.get(map.get("fieldname"));
+    			}
         	}
         }
         
