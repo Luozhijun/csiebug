@@ -175,20 +175,14 @@ public class HtmlRadio extends HtmlComponent {
         
         String strValue = "";
         
-        if(AssertUtility.isTrue(checked)) {
-        	if(value != null) {
-        		strValue = value;
-        	}
+        if(AssertUtility.isTrue(checked) && value != null) {
+        	strValue = value;
         }
-        if(isReturnValue == null || isReturnValue.equalsIgnoreCase("true")) {
-            if(webutil.getRequest().getParameter(name) != null) {
-            	strValue = StringUtility.cleanXSSPattern(webutil.getRequest().getParameter(name));
-            }
+        if((isReturnValue == null || isReturnValue.equalsIgnoreCase("true")) && webutil.getRequest().getParameter(name) != null) {
+            strValue = StringUtility.cleanXSSPattern(webutil.getRequest().getParameter(name));
         }
-        if(userValue != null) {
-        	if(webutil.getRequestAttribute(userValue) != null) {
-        		strValue = webutil.getRequestAttribute(userValue).toString();
-        	}
+        if(userValue != null && webutil.getRequestAttribute(userValue) != null) {
+        	strValue = webutil.getRequestAttribute(userValue).toString();
         }
         
         if(value != null) {

@@ -106,7 +106,7 @@ public class FTPClient {
 				}
 			} else if(action.equalsIgnoreCase("lpwd")) {
 				System.out.println("local dir: " + ftpClient.localPWD());
-			} else if(action.equalsIgnoreCase("cdUp")) {
+			} else if(action.equalsIgnoreCase("cdUp") || action.equalsIgnoreCase("cd ..")) {
 				if(ftpClient.isConnected()) {
 					ftpClient.cdUp();
 					System.out.println("server端目前目錄: " + ftpClient.pwd());
@@ -132,7 +132,7 @@ public class FTPClient {
 				String param = StringUtility.parseParameters(action, "lcd").get(0);
 				ftpClient.localCD(param);
 				System.out.println("local端目前目錄: " + ftpClient.localPWD());
-			} else if(action.equalsIgnoreCase("list")) {
+			} else if(action.equalsIgnoreCase("list") || action.equalsIgnoreCase("ls") || action.equalsIgnoreCase("dir")) {
 				if(ftpClient.isConnected()) {
 					System.out.print(ftpClient.listToString());
 				} else {
@@ -354,7 +354,7 @@ public class FTPClient {
 		TelnetInputStream tis = list();
 		
 		try {
-			String list = "";
+			StringBuffer list = new StringBuffer();
 			
 			while(true) {
 				int c = tis.read();
@@ -364,9 +364,9 @@ public class FTPClient {
 					break;
 				}
 				
-				list += ch;
+				list.append(ch);
 			}
-			return list;
+			return list.toString();
 		} finally {
 			tis.close();
 		}

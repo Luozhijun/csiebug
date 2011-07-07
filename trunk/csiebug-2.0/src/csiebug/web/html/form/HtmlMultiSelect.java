@@ -293,15 +293,11 @@ public class HtmlMultiSelect extends HtmlComponent {
 		if(defaultValue != null) {
 	        strValue = defaultValue;
 	    }
-        if(isReturnValue == null || isReturnValue.equalsIgnoreCase("true")) {
-            if(webutil.getRequest().getParameter(name) != null) {
-            	strValue = StringUtility.cleanXSSPattern(webutil.getRequest().getParameter(name));
-            }
+        if((isReturnValue == null || isReturnValue.equalsIgnoreCase("true")) && webutil.getRequest().getParameter(name) != null) {
+            strValue = StringUtility.cleanXSSPattern(webutil.getRequest().getParameter(name));
         }
-        if(userValue != null) {
-        	if(webutil.getRequestAttribute(userValue) != null) {
-        		strValue = (String)webutil.getRequestAttribute(userValue);
-        	}
+        if(userValue != null && webutil.getRequestAttribute(userValue) != null) {
+        	strValue = (String)webutil.getRequestAttribute(userValue);
         }
         
         String[] arySelectKey = strValue.split(",");

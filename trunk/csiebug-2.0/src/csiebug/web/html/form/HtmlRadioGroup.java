@@ -73,33 +73,27 @@ public class HtmlRadioGroup extends HtmlComponent {
 	public String getRadioGroupAnswerValue() {
 		String value = "";
 		
-		if(option != null) {
-			if(webutil.getRequestAttribute(option) != null) {
-				Map<String, String> map = (Map<String, String>)webutil.getRequestAttribute(option);
-				
-				Object[] key = map.keySet().toArray();
-				
-				for(int i = 0; i < key.length; i++) {
-					String strValue = "";
-			        
-			        if(defaultValue != null) {
-			        	strValue = defaultValue;
-			        }
-			        if(isReturnValue == null || isReturnValue.equalsIgnoreCase("true")) {
-			            if(webutil.getRequest().getParameter(name) != null) {
-			            	strValue = StringUtility.cleanXSSPattern(webutil.getRequest().getParameter(name));
-			            }
-			        }
-			        if(userValue != null) {
-			        	if(webutil.getRequestAttribute(userValue) != null) {
-			        		strValue = webutil.getRequestAttribute(userValue).toString();
-			        	}
-			        }
-			        
-			        if(strValue.equalsIgnoreCase((String)key[i])) {
-			        	return strValue;
-				    }
-				}
+		if(option != null && webutil.getRequestAttribute(option) != null) {
+			Map<String, String> map = (Map<String, String>)webutil.getRequestAttribute(option);
+			
+			Object[] key = map.keySet().toArray();
+			
+			for(int i = 0; i < key.length; i++) {
+				String strValue = "";
+		        
+		        if(defaultValue != null) {
+		        	strValue = defaultValue;
+		        }
+		        if((isReturnValue == null || isReturnValue.equalsIgnoreCase("true")) && webutil.getRequest().getParameter(name) != null) {
+		            strValue = StringUtility.cleanXSSPattern(webutil.getRequest().getParameter(name));
+		        }
+		        if(userValue != null && webutil.getRequestAttribute(userValue) != null) {
+		        	strValue = webutil.getRequestAttribute(userValue).toString();
+		        }
+		        
+		        if(strValue.equalsIgnoreCase((String)key[i])) {
+		        	return strValue;
+			    }
 			}
 		}
 		
@@ -114,33 +108,27 @@ public class HtmlRadioGroup extends HtmlComponent {
 	public String getRadioGroupAnswerText() {
 		String value = "";
 		
-		if(option != null) {
-			if(webutil.getRequestAttribute(option) != null) {
-				Map<String, String> map = (Map<String, String>)webutil.getRequestAttribute(option);
-				
-				Object[] key = map.keySet().toArray();
-				
-				for(int i = 0; i < key.length; i++) {
-					String strValue = "";
-			        
-			        if(defaultValue != null) {
-			        	strValue = defaultValue;
-			        }
-			        if(isReturnValue == null || isReturnValue.equalsIgnoreCase("true")) {
-			            if(webutil.getRequest().getParameter(name) != null) {
-			            	strValue = StringUtility.cleanXSSPattern(webutil.getRequest().getParameter(name));
-			            }
-			        }
-			        if(userValue != null) {
-			        	if(webutil.getRequestAttribute(userValue) != null) {
-			        		strValue = webutil.getRequestAttribute(userValue).toString();
-			        	}
-			        }
-			        
-			        if(strValue.equalsIgnoreCase((String)key[i])) {
-			        	return map.get(key[i]);
-				    }
-				}
+		if(option != null && webutil.getRequestAttribute(option) != null) {
+			Map<String, String> map = (Map<String, String>)webutil.getRequestAttribute(option);
+			
+			Object[] key = map.keySet().toArray();
+			
+			for(int i = 0; i < key.length; i++) {
+				String strValue = "";
+		        
+		        if(defaultValue != null) {
+		        	strValue = defaultValue;
+		        }
+		        if((isReturnValue == null || isReturnValue.equalsIgnoreCase("true")) && webutil.getRequest().getParameter(name) != null) {
+		            strValue = StringUtility.cleanXSSPattern(webutil.getRequest().getParameter(name));
+		        }
+		        if(userValue != null && webutil.getRequestAttribute(userValue) != null) {
+		        	strValue = webutil.getRequestAttribute(userValue).toString();
+		        }
+		        
+		        if(strValue.equalsIgnoreCase((String)key[i])) {
+		        	return map.get(key[i]);
+			    }
 			}
 		}
 		
@@ -214,111 +202,105 @@ public class HtmlRadioGroup extends HtmlComponent {
 		HtmlBuilder htmlBuilder = new HtmlBuilder();
         
         //建立主體
-		if(option != null) {
-			if(webutil.getRequestAttribute(option) != null) {
-				Map<String, String> map = (Map<String, String>)webutil.getRequestAttribute(option);
+		if(option != null && webutil.getRequestAttribute(option) != null) {
+			Map<String, String> map = (Map<String, String>)webutil.getRequestAttribute(option);
+			
+			Object[] key = map.keySet().toArray();
+			
+			for(int i = 0; i < key.length; i++) {
+				//強迫換行
+				if(AssertUtility.isTrue(newLineFlag) && i != 0) {
+					htmlBuilder.br();
+				}
 				
-				Object[] key = map.keySet().toArray();
-				
-				for(int i = 0; i < key.length; i++) {
-					//強迫換行
-					if(AssertUtility.isTrue(newLineFlag) && i != 0) {
-						htmlBuilder.br();
-					}
-					
-					htmlBuilder.inputStart().type("radio");
-			        
-			        //設定各樣屬性
-			        if(htmlId != null) {
-			        	htmlBuilder.id(htmlId);
-			        }
-			        
-			        if(name != null) {
-			        	htmlBuilder.name(name);
-			        }
-			        
-			        boolean readOnlyFlag = false;
-			        if(htmlId != null && AssertUtility.isTrue(webutil.getRequestAttribute(htmlId + "_IsReadOnly"))) {
-			        	readOnlyFlag = true;
-			        } else if(AssertUtility.isTrue(isReadOnly)) {
-			        	readOnlyFlag = true;
-			        }
-			        if(readOnlyFlag) {
-			        	htmlBuilder.disabled();
-			        	isReadOnly = "true";
-			        } else {
-			        	isReadOnly = "false";
-			        }
-			        
-			        String strIsRequired = "false";
-			        if(htmlId != null) {
-				        if(webutil.getRequestAttribute(htmlId + "_IsRequired") != null) {
-				        	if(webutil.getRequestAttribute(htmlId + "_IsRequired").toString().equals("true")) {
-				        		strIsRequired = "true";
-				        	}
-				        } else {
-				        	if(AssertUtility.isTrue(isRequired)) {
-				            	strIsRequired = "true";
-				            }
-				        }
+				htmlBuilder.inputStart().type("radio");
+		        
+		        //設定各樣屬性
+		        if(htmlId != null) {
+		        	htmlBuilder.id(htmlId);
+		        }
+		        
+		        if(name != null) {
+		        	htmlBuilder.name(name);
+		        }
+		        
+		        boolean readOnlyFlag = false;
+		        if(htmlId != null && AssertUtility.isTrue(webutil.getRequestAttribute(htmlId + "_IsReadOnly"))) {
+		        	readOnlyFlag = true;
+		        } else if(AssertUtility.isTrue(isReadOnly)) {
+		        	readOnlyFlag = true;
+		        }
+		        if(readOnlyFlag) {
+		        	htmlBuilder.disabled();
+		        	isReadOnly = "true";
+		        } else {
+		        	isReadOnly = "false";
+		        }
+		        
+		        String strIsRequired = "false";
+		        if(htmlId != null) {
+			        if(webutil.getRequestAttribute(htmlId + "_IsRequired") != null) {
+			        	if(webutil.getRequestAttribute(htmlId + "_IsRequired").toString().equals("true")) {
+			        		strIsRequired = "true";
+			        	}
 			        } else {
 			        	if(AssertUtility.isTrue(isRequired)) {
 			            	strIsRequired = "true";
 			            }
 			        }
-			        
-			        htmlBuilder.tagProperty("isRequired", strIsRequired);
-			        
-			        String strValue = "";
-			        
-			        if(defaultValue != null) {
-			        	strValue = defaultValue;
-			        }
-			        if(isReturnValue == null || isReturnValue.equalsIgnoreCase("true")) {
-			            if(webutil.getRequest().getParameter(name) != null) {
-			            	strValue = StringUtility.cleanXSSPattern(webutil.getRequest().getParameter(name));
-			            }
-			        }
-			        if(userValue != null) {
-			        	if(webutil.getRequestAttribute(userValue) != null) {
-			        		strValue = webutil.getRequestAttribute(userValue).toString();
-			        	}
-			        }
-			        
-			        htmlBuilder.value((String)key[i]);
-			        if(strValue.equalsIgnoreCase((String)key[i])) {
-				       	htmlBuilder.checked();
-				    }
-			        
-			        if(style != null) {
-			        	htmlBuilder.style(style);
-			        }
-			        
-			        if(onChange != null) {
-			        	htmlBuilder.onChange(onChange);
-			        }
-			        
-			        if(onClick != null) {
-			        	htmlBuilder.onClick(onClick);
-			        }
-			        
-			        htmlBuilder.tagClose();
-			        htmlBuilder.inputEnd();
-			        
-			        htmlBuilder.labelStart();
-			        if(htmlId != null) {
-			        	htmlBuilder.id(htmlId + "_" + i + "_displayName");
-		        	}
-			        if(className != null) {
-			        	htmlBuilder.className(className);
-			        } else {
-			           	htmlBuilder.className("Label");
-			        }
-			        htmlBuilder.tagClose();
-			        htmlBuilder.text(map.get(key[i]));
-			        htmlBuilder.labelEnd();
+		        } else {
+		        	if(AssertUtility.isTrue(isRequired)) {
+		            	strIsRequired = "true";
+		            }
+		        }
+		        
+		        htmlBuilder.tagProperty("isRequired", strIsRequired);
+		        
+		        String strValue = "";
+		        
+		        if(defaultValue != null) {
+		        	strValue = defaultValue;
+		        }
+		        if((isReturnValue == null || isReturnValue.equalsIgnoreCase("true")) && webutil.getRequest().getParameter(name) != null) {
+		            strValue = StringUtility.cleanXSSPattern(webutil.getRequest().getParameter(name));
+		        }
+		        if(userValue != null && webutil.getRequestAttribute(userValue) != null) {
+		        	strValue = webutil.getRequestAttribute(userValue).toString();
+		        }
+		        
+		        htmlBuilder.value((String)key[i]);
+		        if(strValue.equalsIgnoreCase((String)key[i])) {
+			       	htmlBuilder.checked();
 			    }
-			}
+		        
+		        if(style != null) {
+		        	htmlBuilder.style(style);
+		        }
+		        
+		        if(onChange != null) {
+		        	htmlBuilder.onChange(onChange);
+		        }
+		        
+		        if(onClick != null) {
+		        	htmlBuilder.onClick(onClick);
+		        }
+		        
+		        htmlBuilder.tagClose();
+		        htmlBuilder.inputEnd();
+		        
+		        htmlBuilder.labelStart();
+		        if(htmlId != null) {
+		        	htmlBuilder.id(htmlId + "_" + i + "_displayName");
+	        	}
+		        if(className != null) {
+		        	htmlBuilder.className(className);
+		        } else {
+		           	htmlBuilder.className("Label");
+		        }
+		        htmlBuilder.tagClose();
+		        htmlBuilder.text(map.get(key[i]));
+		        htmlBuilder.labelEnd();
+		    }
 		}
         
         return htmlBuilder.toString();

@@ -221,22 +221,14 @@ public class HtmlEditableLabel extends HtmlComponent {
 	            if(defaultValue != null) {
 	            	strValue = defaultValue;
 	            }
-	            if(isReturnValue == null || isReturnValue.equalsIgnoreCase("true")) {
-	                if(webutil.getRequest().getParameter(name) != null) {
-	                	strValue = StringUtility.cleanXSSPattern(webutil.getRequest().getParameter(name));
-	                }
+	            if((isReturnValue == null || isReturnValue.equalsIgnoreCase("true")) && webutil.getRequest().getParameter(name) != null) {
+	                strValue = StringUtility.cleanXSSPattern(webutil.getRequest().getParameter(name));
 	            }
-	            if(userValue != null) {
-	            	if(webutil.getRequestAttribute(userValue) != null) {
-	            		strValue = webutil.getRequestAttribute(userValue).toString();
-	            	}
+	            if(userValue != null && webutil.getRequestAttribute(userValue) != null) {
+	            	strValue = webutil.getRequestAttribute(userValue).toString();
 	            }
-	            if(dataType != null) {
-	            	if(dataType.equalsIgnoreCase("currency")) {
-	            		if(!strValue.equals("")) {
-	            			strValue = NumberFormatUtility.getCurrency(strValue);
-	            		}
-	            	}
+	            if(dataType != null && dataType.equalsIgnoreCase("currency") && !strValue.equals("")) {
+	            	strValue = NumberFormatUtility.getCurrency(strValue);
 	            }
 	            text.setDefaultValue(strValue);
 	            if(blankText == null) {

@@ -581,15 +581,7 @@ public class DateFormatUtility {
 	 * @throws DateFormatException 
 	 */
 	public static boolean isValidDate(int year, int month, int day) throws DateFormatException {
-		boolean flag = false;
-		
-		if(isValidMonth(month)) {
-			if(day <= getDaysOfMonth(year, month) && day > 0) {
-				flag = true;
-			}
-		}
-		
-		return flag;
+		return (isValidMonth(month) && day <= getDaysOfMonth(year, month) && day > 0);
 	}
 	
 	/**
