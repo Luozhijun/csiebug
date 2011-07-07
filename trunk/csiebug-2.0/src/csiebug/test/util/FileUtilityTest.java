@@ -12,13 +12,21 @@ import java.util.Calendar;
 import org.junit.Test;
 
 import csiebug.util.FileUtility;
+import csiebug.util.PropertiesUtility;
 
 public class FileUtilityTest {
-
+	private String testFileSystemHome;
+	
+	private void init() throws IOException {
+		testFileSystemHome = PropertiesUtility.load("csiebug/test/util/test.properties").getProperty("testFileSystemHome");
+	}
+	
 	@Test
 	public void testWriteFile() throws IOException {
+		init();
+		
 		Calendar today = Calendar.getInstance();
-		String filePath = "/home/csiebug/test_" + today.get(Calendar.YEAR) + (today.get(Calendar.MONTH) + 1) + today.get(Calendar.DAY_OF_MONTH) + ".txt";
+		String filePath = testFileSystemHome + "/test_" + today.get(Calendar.YEAR) + (today.get(Calendar.MONTH) + 1) + today.get(Calendar.DAY_OF_MONTH) + ".txt";
 		String strContent = "hello world!";
 		File file = null;
 		ByteArrayInputStream bais = null;
@@ -63,10 +71,12 @@ public class FileUtilityTest {
 	
 	@Test
 	public void testIsSameFile() throws IOException {
+		init();
+		
 		Calendar today = Calendar.getInstance();
-		String filePath = "/home/csiebug/test_" + today.get(Calendar.YEAR) + (today.get(Calendar.MONTH) + 1) + today.get(Calendar.DAY_OF_MONTH) + "_1.txt";
-		String filePath2 = "/home/csiebug/test_" + today.get(Calendar.YEAR) + (today.get(Calendar.MONTH) + 1) + today.get(Calendar.DAY_OF_MONTH) + "_2.txt";
-		String filePath3 = "/home/csiebug/test_" + today.get(Calendar.YEAR) + (today.get(Calendar.MONTH) + 1) + today.get(Calendar.DAY_OF_MONTH) + "_3.txt";
+		String filePath = testFileSystemHome + "/test_" + today.get(Calendar.YEAR) + (today.get(Calendar.MONTH) + 1) + today.get(Calendar.DAY_OF_MONTH) + "_1.txt";
+		String filePath2 = testFileSystemHome + "/test_" + today.get(Calendar.YEAR) + (today.get(Calendar.MONTH) + 1) + today.get(Calendar.DAY_OF_MONTH) + "_2.txt";
+		String filePath3 = testFileSystemHome + "/test_" + today.get(Calendar.YEAR) + (today.get(Calendar.MONTH) + 1) + today.get(Calendar.DAY_OF_MONTH) + "_3.txt";
 		
 		String strContent = "hello world!";
 		String strContent2 = "hello csiebug!";
@@ -86,9 +96,11 @@ public class FileUtilityTest {
 	
 	@Test
 	public void testCopyFile() throws IOException {
+		init();
+		
 		Calendar today = Calendar.getInstance();
-		String filePath = "/home/csiebug/test_" + today.get(Calendar.YEAR) + (today.get(Calendar.MONTH) + 1) + today.get(Calendar.DAY_OF_MONTH) + ".txt";
-		String filePath2 = "/home/csiebug/test_" + today.get(Calendar.YEAR) + (today.get(Calendar.MONTH) + 1) + today.get(Calendar.DAY_OF_MONTH) + "_copy.txt";
+		String filePath = testFileSystemHome + "/test_" + today.get(Calendar.YEAR) + (today.get(Calendar.MONTH) + 1) + today.get(Calendar.DAY_OF_MONTH) + ".txt";
+		String filePath2 = testFileSystemHome + "/test_" + today.get(Calendar.YEAR) + (today.get(Calendar.MONTH) + 1) + today.get(Calendar.DAY_OF_MONTH) + "_copy.txt";
 		
 		File file = makeTestTxtFile(filePath, "hello world!");
 		File file2 = new File(filePath2);
@@ -103,11 +115,13 @@ public class FileUtilityTest {
 	
 	@Test
 	public void testCatFile() throws IOException {
+		init();
+		
 		Calendar today = Calendar.getInstance();
-		String filePath = "/home/csiebug/test_" + today.get(Calendar.YEAR) + (today.get(Calendar.MONTH) + 1) + today.get(Calendar.DAY_OF_MONTH) + "1.txt";
-		String filePath2 = "/home/csiebug/test_" + today.get(Calendar.YEAR) + (today.get(Calendar.MONTH) + 1) + today.get(Calendar.DAY_OF_MONTH) + "2.txt";
-		String filePath3 = "/home/csiebug/test_" + today.get(Calendar.YEAR) + (today.get(Calendar.MONTH) + 1) + today.get(Calendar.DAY_OF_MONTH) + "3.txt";
-		String filePath4 = "/home/csiebug/test_" + today.get(Calendar.YEAR) + (today.get(Calendar.MONTH) + 1) + today.get(Calendar.DAY_OF_MONTH) + "4.txt";
+		String filePath = testFileSystemHome + "/test_" + today.get(Calendar.YEAR) + (today.get(Calendar.MONTH) + 1) + today.get(Calendar.DAY_OF_MONTH) + "1.txt";
+		String filePath2 = testFileSystemHome + "/test_" + today.get(Calendar.YEAR) + (today.get(Calendar.MONTH) + 1) + today.get(Calendar.DAY_OF_MONTH) + "2.txt";
+		String filePath3 = testFileSystemHome + "/test_" + today.get(Calendar.YEAR) + (today.get(Calendar.MONTH) + 1) + today.get(Calendar.DAY_OF_MONTH) + "3.txt";
+		String filePath4 = testFileSystemHome + "/test_" + today.get(Calendar.YEAR) + (today.get(Calendar.MONTH) + 1) + today.get(Calendar.DAY_OF_MONTH) + "4.txt";
 		
 		File file = makeTestTxtFile(filePath, "hello ");
 		File file2 = makeTestTxtFile(filePath2, "george!");
@@ -152,8 +166,10 @@ public class FileUtilityTest {
 	
 	@Test
 	public void testGetTextFileContent() throws IOException {
+		init();
+		
 		Calendar today = Calendar.getInstance();
-		String filePath = "/home/csiebug/test_" + today.get(Calendar.YEAR) + (today.get(Calendar.MONTH) + 1) + today.get(Calendar.DAY_OF_MONTH) + ".txt";
+		String filePath = testFileSystemHome + "/test_" + today.get(Calendar.YEAR) + (today.get(Calendar.MONTH) + 1) + today.get(Calendar.DAY_OF_MONTH) + ".txt";
 		String strContent = "hello world!";
 		File file = null;
 		ByteArrayInputStream bais = null;
@@ -188,10 +204,12 @@ public class FileUtilityTest {
 	
 	@Test
 	public void testDeleteDirectory() throws IOException {
+		init();
+		
 		Calendar today = Calendar.getInstance();
-		String dirPath = "/home/csiebug/test";
-		String filePath1 = "/home/csiebug/test/test_" + today.get(Calendar.YEAR) + (today.get(Calendar.MONTH) + 1) + today.get(Calendar.DAY_OF_MONTH) + ".txt";
-		String filePath2 = "/home/csiebug/test/test2/test_" + today.get(Calendar.YEAR) + (today.get(Calendar.MONTH) + 1) + today.get(Calendar.DAY_OF_MONTH) + ".txt";
+		String dirPath = testFileSystemHome + "/test";
+		String filePath1 = testFileSystemHome + "/test/test_" + today.get(Calendar.YEAR) + (today.get(Calendar.MONTH) + 1) + today.get(Calendar.DAY_OF_MONTH) + ".txt";
+		String filePath2 = testFileSystemHome + "/test/test2/test_" + today.get(Calendar.YEAR) + (today.get(Calendar.MONTH) + 1) + today.get(Calendar.DAY_OF_MONTH) + ".txt";
 		String strContent = "hello world!";
 		File file = null;
 		File file2 = null;

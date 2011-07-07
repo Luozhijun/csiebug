@@ -1,4 +1,4 @@
-#Wed Jul 06 14:55:59 CST 2011
+#Thu Jul 07 13:14:43 CST 2011
 eclipse.preferences.version=1
 encoding//WebContent/plupload/plupload.jsp=UTF-8
 encoding//WebContent/uploadify/uploadify.jsp=UTF-8
@@ -8,3 +8,4 @@ encoding//src/MessageResources_ja_JP.properties=UTF-8
 encoding//src/MessageResources_ko_KR.properties=UTF-8
 encoding//src/MessageResources_zh_CN.properties=UTF-8
 encoding//src/MessageResources_zh_TW.properties=UTF-8
+encoding//src/csiebug/test/util/test.properties=UTF-8

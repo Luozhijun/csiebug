@@ -17,15 +17,23 @@ import org.dom4j.Element;
 import org.junit.Test;
 
 import csiebug.util.FileUtility;
+import csiebug.util.PropertiesUtility;
 import csiebug.util.rss.RSSFeedUtility;
 import csiebug.util.rss.RSSItem;
 
 public class RSSFeedUtilityTest {
 	private static Logger logger = Logger.getLogger(RSSFeedUtilityTest.class.getPackage().getName());
+	private String testFileSystemHome;
+	
+	private void init() throws IOException {
+		testFileSystemHome = PropertiesUtility.load("csiebug/test/util/test.properties").getProperty("testFileSystemHome");
+	}
 	
 	@Test
 	public void testAddItem() throws IOException, DocumentException, IllegalArgumentException, IllegalAccessException, InvocationTargetException, ClassNotFoundException {
-		File feedFile = new File("/home/csiebug/testFeed.xml");
+		init();
+		
+		File feedFile = new File(testFileSystemHome + "/testFeed.xml");
 		
 		assertEquals(false, feedFile.exists());
 		
@@ -64,7 +72,9 @@ public class RSSFeedUtilityTest {
 	
 	@Test
 	public void testAddItems() throws IOException, DocumentException, IllegalArgumentException, IllegalAccessException, InvocationTargetException, ClassNotFoundException {
-		File feedFile = new File("/home/csiebug/testFeed.xml");
+		init();
+		
+		File feedFile = new File(testFileSystemHome + "/testFeed.xml");
 		
 		assertEquals(false, feedFile.exists());
 		
