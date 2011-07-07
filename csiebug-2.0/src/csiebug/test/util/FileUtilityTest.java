@@ -101,6 +101,32 @@ public class FileUtilityTest {
 		assertEquals(true, file2.delete());
 	}
 	
+	@Test
+	public void testCatFile() throws IOException {
+		Calendar today = Calendar.getInstance();
+		String filePath = "/home/csiebug/test_" + today.get(Calendar.YEAR) + (today.get(Calendar.MONTH) + 1) + today.get(Calendar.DAY_OF_MONTH) + "1.txt";
+		String filePath2 = "/home/csiebug/test_" + today.get(Calendar.YEAR) + (today.get(Calendar.MONTH) + 1) + today.get(Calendar.DAY_OF_MONTH) + "2.txt";
+		String filePath3 = "/home/csiebug/test_" + today.get(Calendar.YEAR) + (today.get(Calendar.MONTH) + 1) + today.get(Calendar.DAY_OF_MONTH) + "3.txt";
+		String filePath4 = "/home/csiebug/test_" + today.get(Calendar.YEAR) + (today.get(Calendar.MONTH) + 1) + today.get(Calendar.DAY_OF_MONTH) + "4.txt";
+		
+		File file = makeTestTxtFile(filePath, "hello ");
+		File file2 = makeTestTxtFile(filePath2, "george!");
+		File file3 = new File(filePath3);
+		File file4 = makeTestTxtFile(filePath4, "hello george!");
+		File[] files = new File[2];
+		files[0] = file;
+		files[1] = file2;
+		
+		FileUtility.catFile(files, file3);
+		
+		assertEquals(true, FileUtility.isSameFile(file3, file4));
+		
+		assertEquals(true, file.delete());
+		assertEquals(true, file2.delete());
+		assertEquals(true, file3.delete());
+		assertEquals(true, file4.delete());
+	}
+	
 	private File makeTestTxtFile(String filePath, String strContent) throws IOException {
 		File file = null;
 		ByteArrayInputStream bais = null;

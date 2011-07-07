@@ -396,7 +396,7 @@ function addStep(obj, step, max) {
 		obj.value = "0";
 	}
 	
-	if(obj.value.indexOf(",") != -1) {
+	if(obj.getAttribute("dataType") == "currency") {
 		isCurrency = true;
 		originalValue = parseInt(replaceAll(obj.value, ',', ''), 10);
 	} else {
@@ -432,7 +432,7 @@ function subtractStep(obj, step, min) {
 		obj.value = "0";
 	}
 	
-	if(obj.value.indexOf(",") != -1) {
+	if(obj.getAttribute("dataType") == "currency") {
 		isCurrency = true;
 		originalValue = parseInt(replaceAll(obj.value, ',', ''), 10);
 	} else {

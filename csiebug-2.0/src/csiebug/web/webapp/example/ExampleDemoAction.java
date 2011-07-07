@@ -135,6 +135,7 @@ public class ExampleDemoAction extends BasicAction {
 		makeFunction(list, "form", "radioGroup", "Radio Group", "radioGroup", "11");
 		makeFunction(list, "form", "checkbox", "Checkbox", "checkbox", "12");
 		makeFunction(list, "form", "uploadify", "Uploadify", "uploadify", "13");
+		makeFunction(list, "form", "plupload", "Plupload", "plupload", "14");
 	}
 	
 	private void makeGridFolder(List<Map<String, String>> list) throws NamingException {
